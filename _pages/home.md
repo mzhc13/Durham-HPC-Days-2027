@@ -4,1707 +4,542 @@ permalink: /
 hidden: true
 ---
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<section class="ws-hero ws-hero-banner full-bleed">
-</section>
+{% comment %}
+  Settings. While the 2027 programme is being built, these point at the 2026 files.
+  Switch programme_collection / programme_url to the 2027 versions when available.
+  event_date: set to an ISO date/time (e.g. "2027-06-14T09:00:00") to switch on the countdown.
+{% endcomment %}
+{% assign programme_collection = "programme-days-2026" %}
+{% assign programme_url = "/programme-week-2026/" %}
+{% assign show_sessions = false %}
+{% assign video_id = "" %}
+{% assign contact_email = "" %}
+{% assign event_date = "" %}
+{% assign allowed = "workshop,talk,keynote,tutorial" | split: "," %}
+{% assign sessions = "" | split: "," %}
+{% if show_sessions and site[programme_collection] %}
+  {% assign sessions = site[programme_collection] | sort: "start_time" | where_exp: "item", "allowed contains item.category" %}
+{% endif %}
 
+<div class="hpc" id="hpc">
+  <div class="hpc-progress" aria-hidden="true"></div>
 
+  <header class="hpc-hero" id="top">
+    <canvas class="hpc-net" aria-hidden="true"></canvas>
+    <div class="hpc-in hpc-hero-in">
+      <p class="hpc-host" data-reveal>Durham University</p>
+      <h1 data-reveal style="--i:1">Durham HPC Days 2027</h1>
+      <p class="hpc-lede" data-reveal style="--i:2">A week of keynotes, talks, tutorials and workshops on high-performance computing, data analysis and scientific software.</p>
 
+      <dl class="hpc-facts" data-reveal style="--i:3">
+        <div><dt>Dates</dt><dd id="hpc-when" data-date="{{ event_date }}">To be confirmed</dd></div>
+        <div><dt>Location</dt><dd>Durham, United Kingdom</dd></div>
+        <div><dt>Registration</dt><dd>Opening soon</dd></div>
+      </dl>
 
-
-<section class="register-cta full-bleed fade-in">
-  <div class="register-content">
-    
-    <div class="register-content">
-      <h2>15th to 19th of June 2026</h2>
- 
-  <p>
-    The <strong>Durham HPC Days</strong> bring together researchers, developers, and practitioners
-    to explore the frontiers of high-performance computing, data analysis, and scientific innovation.
-  </p>
-
-  <br> 
-     <br>
+      <p class="hpc-actions" data-reveal style="--i:4">
+        <a class="hpc-btn hpc-btn-white" href="{{ programme_url | relative_url }}">View the programme</a>
+        <a class="hpc-btn hpc-btn-ghost" href="{{ '/sponsors/' | relative_url }}">Become a sponsor</a>
+      </p>
     </div>
-    
-</div>
+    <a class="hpc-scroll" href="#about" aria-label="Scroll to content"><span></span></a>
+  </header>
 
+  <section class="hpc-section" id="about">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>About the event</h2>
+        <p>Durham HPC Days brings together researchers, developers, system administrators and vendors to share what is working in high-performance computing, from applications and software to the systems that run them.</p>
+        <p>Invited keynotes and contributed talks sit alongside hands-on tutorials and community workshops, with time for working meetings and informal conversation.</p>
+        <ul class="hpc-chips" aria-label="Who attends">
+          <li>Researchers</li><li>Developers</li><li>System administrators</li><li>Vendors</li>
+        </ul>
+      </div>
+      <div data-reveal style="--i:1">
+        <h2>Key dates</h2>
+        <ol class="hpc-dates">
+          <li><span>To be confirmed</span>Call for contributions opens</li>
+          <li><span>To be confirmed</span>Submission deadline</li>
+          <li><span>To be confirmed</span>Registration opens</li>
+          <li><span>To be confirmed</span>Programme published</li>
+          <li class="hpc-final"><span>To be confirmed</span>Durham HPC Days 2027</li>
+        </ol>
+      </div>
+    </div>
   </section>
-  
 
+  <section class="hpc-section hpc-alt" id="programme">
+    <div class="hpc-in">
+      <h2 data-reveal>Explore the programme</h2>
+      <p class="hpc-sub" data-reveal style="--i:1">Six ways to take part. Pick one to see what is planned.</p>
+    </div>
+    <div class="hpc-in hpc-tiles">
+      <a class="hpc-tile t1" data-reveal style="--i:0" href="{{ '/keynotes/' | relative_url }}">
+        <h3>Keynotes</h3>
+        <p>Invited speakers on where HPC and research computing are heading.</p>
+        <span class="hpc-go">Explore the keynotes</span>
+      </a>
+      <a class="hpc-tile t2" data-reveal style="--i:1" href="{{ '/tutorials/' | relative_url }}">
+        <h3>Tutorials</h3>
+        <p>Hands-on sessions where you work through examples on real systems.</p>
+        <span class="hpc-go">Explore the tutorials</span>
+      </a>
+      <a class="hpc-tile t3" data-reveal style="--i:2" href="{{ '/talks/' | relative_url }}">
+        <h3>Talks</h3>
+        <p>Contributed presentations on applications, infrastructure and tools.</p>
+        <span class="hpc-go">Explore the talks</span>
+      </a>
+      <a class="hpc-tile t4" data-reveal style="--i:0" href="{{ '/workshops/' | relative_url }}">
+        <h3>Workshops</h3>
+        <p>Longer, focused sessions on a single topic, led by the community.</p>
+        <span class="hpc-go">Explore the workshops</span>
+      </a>
+      <a class="hpc-tile t5" data-reveal style="--i:1" href="{{ '/meetings/' | relative_url }}">
+        <h3>Meetings</h3>
+        <p>Working meetings and user groups that run alongside the programme.</p>
+        <span class="hpc-go">Explore the meetings</span>
+      </a>
+      <a class="hpc-tile t6" data-reveal style="--i:2" href="{{ '/socials/' | relative_url }}">
+        <h3>Socials</h3>
+        <p>Evening events and meals for meeting other attendees.</p>
+        <span class="hpc-go">Explore the socials</span>
+      </a>
+    </div>
+  </section>
 
+  <section class="hpc-section" id="watch">
+    <div class="hpc-in hpc-split hpc-split-video">
+      <div data-reveal>
+        {% if video_id != "" %}
+          <button class="hpc-video" type="button" data-id="{{ video_id }}" aria-label="Play video" style="background-image:url('https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg')"><span class="hpc-play"></span></button>
+        {% else %}
+          <div class="hpc-video hpc-video-empty" role="img" aria-label="Video placeholder"><span class="hpc-play"></span><span class="hpc-video-note">2027 teaser video coming soon</span></div>
+        {% endif %}
+      </div>
+      <div data-reveal style="--i:1">
+        <h2>Watch</h2>
+        <p>A short film from this year’s event will be added here. In the meantime, the recap from 2025 shows what a week at HPC Days looks like.</p>
+        <p><a class="hpc-btn hpc-btn-purple" href="https://youtu.be/wPjtwACmaUg">Watch the 2025 recap</a></p>
+      </div>
+    </div>
+  </section>
 
-
-
-
-
-
-<section id="programme" class="fade-in">
-  <h2>🗓️ Explore the Programme</h2>
-  <t style="max-width: 700px; margin: 0 auto 2rem;">
-    Discover the full schedule of keynotes, technical sessions, and social events for the upcoming conference.
-    Check the programme to plan your participation and make the most of your experience at Durham HPC Days.<br>
-  </t><br>
-  <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/programme-week-2026/" class="btn btn-purple">Check out the programme</a>
-</section>
-
-
-
-
-
-
-
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-keynotes ws-hero__overlay"></div>
-  <div class="ws-keynotes-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Keynotes</h1>
-    <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/keynotes/" class="ws-hero-cta">
-  Explore the keynotes <span>→</span>
-</a>
-  </div>
-</section>
-
-
-
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-tutorials ws-hero__overlay"></div>
-  <div class="ws-tutorials-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Tutorials</h1>
-    <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/tutorials/" class="ws-hero-cta">
-  Explore tutorials <span>→</span>
-</a>
-  </div>
-</section>
-
-
-
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-talks ws-hero__overlay"></div>
-  <div class="ws-talks-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Talks</h1>     <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/talks/" class="ws-hero-cta">
-  Explore talks <span>→</span>
-</a>
-  </div>
-</section>
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-workshops ws-hero__overlay"></div>
-  <div class="ws-workshops-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Workshops</h1>
-    <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/workshops/" class="ws-hero-cta">
-  Explore workshops <span>→</span>
-</a>
-  </div>
-</section>
-
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-meetings ws-hero__overlay"></div>
-  <div class="ws-meetings-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Meetings</h1>
-    <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/meetings/" class="ws-hero-cta">
-  Explore meetings <span>→</span>
-</a>
-  </div>
-</section>
-
-
-
-
-<section class="ws-hero ws-hero-sessions full-bleed">
-  <div class="ws-social ws-hero__overlay"></div>
-  <div class="ws-social-grid ws-hero__grid"></div>
-  <div class="ws-hero__content">
-    <h1>Socials</h1>
-    <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/socials/" class="ws-hero-cta">
-  Explore our socials <span>→</span>
-</a>
-  </div>
-</section>
-
-
-<section id="programme" class="fade-in">
-  <h2>💬 Join the HPC Days Slack Channel</h2>
-
-   <t style="max-width: 700px; margin: 0 auto 2rem;">
-    Stay connected with other attendees, ask questions, and receive conference updates through our Slack channel.
-  
-
- 
-    HPC Days uses the CAKE Slack workspace. If you are not already a member, please join the workspace first:
- </t>
-   
-   <t style="max-width: 700px; margin: 0 auto 2rem;">
-    Once you have joined the workspace, search for and join the HPC Days conference channel:
-    <strong>#hpc-days26</strong>.
-  </t>
-
-
-  <a href="https://join.slack.com/t/cake-dri/shared_invite/zt-3dvw46q4g-eode0z4zTvpzoBv~fsQv~w/" class="btn btn-purple">Join the CAKE Slack workspace</a>
-
-</section>
-
-<section id="featured-sessions" class="fade-in">
-  <h2>🎤 Featured Sessions</h2>
-
-  <div class="carousel-wrapper">
-    <div class="carousel-track">
-
-{% assign allowed = "workshop,talk" | split: "," %}
-
-{% assign talks = site.programme-days-2026 
-  | sort: "start_time" 
-  | where_exp: "item", "allowed contains item.category" 
-%}
-  
-      
-      
-            {% for talk in talks %}
-<a href="{{ talk.url }}" class="session-card {{ talk.category | downcase }}">
-  <div class="about-card">
-
-    <div class="card-title">{{ talk.title }}</div>
-
-    <div class="card-details">
-
-      <div class="card-row">
-        <div class="card-text">
-          📅 {{ talk.day }} · {{ talk.start_time }}–{{ talk.end_time }}
+  {% if sessions.size > 0 %}
+    <section class="hpc-section hpc-alt">
+      <div class="hpc-in">
+        <h2 data-reveal>Featured sessions</h2>
+        <div class="hpc-filter" role="group" aria-label="Filter sessions">
+          <button type="button" class="on" data-f="all">All</button>
+          <button type="button" data-f="keynote">Keynotes</button>
+          <button type="button" data-f="tutorial">Tutorials</button>
+          <button type="button" data-f="talk">Talks</button>
+          <button type="button" data-f="workshop">Workshops</button>
         </div>
+        <ul class="hpc-cards">
+          {% for s in sessions limit: 8 %}
+            <li class="hpc-card hpc-{{ s.category | downcase }}" data-cat="{{ s.category | downcase }}">
+              <a href="{{ s.url | relative_url }}">
+                <span class="hpc-card-title">{{ s.title }}</span>
+                <span class="hpc-card-meta">{{ s.day }}, {{ s.start_time }}–{{ s.end_time }}{% if s.room and s.room != "TBC" %}<br>{{ s.room }}{% endif %}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
+    </section>
+  {% endif %}
 
-      {% if talk.room and talk.room != "TBC" %}
-      <div class="card-row">
-      <div class="card-text"> 📍 {{ talk.room }}</div>
+  <section class="hpc-band" id="contribute">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>Call for contributions</h2>
+        <p>We will invite talks, tutorials and workshops from the community. Submission details and the deadline will be published here.</p>
       </div>
-      {% endif %}
-
+      <div data-reveal style="--i:1">
+        <h2>Join the conversation</h2>
+        <p>Attendees talk through the CAKE Slack workspace. Join the workspace, then find the channel <strong>#hpc-days27</strong>.</p>
+        <p class="hpc-copyrow">
+          <a class="hpc-btn hpc-btn-white" href="https://join.slack.com/t/cake-dri/shared_invite/zt-3dvw46q4g-eode0z4zTvpzoBv~fsQv~w/">Join the CAKE Slack workspace</a>
+          <button type="button" class="hpc-btn hpc-btn-ghost" data-copy="#hpc-days27">Copy channel name</button>
+        </p>
+      </div>
     </div>
-
-
-
-  </div>
-</a>
-      {% endfor %}
-      
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-<div class="header-image"></div>
-
-<section id="gallery" class="fade-in">
-  <h2>📸 Gallery</h2>
-  <div class="image-grid">
-    <img src="assets/images/Sessions.jpg" alt="Sessions">
-    <img src="assets/images/food-truck.jpg" alt="Food truck">
-    <img src="assets/images/social.png" alt="social">
-  </div>
-</section>
-
-
-<div class="herovid">
-  <div class="hero-inner">
-    <div class="hero-video">
-      <div id="yt-player"></div>
-    </div>
-    <div class="hero-content">
-    
-      <h1>Durham HPC Days 2025 Video Recap</h1>
-     
-      <a href="https://durham.readthedocs.io/en/latest/hpcdays2025/index.html" class="btn btn-purple" target="_blank" rel="noopener">Visit last year's website</a>
-
-      <a href="https://youtu.be/wPjtwACmaUg" class="btn btn-purple" target="_blank" rel="noopener">HPC Days 2025 Video</a>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-<section class="register-cta  register-cta-purple full-bleed fade-in">
-  <div class="register-content">
-    
-    <div class="register-content">
-      <h2>Our Sponsors</h2>
- 
-  <p>
-    If you are sponsoring and supporting HPC Days 2026, thank you very much! We would not be able to run the event without you!
-  </p>
-      
-      
-      
-        <div class="sponsors-grid">
-
-      <!-- Sponsor -->
-      <a href="https://www.ddn.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://www.ddn.com/wp-content/uploads/2024/09/ddn-logo-dark-horizontal-rgb.jpg" alt="ddn">
-      </div>
-      </a>
-      
-      
-      
-      
-      
-      
-      
-<a href="https://eu.fsastech.com/eu/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4D0BAQFz2Hw6LVRJlg/company-logo_200_200/B4DZWPBwyvHYAI-/0/1741861359139?e=2147483647&v=beta&t=sLukj4LFeyoCCButXJ0ICGVDUN3dEz_FDbeicBq3pNM" alt="Fsas Technologies">
-      </div>
-      </a>
-      
-      
- <a href="https://www.novatech.co.uk/" target="_blank" rel="noopener noreferrer">     
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQERb5GeBVwP7g/company-logo_200_200/company-logo_200_200/0/1688369383296/novatech_logo?e=2147483647&v=beta&t=DlfqUR3v9c8B9qftCRLVBJ4nlTTSYiolK0OFNqu5Fw8" alt="novatech">
-      </div>
-      </a>
-
-<a href="https://ocf.co.uk/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://ocf.co.uk/images/logoblue.png" alt="OCF">
-      </div>
-       </a>
-
-
-       <a href="https://vespertec.com/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEhA0V0YoOXGA/company-logo_200_200/company-logo_200_200/0/1676029024070/vesper_technologies_logo?e=2147483647&v=beta&t=TTfPTvl6bMW_7GtD21Z5wY8qMyoIW6nttrufzvEagKI" alt="vespertec">
-      </div>
-       </a>
-       
-       
-              <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiSpef17uKTAxX7UEEAHVxrAFAQFnoECCQQAQ&url=https%3A%2F%2Fwww.dell.com%2Fen-uk&usg=AOvVaw3-JlCQe6jSInbb9A7hdiSS&opi=89978449" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://aeseurope.com/wp-content/uploads/2021/05/dell-technologies-vertical_logo.png">
-      </div>
-       </a>
-
-
-              <a href="https://www.stackhpc.com/" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://avatars.githubusercontent.com/u/22750772?s=200&v=4">
-      </div>
-       </a>
-       
-                     <a href="https://spectralogic.com/">
-      <div class="sponsor-logo">
-        <img src="https://spectralogic.com/wp-content/uploads/SpectraLogo-2023.webp">
-      </div>
-       </a>
-
-         <a href="https://www.peakaio.com/">
-      <div class="sponsor-logo">
-        <img src="https://www.peakaio.com/images/logos/peakaio-logo-org.png">
-      </div>
-       </a>
-       
-       
-        <a href="https://www.amd.com/en.html">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D560BAQFCdxxVA_xhqQ/company-logo_200_200/B56ZnuIjafHUAM-/0/1760636844195/amd_logo?e=2147483647&v=beta&t=oM29UWcjmkCmT-aq0bZ_DEd-eqpPMQ-WR_FxQr-qHuM">
-      </div>
-       </a>
-       
-       
-               <a href="https://www.vastdata.com/">
-      <div class="sponsor-logo">
-        <img src="https://media.datacenterdynamics.com/media/images/vast-stacked-logo-hex-blue.original.png"/>
-      </div>
-       </a>
-       
-          <a href="https://www.cerio.ai/about/">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQHXQBXfdTL5CQ/company-logo_200_200/company-logo_200_200/0/1696902111021/rockport_networks_inc__logo?e=2147483647&v=beta&t=FtlSAqR4iyzjknbR2_hDBhx7wRiP4_KOeXl6N2hMEeU">
-      </div>
-       </a>
-       
-                        <a href="https://www.beegfs.io/c/">
-      <div class="sponsor-logo">
-        <img src="https://www.advancedclustering.com/wp-content/uploads/2022/04/BeeGFS_big.png">
-      </div>
-       </a>
-
-                 <a href="https://www.bios-it.co.uk/home.aspx">
-      <div class="sponsor-logo">
-        <img src="assets/images/biositlogo.png">
-      </div>
-       </a>
-       
-                        <a href="https://www.computacenter.com/en-gb">
-      <div class="sponsor-logo">
-        <img src="assets/images/computacenterlogo.png"/>
-      </div>
-       </a>
-       
-     
-     <a href="https://alces-flight.com/">
-      <div class="sponsor-logo">
-        <img src="https://alces-flight.com/wp-content/uploads/2023/11/Alces-Flight-KG-Logo.png">
-      </div>
-       </a>
-
-     <a href="https://midasimmersion.com/">
-      <div class="sponsor-logo">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ600jBke7tEbherj_Qolde-FiHvrc6nuq-RA&s">
-      </div>
-       </a>
-
-      <a href="https://www.quantum.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://www.quantum.com/globalassets/redesign2021/quantum-logo-gradient.svg" alt="Quantum">
-      </div>
-      </a>
-
-      <a href="https://www.cornelis.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="assets/images/cornelislogo.png" alt="Cornelis">
-      </div>
-      </a>
-
-     <a href="https://durham.ac.uk/">
-      <div class="sponsor-logo">
-        <img src="https://durham.readthedocs.io/en/latest/_static/logo.png">
-      </div>
-       </a>
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-    </div>
-      
-      
-
-      <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/sponsors/" 
-         class="btn btn-primary">
-        How to sponsor
-      </a>
-    </div>
-    
-</div>
-
   </section>
-  
-  
-  
-  
-  
+
+  <section class="hpc-section">
+    <div class="hpc-in hpc-faq-wrap">
+      <h2 data-reveal>Good to know</h2>
+      <div class="hpc-faq" data-reveal style="--i:1">
+        <details><summary>Who is it for?</summary><p>Researchers, developers, system administrators and vendors working with high-performance computing, data analysis and scientific software.</p></details>
+        <details><summary>How do I stay up to date?</summary><p>Join the CAKE Slack workspace and find <strong>#hpc-days27</strong>. Dates and registration details will also be published on this page.</p></details>
+        <details><summary>Can I contribute a session?</summary><p>Yes. We will invite talks, tutorials and workshops from the community. Submission details will appear under “Call for contributions”.</p></details>
+        <details><summary>Can my organisation sponsor the event?</summary><p>Yes. Visit the <a href="{{ '/sponsors/' | relative_url }}">sponsors page</a> to find out how.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="hpc-section hpc-alt" id="previous">
+    <div class="hpc-in">
+      <h2 data-reveal>Previous events</h2>
+      <div class="hpc-gallery">
+        <button type="button" data-reveal style="--i:0" data-full="{{ '/assets/images/Sessions.jpg' | relative_url }}" aria-label="Enlarge photo: attendees in a session"><img src="{{ '/assets/images/Sessions.jpg' | relative_url }}" alt="Attendees in a session" loading="lazy"></button>
+        <button type="button" data-reveal style="--i:1" data-full="{{ '/assets/images/food-truck.jpg' | relative_url }}" aria-label="Enlarge photo: food truck during a break"><img src="{{ '/assets/images/food-truck.jpg' | relative_url }}" alt="Food truck during a break" loading="lazy"></button>
+        <button type="button" data-reveal style="--i:2" data-full="{{ '/assets/images/social.png' | relative_url }}" aria-label="Enlarge photo: attendees at the social event"><img src="{{ '/assets/images/social.png' | relative_url }}" alt="Attendees at the social event" loading="lazy"></button>
+      </div>
+      <p class="hpc-prev" data-reveal>
+        <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/">Durham HPC Days 2026</a>
+        <a href="https://durham.readthedocs.io/en/latest/hpcdays2025/index.html">Durham HPC Days 2025</a>
+        {% if contact_email != "" %}<a href="mailto:{{ contact_email }}">Contact the organisers</a>{% endif %}
+      </p>
+    </div>
+  </section>
+
+  <dialog class="hpc-lightbox" aria-label="Photo viewer">
+    <button type="button" class="hpc-close" aria-label="Close">×</button>
+    <img alt="">
+  </dialog>
+  <button type="button" class="hpc-top" aria-label="Back to top">↑</button>
+  <div class="hpc-toast" role="status" aria-live="polite"></div>
+</div>
 
 <style>
+html { scroll-behavior: smooth; background: #07121A; }
+body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif; }
 
-
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  color: #222;
-  scroll-behavior: smooth;
-}
-
-h1, h2, h3 {
-  font-weight: 600;
-}
-
-a {
-  color: #0055aa;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-
-.news-banner {
-  background: linear-gradient(90deg, #572368, #940594);
-  color: white;
-  text-align: center;
-  padding: 12px 18px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  position: relative;
-  z-index: 20;
-   width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-top: 0rem !important;
-}
-
-.news-banner a {
-  color: white;
-  font-weight: 700;
-  margin-left: 10px;
-  text-decoration: underline;
-}
-
-.news-banner a:hover {
-  opacity: 0.85;
-}
-
-
-  .ws-hero {
-
-  position: relative;
-    background-attachment: fixed;
-    background-position: center 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
-  
-  }
-  
-  
-  .ws-hero-banner {
-   width: 100vw;
-  margin-left: calc(50% - 50vw);
-    height: 70vh;
-    min-height: 70px;
-    background-image: url("assets/images/eva-blue-banner.png");  
-  }
-  
-    .ws-hero-sessions {
-     width: 100vw;
-    margin-left: calc(50% - 50vw);
-    height: 9vh;
-    min-height: 320px;
-    background-image: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true");  
-     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    overflow: hidden;
-      margin-top: 0.5rem;
-  }
-
-  .ws-hero__overlay {
-    position: absolute;
-    inset: 0;
-  }
-
-
-  .ws-hero__grid {
-    position: absolute;
-    inset: 0;
-    background-size: 48px 48px;
-    pointer-events: none;
-  }
-  
-  .ws-talks {
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), /* contrast layer */
-linear-gradient(
-  135deg,
-  rgba(0, 90, 50, 0.95) 0%,   
-  rgba(0, 200, 120, 0.75) 60%, 
-  rgba(0, 90, 50, 0.55) 100%  
-);
-}
-
-  .ws-talks-grid {
-   background-image:
-   linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-
-
-  .ws-workshops {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 42, 65, 0.92) 0%,
-      rgba(41, 117, 193, 0.70) 60%,
-      rgba(0, 42, 65, 0.50) 100%
-    );
-  }
-      
- .ws-workshops-grid {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-}
-
-
-  .ws-tutorials {
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    linear-gradient(
-      135deg,
-      rgba(120, 90, 0, 0.95) 0%,
-      rgba(255, 200, 0, 0.75) 60%,
-      rgba(120, 90, 0, 0.55) 100%
-    );
-  }
-      
- .ws-tutorials-grid {
- background-image:
-   linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-
-  .ws-keynotes {
-background: 
-linear-gradient(
-  135deg,
-  rgba(50, 15, 55, 0.95) 0%,   
-  rgba(104, 36, 109, 0.80) 55%, 
-  rgba(104, 36, 109, 0.55) 100%
-);
-  }
-      
- .ws-keynotes-grid {
-   background-image:
-   linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-.ws-posters {
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    linear-gradient(
-      135deg,
-      rgba(120, 0, 0, 0.95) 0%,
-      rgba(220, 50, 50, 0.75) 60%,
-      rgba(120, 0, 0, 0.55) 100%
-    );
-}
-
-.ws-posters-grid {
-  background-image:
-    linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-.ws-meetings {
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    linear-gradient(
-      135deg,
-      rgba(90, 0, 60, 0.95) 0%,
-      rgba(200, 80, 150, 0.75) 60%,
-      rgba(90, 0, 60, 0.55) 100%
-    );
-}
-
-.ws-meetings-grid {
-  background-image:
-    linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-.ws-social {
-  background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
-    linear-gradient(
-      135deg,
-      rgba(140, 60, 0, 0.95) 0%,
-      rgba(255, 140, 0, 0.75) 60%,
-      rgba(140, 60, 0, 0.55) 100%
-    );
-}
-
-.ws-social-grid {
-  background-image:
-    linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-}
-
-
-
-
-
-  .ws-hero__content {
-    position: relative;
-    z-index: 2;
-    padding: 0 3rem 3rem;
-    max-width: 860px;
-    text-align: left;
-  }
-
-  .ws-hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 0.75rem;
-  }
-
-  .ws-hero__eyebrow::before {
-    content: '';
-    display: block;
-    width: 28px;
-    height: 2px;
-  background: #ffffff;
-    border-radius: 2px;
-  }
-
-  .ws-hero h1 {
-    
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 400;
-    color: #ffffff;
-    margin: 0 0 0.5rem;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-  }
-
-  .ws-hero h1 em {
-    font-style: italic;
-    color: #7ec8ff;
-  }
-
-.ws-hero-cta {
-  margin-top: 1rem;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.4rem;
-
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-
-  color: #ffffff !important;
-  text-decoration: none;
-
-  padding: 0.5rem 1rem;
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(6px);
-
-  transition: all 0.3s ease;
-}
-
-
-.ws-hero-cta:hover {
-  background: rgba(255,255,255,0.22);
-  transform: translateY(-2px);
-}
-
-/* Arrow animation */
-.ws-hero-cta span {
-  transition: transform 0.3s ease;
-}
-
-.ws-hero-cta:hover span {
-  transform: translateX(4px);
-}
-  
-  
-
-  
-  
-  
-.herovid {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem 1rem;
-  width: 100%;
-}
-
-.hero-inner {
-  position: relative;
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-}
-
-.hero-video {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-#yt-player {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.hero-inner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  z-index: 1;
-}
-
-.hero-content {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  color: white;
-  padding: 1.5rem;
-}
-
-
-
-
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 1rem 2.4rem;
-  border-radius: 999px;
-
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.3px;
-
-  text-decoration: none;
-  cursor: pointer;
-
-  transition: all 0.25s ease;
-}
-
-.btn-purple {
-  background:  #002A41;
-  color: #ffffff !important;
-  box-shadow: 0 8px 20px rgba(0, 42, 65, 0.25);
-  margin-bottom: 2rem;
-}
-
-.btn-purple:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 30px rgba(0, 42, 65, 0.35);
-}
-
-.btn-purple:active {
-  transform: translateY(-1px);
-}
-
-.btn-purple:focus-visible {
-  outline: 3px solid rgba(0, 61, 128, 0.5);
-  outline-offset: 4px;
-}
-
-
-
-section {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-section p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #eeeeee;
-}
-
-
-  .hero-content p {
-    font-size: 0.95rem;
-    color: #ffffff !important;
-      max-width: 600px;
-  margin-bottom: 1rem;
-  }
-  
-
-t {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #002A41;
-  display: block;
-}
-
-
-
-.dual-cards {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2rem;
-  max-width: 1300px;
-  margin:0.5rem auto;
-  padding: 0 2rem;
-}
-
-.call-for-submissions {
-  background: #ffffff;
-  border-top: 4px solid #002A41;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-  padding: 2rem;
-  border-radius: 20px;
-  text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  transition: all 0.3s ease;
-}
-
-.call-for-submissions:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 45px rgba(0,0,0,0.12);
-}
-
-.call-for-submissions h2 {
-  font-size: 1.4rem;
-  color: #002A41;
-  margin-bottom: 0.5rem;
-}
-
-.deadline-box {
-  font-size: 1rem;
-  background: #f5f7fa;
-  color: #002A41;
-  padding: 0.9rem 1rem;
-  border-radius: 14px;
-  font-weight: 500;
-  margin: 1rem 0 1.5rem 0;
-}
-
-
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.image-grid img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.image-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-}
-
-
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
-
-.page__content,
-.page__inner-wrap,
-.wrapper,
-.initial-content {
+.page__content, .page__inner-wrap, .wrapper, .initial-content {
   max-width: 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
-}
-
-
-
-.sponsors-strip {
-  padding: 1rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.sponsors-container {
-  max-width: 1100px;
-}
-
-.sponsors-strip h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #68246D;
-  font-weight: 600;
-}
-
-/* Grid */
-.sponsors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-/* Logo card */
-.sponsor-logo {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-
-  aspect-ratio: 1 / 1;         
-  width: 100%;
-
-  display: flex;               
-  align-items: center;
-  justify-content: center;
-
-  padding: 1rem;
-
-  transition: all 0.25s ease;
-}
-
-.sponsor-logo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-}
-
-.sponsor-logo img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-
-  opacity: 0.85;
-  transition: all 0.25s ease;
-}
-
-
-
-
-
-
-.carousel-wrapper {
-  position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  overflow: hidden;
-  padding: 1rem 0;
-
-
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-}
-
-.carousel-track {
-  display: flex;
-  gap: 0.5rem;
-  align-items: stretch;
-}
-
-
-.carousel-track {
-  display: flex;
-  gap: 0.5rem;
-  align-items: stretch;
-  will-change: transform;
-  background: none;
-}
-
-.carousel-wrapper {
-  overflow-x: auto;
-}
-
-
-
-
-.session-card {
-  width: 200px;
-  flex: 0 0 300px;
-  display: flex;
-
-  background: none;
-  padding: 0;
-  border: none;
-}
-
-
-.about-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 1.3rem 1.4rem;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-   height: 100%;
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-
-.session-card .about-card {
-  border-top: 5px solid #cccccc;
-}
-
-
-.session-card.talk .about-card {
-  border-top-color: rgba(0, 90, 50, 0.95);  
-}
-
-.session-card.tutorial .about-card {
-  border-top-color:  rgba(120, 90, 0, 0.95);   
-}
-
-.session-card.keynote .about-card {
-  border-top-color: #8e44ad;  
-}
-
-.session-card.workshop .about-card {
-  border-top-color: rgba(0, 42, 65, 0.92);  
-}
-
-.about-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-}
-
-
-.card-title {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #002A41;
-
-  line-height: 1.35;
-  margin-bottom: 0.7rem;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;  
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 5em;
-}
-
-
-.about-button {
-  align-self: flex-start;
-
-  font-size: 0.78rem;
-  font-weight: 600;
-
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-
-  background: #002A41;
-  color: #fff !important;
-  text-decoration: none;
-
-  transition: all 0.2s ease;
-}
-
-.about-button:hover {
-  background: #00a86b;
-  transform: scale(1.05);
-}
-
-
-.card-details {
-  margin: 0.5rem 0 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-    flex-grow: 1; 
-}
-
-.card-text {
-  font-size: 0.6rem;
-  color: #002A41;
-  line-height: 1.45;
-  text-align: left;
-}
-
-
-.register-cta {
-  position: relative;
-  margin-top: 0!important;
-
-    width: 100vw;
-  margin-left: calc(50% - 50vw);
-
-  background: linear-gradient(
-    135deg,
-    #053855 0%,
-    #053855 25%,
-    #003f63 50%,
-    #005f73 100%
-  );
-
-  color: #ffffff;
-  text-align: center;
-
-  box-shadow: 0 20px 50px rgba(0, 42, 65, 0.25);
-
-  overflow: hidden;
-        margin-bottom: 0!important;
-}
-
-.register-cta-purple {
-  background: linear-gradient(
-    135deg,
-    #2e0f3a 0%,   
-    #2e0f3a 25%,
-    #4b1f5e 50%,  
-    #6d2c7a 100% 
-  );
-      margin-bottom: 0!important;
-}
-
-
-
-
-.register-cta::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at 20% 20%,
-    rgba(255,255,255,0.08),
-    transparent 60%
-  );
-}
-
-.register-content {
-  position: relative;
-  z-index: 2;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.register-cta h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-}
-
-.register-cta p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 1.2rem;
-}
-
-.register-meta {
-  font-size: 0.95rem;
-  opacity: 0.85;
-  margin-bottom: 1.8rem;
-}
-
-
-.btn-primary {
-  background: #ffffff;
-  color: #002A41 !important;
-  font-weight: 700;
-
-  padding: 1rem 2.6rem;
-  margin-bottom: 3rem;
-  border-radius: 999px;
-
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-
-  transition: all 0.25s ease;
-  margin-bottom: 2rem;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 18px 35px rgba(0,0,0,0.3);
-}
-
-.full-bleed {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-}
-
-
-
-@media (max-width: 900px) {
-  
-
-  body {
-    font-size: 15px;
-  }
-
-  section {
-    padding: 1.5rem 1rem;
-  }
-
-  section h2 {
-    font-size: 1.6rem;
-    margin-bottom: 0.8rem;
-  }
-
-  t, section p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  #featured-sessions,
-  .carousel-wrapper,
-  .carousel-track {
-    display: none !important;
-  }
-.page__content,
-.page__inner-wrap,
-.wrapper,
-.initial-content {
   margin-top: 0 !important;
-  padding-top: 0 !important;
 }
 
-  .ws-hero-sessions {
-    height: 28vh;
-    min-height: 180px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+/* Session-type colours: reuse these in the programme timetable */
+:root {
+  --s-keynote:  #D79BDD;
+  --s-tutorial: #5BB4E5;
+  --s-talk:     #4FC3B0;
+  --s-workshop: #F0B35E;
+  --s-meeting:  #B5D96B;
+  --s-social:   #E88FB4;
+}
 
-  .ws-hero__content {
-    padding: 0 1.2rem;
-    text-align: center;
-  }
+.hpc {
+  /* Brand: purple-led, with tinted darks */
+  --purple: #68246D;
+  --purple-light: #C98ACF;
+  --purple-soft: #EBD6EE;
+  --bg: #0E0812;
+  --alt: #160D1B;
+  --card: #20132A;
+  --line: #3E2A4B;
+  --text: #F6F1F8;
+  --muted: #B8A8C2;
 
-  .ws-hero h1 {
-    font-size: 1.9rem;
-  }
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow-x: clip;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 16px/1.6 "Source Sans 3", system-ui, sans-serif;
+}
+.hpc *, .hpc *:before, .hpc *:after { box-sizing: border-box; }
 
-  .ws-hero-cta {
-    font-size: 0.8rem;
-    padding: 0.5rem 0.9rem;
-  }
+.hpc h1, .hpc h2, .hpc h3 { font-family: inherit; font-weight: 800; line-height: 1.12; margin: 0 0 14px; color: var(--text); }
+.hpc h2 { font-size: clamp(26px, 3.2vw, 34px); letter-spacing: -.01em; }
+.hpc p { margin: 0 0 14px; font-size: 17px; line-height: 1.65; color: var(--text); }
+.hpc ul, .hpc ol { list-style: none; margin: 0; padding: 0; }
+.hpc a { color: var(--purple-light); text-underline-offset: 4px; }
+.hpc a:hover { color: var(--purple-soft); }
+.hpc a:focus-visible, .hpc button:focus-visible, .hpc summary:focus-visible { outline: 3px solid var(--purple-soft); outline-offset: 3px; }
+.hpc-in { max-width: 1100px; margin: auto; padding: 0 28px; }
+.hpc-sub { color: var(--muted) !important; margin-bottom: 28px !important; }
 
+/* Progress */
+.hpc-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100; background: linear-gradient(90deg, var(--purple), var(--purple-light), var(--purple-soft)); transform: scaleX(0); transform-origin: left; }
 
-  .hero-content h1 {
-    display: none;
-  }
+/* Buttons */
+.hpc .hpc-btn { display: inline-block; padding: 11px 22px; border: 2px solid var(--purple); border-radius: 6px; font: 700 16px/1.3 inherit; text-decoration: none; cursor: pointer; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+.hpc .hpc-btn:hover { transform: translateY(-1px); }
+.hpc .hpc-btn-sm { padding: 7px 15px; font-size: 14px; background: var(--purple); color: #fff !important; }
+.hpc .hpc-btn-sm:hover { background: var(--purple-light); border-color: var(--purple-light); color: #1D0B20 !important; }
+.hpc .hpc-btn-white { background: #F3F0F6; color: #1D0B20 !important; border-color: #F3F0F6; }
+.hpc .hpc-btn-white:hover { background: var(--purple-soft); border-color: var(--purple-soft); }
+.hpc .hpc-btn-purple { background: var(--purple); color: #fff !important; }
+.hpc .hpc-btn-purple:hover { background: var(--purple-light); border-color: var(--purple-light); color: #1D0B20 !important; }
+.hpc .hpc-btn-ghost { background: transparent; color: #fff !important; border-color: rgba(255,255,255,.7); }
+.hpc .hpc-btn-ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
-  .hero-content a:not([href*="youtu.be"]) {
-    display: none;
-  }
+/* Hero */
+.hpc-hero { position: relative; min-height: 78vh; display: flex; align-items: flex-end; padding: 90px 0 70px; overflow: hidden;
+  background: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true") center 60% / cover no-repeat; }
+.hpc-hero:before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(160deg, rgba(28,8,32,.94) 0%, rgba(70,24,76,.84) 55%, rgba(104,36,109,.78) 100%),
+              linear-gradient(to top, var(--bg), transparent 30%); }
+.hpc-net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+.hpc-hero-in { position: relative; z-index: 2; width: 100%; pointer-events: none; }
+.hpc-hero-in a, .hpc-hero-in button { pointer-events: auto; }
+.hpc-host { margin-bottom: 10px !important; color: var(--purple-soft) !important; font-size: 15px !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.hpc-hero h1 { max-width: 14ch; margin-bottom: 18px; color: #fff; font-size: clamp(40px, 6vw, 70px); letter-spacing: -.025em; }
+.hpc-lede { max-width: 620px; margin: 0 0 28px !important; color: #EAF1F6 !important; font-size: 20px !important; }
+.hpc-facts { display: flex; flex-wrap: wrap; gap: 16px 44px; max-width: 700px; margin: 0 0 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.3); }
+.hpc-facts dt { color: var(--purple-soft); font-size: 14px; }
+.hpc-facts dd { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
+.hpc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 !important; }
+.hpc-scroll { position: absolute; bottom: 20px; left: 50%; z-index: 2; width: 26px; height: 42px; margin-left: -13px; border: 2px solid rgba(255,255,255,.55); border-radius: 14px; }
+.hpc-scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; background: #fff; border-radius: 2px; animation: hpc-dot 1.8s ease-in-out infinite; }
+@keyframes hpc-dot { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
 
-  .hero-inner {
-    border-radius: 10px;
-  }
-  
-    .ws-hero-banner {
-   margin-top: 0!important;
-  }
+/* Sections */
+.hpc-section { padding: 72px 0; background: var(--bg); }
+.hpc-alt { background: var(--alt); }
+.hpc-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px 64px; align-items: start; }
+.hpc-split-video { grid-template-columns: 1.25fr 1fr; align-items: center; }
+.hpc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px !important; }
+.hpc-chips li { padding: 5px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: 14px; font-weight: 600; }
 
+/* Timeline */
+.hpc-dates { margin-left: 6px !important; border-left: 2px solid var(--line) !important; }
+.hpc-dates li { position: relative; padding: 0 0 20px 26px; font-weight: 600; line-height: 1.4; }
+.hpc-dates li:last-child { padding-bottom: 0; }
+.hpc-dates li:before { content: ""; position: absolute; left: -8px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--purple-light); transition: background .3s, box-shadow .3s; }
+.hpc-dates li:hover:before, .hpc-final:before { background: var(--purple-light); box-shadow: 0 0 0 5px rgba(201,138,207,.22); }
+.hpc-dates span { display: block; margin-bottom: 2px; color: var(--muted); font-size: 14px; font-weight: 400; }
 
+/* Tiles */
+.hpc-tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.hpc a.hpc-tile { --c: var(--purple-light); position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: 26px 26px 24px; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 10px; color: var(--text); text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.hpc a.hpc-tile:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }
+.hpc a.hpc-tile:after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 100% 0, var(--c), transparent 60%); opacity: .2; transition: opacity .25s; }
+.hpc a.hpc-tile:hover { transform: translateY(-5px); border-color: var(--c); box-shadow: 0 14px 32px rgba(0,0,0,.4); }
+.hpc a.hpc-tile:hover:after { opacity: .28; }
+.hpc-tile > * { position: relative; z-index: 1; }
+.hpc .hpc-tile h3 { font-size: 26px; color: var(--c); }
+.hpc .hpc-tile p { margin-bottom: 16px; color: #D7E2EA; font-size: 16px; }
+.hpc .hpc-go { color: #fff; font-weight: 700; font-size: 15px; }
+.hpc .hpc-go:after { content: "→"; display: inline-block; margin-left: 8px; transition: transform .25s; }
+.hpc-tile:hover .hpc-go:after { transform: translateX(6px); }
+.hpc a.hpc-tile.t1 { --c: var(--s-keynote); } .hpc a.hpc-tile.t2 { --c: var(--s-tutorial); } .hpc a.hpc-tile.t3 { --c: var(--s-talk); }
+.hpc a.hpc-tile.t4 { --c: var(--s-workshop); } .hpc a.hpc-tile.t5 { --c: var(--s-meeting); } .hpc a.hpc-tile.t6 { --c: var(--s-social); }
 
-  .btn {
-    width: 100%;
-    max-width: 320px;
-    margin: 0.6rem auto;
-    padding: 0.9rem 1.4rem;
+/* Video */
+.hpc-video { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card) center/cover no-repeat; cursor: pointer; }
+.hpc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.hpc-video-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; cursor: default; background: linear-gradient(135deg, #2A0E2E, #4A1C52); }
+.hpc-video-note { color: #F0DFF2; font-size: 15px; font-weight: 600; }
+.hpc-play { position: relative; display: block; width: 62px; height: 62px; border: 2px solid #fff; border-radius: 50%; background: var(--purple); transition: transform .2s, background .2s; }
+.hpc-video:not(.hpc-video-empty) .hpc-play { position: absolute; top: 50%; left: 50%; margin: -31px 0 0 -31px; }
+.hpc-play:after { content: ""; position: absolute; top: 17px; left: 24px; border: 12px solid transparent; border-right: 0; border-left: 18px solid #fff; }
+.hpc-video:not(.hpc-video-empty):hover .hpc-play { transform: scale(1.1); background: var(--purple-light); }
 
-    font-size: 0.9rem;
-    border-radius: 999px;
+/* Session cards + filter */
+.hpc-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+.hpc-filter button { padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font: 600 15px inherit; cursor: pointer; transition: all .2s; }
+.hpc-filter button:hover { color: #fff; border-color: var(--purple-light); }
+.hpc-filter button.on { background: var(--purple); border-color: var(--purple); color: #fff; }
+.hpc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.hpc-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--purple-light); border-radius: 8px; transition: transform .2s, box-shadow .2s; }
+.hpc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.35); }
+.hpc-card[hidden] { display: none; }
+.hpc .hpc-card a { display: flex; flex-direction: column; height: 100%; padding: 16px; color: var(--text); text-decoration: none; }
+.hpc-card-title { margin-bottom: 10px; font-size: 17px; font-weight: 700; line-height: 1.4; }
+.hpc-card-meta { margin-top: auto; color: var(--muted); font-size: 14px; }
+.hpc-keynote { border-top-color: var(--s-keynote); } .hpc-tutorial { border-top-color: var(--s-tutorial); }
+.hpc-talk { border-top-color: var(--s-talk); } .hpc-workshop { border-top-color: var(--s-workshop); }
+.hpc-meeting, .hpc-meetings { border-top-color: var(--s-meeting); } .hpc-social, .hpc-socials { border-top-color: var(--s-social); }
 
-    display: flex;
-    justify-content: center;
-  }
+/* Band */
+.hpc-band { padding: 64px 0; background: linear-gradient(135deg, #2A0E2E, #45184B 55%, var(--purple)); border-block: 1px solid rgba(255,255,255,.12); }
+.hpc-band a:not(.hpc-btn) { color: var(--purple-soft); }
+.hpc-copyrow { display: flex; flex-wrap: wrap; gap: 10px; }
 
-  .btn-primary,
-  .btn-purple {
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  }
+/* FAQ */
+.hpc-faq-wrap { max-width: 820px; }
+.hpc-faq details { border-bottom: 1px solid var(--line); }
+.hpc-faq summary { position: relative; padding: 18px 40px 18px 0; font-size: 18px; font-weight: 700; cursor: pointer; list-style: none; }
+.hpc-faq summary::-webkit-details-marker { display: none; }
+.hpc-faq summary:after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); color: var(--purple-light); font-size: 26px; font-weight: 400; transition: transform .25s; }
+.hpc-faq details[open] summary:after { transform: translateY(-50%) rotate(45deg); }
+.hpc-faq details p { margin: 0 0 18px; color: var(--muted); animation: hpc-open .3s ease; }
+@keyframes hpc-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
-  .btn:hover {
-    transform: none; 
-  }
+/* Gallery + lightbox */
+.hpc-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
+.hpc-gallery button { padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: none; cursor: zoom-in; }
+.hpc-gallery img { display: block; width: 100%; height: 220px; object-fit: cover; transition: transform .5s; }
+.hpc-gallery button:hover img { transform: scale(1.06); }
+.hpc-prev { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 22px 0 0 !important; }
+.hpc-prev a { font-weight: 600; }
+.hpc-lightbox { max-width: 92vw; max-height: 90vh; padding: 0; border: 0; border-radius: 10px; background: transparent; }
+.hpc-lightbox::backdrop { background: rgba(0,10,18,.88); }
+.hpc-lightbox img { display: block; max-width: 92vw; max-height: 88vh; border-radius: 10px; }
+.hpc-close { position: absolute; top: 8px; right: 8px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: var(--purple); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
 
+/* Floating helpers */
+.hpc-top { position: fixed; right: 22px; bottom: 22px; z-index: 70; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: var(--purple); color: #fff; font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s, background .2s; }
+.hpc-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.hpc-top:hover { background: var(--purple-light); color: #1D0B20; }
+.hpc-toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; padding: 10px 20px; border-radius: 8px; background: #fff; color: #1D0B20; font-weight: 700; opacity: 0; transform: translate(-50%, 14px); pointer-events: none; transition: opacity .25s, transform .25s; }
+.hpc-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-  .dual-cards {
-    padding: 0 1rem;
-    gap: 1.2rem;
-  }
+/* Reveal */
+.js .hpc [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i,0) * 70ms); }
+.js .hpc [data-reveal].in { opacity: 1; transform: none; }
 
-  .call-for-submissions {
-    padding: 1.3rem;
-    border-radius: 16px;
-  }
-
-  .deadline-box {
-    font-size: 0.9rem;
-    padding: 0.8rem;
-  }
-
-
-  
-  .image-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-  }
-
-  .image-grid img {
-    height: auto;
-  }
-
-
-  .session-card {
-    flex: 0 0 240px;
-  }
-
-  .card-title {
-    font-size: 0.85rem;
-  }
-
-  .card-text {
-    font-size: 0.7rem;
-  }
-
-
-  
-  .sponsors-strip {
-    padding: 1.5rem 1rem 2rem;
-  }
-
-  .sponsors-strip h2 {
-    font-size: 1.6rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .sponsors-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
-
-    max-width: 360px;
-    margin: 0 auto;
-  }
-
-  .sponsor-logo {
-    padding: 0.7rem;
-    border-radius: 10px;
-
-    aspect-ratio: 1 / 1;
-
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-  }
-
-  .sponsor-logo img {
-    max-width: 55%;
-    max-height: 55%;
-    opacity: 0.95;
-  }
-
-  .sponsor-logo:hover {
-    transform: none;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-  }
-
-
-  .register-cta {
-    padding: 2rem 1rem;
-  }
-
-  .register-cta h2 {
-    font-size: 1.5rem;
-  }
-
-  .register-cta p {
-    font-size: 0.95rem;
-  }
-  
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .hpc [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .hpc-progress, .hpc-scroll span { display: none; }
+  .hpc *, .hpc *:before, .hpc *:after { transition: none !important; animation: none !important; }
 }
 
 @media (max-width: 900px) {
-  .ws-hero {
-    background-attachment: scroll;
-  }
-  
-  .sponsors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 2rem;
+  .hpc-tiles { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
-
-
+@media (max-width: 680px) {
+  .hpc-in { padding: 0 20px; }
+  .hpc-hero { min-height: 0; padding: 70px 0 70px; }
+  .hpc-section { padding: 48px 0; }
+  .hpc-split, .hpc-split-video, .hpc-gallery, .hpc-tiles { grid-template-columns: 1fr; }
+  .hpc a.hpc-tile { min-height: 170px; }
+  .hpc-gallery img { height: 190px; }
+  .hpc-scroll { display: none; }
 }
-
 </style>
 
-
-
-
-
-
 <script>
-(function() {
-  function onScroll() {
-    document.querySelectorAll('.fade-in').forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+(function () {
+  var root = document.getElementById('hpc');
+  if (!root) return;
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, c) { return (c || root).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
+
+  /* Reveal on scroll */
+  var items = $$('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
+
+  /* Progress bar + back to top */
+  var bar = $('.hpc-progress'), topBtn = $('.hpc-top'), ticking = false;
+  function update() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar && max > 0) bar.style.transform = 'scaleX(' + Math.min(1, window.scrollY / max) + ')';
+    topBtn.classList.toggle('show', window.scrollY > 700);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+  topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+  /* Countdown (only if event_date is set) */
+  var when = $('#hpc-when'), iso = when && when.getAttribute('data-date');
+  if (iso) {
+    var target = new Date(iso).getTime();
+    if (!isNaN(target)) {
+      var tick = function () {
+        var d = target - Date.now();
+        if (d <= 0) { when.textContent = 'Happening now'; return; }
+        var days = Math.floor(d / 864e5), h = Math.floor(d % 864e5 / 36e5);
+        when.textContent = new Date(target).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ' · ' + days + ' days ' + h + ' h to go';
+      };
+      tick(); setInterval(tick, 60000);
+    }
+  }
+
+  /* Session filter */
+  var fbtns = $$('.hpc-filter button');
+  fbtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.getAttribute('data-f');
+      fbtns.forEach(function (x) { x.classList.toggle('on', x === b); });
+      $$('.hpc-card').forEach(function (c) { c.hidden = f !== 'all' && c.getAttribute('data-cat') !== f; });
     });
-  }
-  document.addEventListener('scroll', onScroll);
-  document.addEventListener('DOMContentLoaded', onScroll);
-})();
-</script>
-
-<script>
-var YT_VIDEO_ID = 'wPjtwACmaUg';
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('yt-player', {
-    width: '100%',
-    height: '100%',
-    videoId: YT_VIDEO_ID,
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-      mute: 1,
-      playsinline: 1,
-      loop: 1,
-      playlist: YT_VIDEO_ID,
-      iv_load_policy: 3
-    },
-    events: {
-      onReady: function(e) {
-        try { e.target.mute(); e.target.playVideo(); } catch (err) {}
-      },
-      onStateChange: function(e) {
-        if (e.data === YT.PlayerState.ENDED) {
-          try { e.target.seekTo(0); e.target.playVideo(); } catch (err) {}
-        }
-      }
-    }
-  });
-}
-(function loadYT() {
-  if (window.YT && window.YT.Player) return onYouTubeIframeAPIReady();
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScript = document.getElementsByTagName('script')[0];
-  firstScript.parentNode.insertBefore(tag, firstScript);
-})();
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.querySelector(".carousel-wrapper");
-  if (!wrapper) return;
-
-  let current = 0;
-  let speed = 0.25;   
-  let isPaused = false;
-  let isDragging = false;
-
-
-  wrapper.addEventListener("mouseenter", () => isPaused = true);
-  wrapper.addEventListener("mouseleave", () => isPaused = false);
-
-
-  let startX = 0;
-  let scrollStart = 0;
-
-  wrapper.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.pageX;
-    scrollStart = wrapper.scrollLeft;
-    wrapper.style.cursor = "grabbing";
   });
 
-  window.addEventListener("mouseup", () => {
-    isDragging = false;
-    wrapper.style.cursor = "grab";
+  /* FAQ: one open at a time */
+  var dets = $$('.hpc-faq details');
+  dets.forEach(function (d) {
+    d.addEventListener('toggle', function () { if (d.open) dets.forEach(function (o) { if (o !== d) o.open = false; }); });
   });
 
-  wrapper.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const dx = e.pageX - startX;
-    wrapper.scrollLeft = scrollStart - dx;
-  });
-
- 
-  function autoScroll() {
-    if (!isPaused && !isDragging) {
-      current += speed;
-      wrapper.scrollLeft = current;
-
-
-      if (current >= wrapper.scrollWidth / 2) {
-        current = 0;
-        wrapper.scrollLeft = 0;
-      }
-    }
-
-    requestAnimationFrame(autoScroll);
-  }
-
-  autoScroll(); 
-});
-</script>
-
-
-<script>
-(function() {
-  function onScroll() {
-    document.querySelectorAll('.fade-in').forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+  /* Copy to clipboard + toast */
+  var toast = $('.hpc-toast'), tt;
+  function say(msg) { toast.textContent = msg; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 2200); }
+  $$('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var txt = b.getAttribute('data-copy');
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { say('Copied ' + txt); }, function () { say('Copy failed. Channel: ' + txt); });
+      else say('Channel: ' + txt);
     });
-  }
-  document.addEventListener('scroll', onScroll);
-  document.addEventListener('DOMContentLoaded', onScroll);
-})();
-</script>
+  });
 
-<script>
-var YT_VIDEO_ID = 'wPjtwACmaUg';
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('yt-player', {
-    width: '100%',
-    height: '100%',
-    videoId: YT_VIDEO_ID,
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      modestbranding: 1,
-      rel: 0,
-      mute: 1,
-      playsinline: 1,
-      loop: 1,
-      playlist: YT_VIDEO_ID,
-      iv_load_policy: 3
-    },
-    events: {
-      onReady: function(e) {
-        try { e.target.mute(); e.target.playVideo(); } catch (err) {}
-      },
-      onStateChange: function(e) {
-        if (e.data === YT.PlayerState.ENDED) {
-          try { e.target.seekTo(0); e.target.playVideo(); } catch (err) {}
+  /* Lightbox */
+  var lb = $('.hpc-lightbox'), lbImg = $('img', lb);
+  $$('.hpc-gallery button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      lbImg.src = b.getAttribute('data-full'); lbImg.alt = $('img', b).alt;
+      if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+    });
+  });
+  $('.hpc-close', lb).addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+
+  /* Video */
+  var v = $('button.hpc-video');
+  if (v) v.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + v.getAttribute('data-id') + '?autoplay=1&rel=0';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true; f.title = 'Event video';
+    v.innerHTML = ''; v.style.backgroundImage = 'none'; v.appendChild(f);
+  });
+
+  /* Hero: interactive compute-cluster network */
+  var cv = $('.hpc-net'), hero = $('.hpc-hero');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d'), W, H, nodes = [], mouse = { x: -999, y: -999 }, running = true;
+    var cols = ['201,138,207', '158,98,170', '255,255,255'];
+    function size() {
+      var r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(90, W * H / 14000));
+      nodes = [];
+      for (var i = 0; i < n; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, c: cols[i % 3] });
+    }
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
+        var dm = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (dm < 140 && !reduce) { a.x += (a.x - mouse.x) * .008; a.y += (a.y - mouse.y) * .008; }
+        for (var j = i + 1; j < nodes.length; j++) {
+          var b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 130) { ctx.strokeStyle = 'rgba(' + a.c + ',' + (.28 * (1 - d / 130)) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
         }
+        if (dm < 170) { ctx.strokeStyle = 'rgba(255,255,255,' + (.5 * (1 - dm / 170)) + ')'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = 'rgba(' + a.c + ',.85)'; ctx.beginPath(); ctx.arc(a.x, a.y, 2, 0, 6.283); ctx.fill();
       }
+      if (!reduce) requestAnimationFrame(draw);
     }
-  });
-}
-(function loadYT() {
-  if (window.YT && window.YT.Player) return onYouTubeIframeAPIReady();
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScript = document.getElementsByTagName('script')[0];
-  firstScript.parentNode.insertBefore(tag, firstScript);
-})();
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.querySelector(".carousel-wrapper");
-  if (!wrapper) return;
-
-  let current = 0;
-  let speed = 0.25;  
-  let isPaused = false;
-  let isDragging = false;
-
-  wrapper.addEventListener("mouseenter", () => isPaused = true);
-  wrapper.addEventListener("mouseleave", () => isPaused = false);
-
-
-  let startX = 0;
-  let scrollStart = 0;
-
-  wrapper.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = e.pageX;
-    scrollStart = wrapper.scrollLeft;
-    wrapper.style.cursor = "grabbing";
-  });
-
-  window.addEventListener("mouseup", () => {
-    isDragging = false;
-    wrapper.style.cursor = "grab";
-  });
-
-  wrapper.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    const dx = e.pageX - startX;
-    wrapper.scrollLeft = scrollStart - dx;
-  });
-
-
-  function autoScroll() {
-    if (!isPaused && !isDragging) {
-      current += speed;
-      wrapper.scrollLeft = current;
-
-      if (current >= wrapper.scrollWidth / 2) {
-        current = 0;
-        wrapper.scrollLeft = 0;
-      }
+    hero.addEventListener('mousemove', function (e) { var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('mouseleave', function () { mouse.x = mouse.y = -999; });
+    window.addEventListener('resize', size);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { var vis = es[0].isIntersecting; if (vis && !running) { running = true; draw(); } running = vis; }).observe(hero);
     }
-
-    requestAnimationFrame(autoScroll);
+    size(); draw();
   }
-
-  autoScroll(); 
-});
+})();
 </script>

@@ -89,7 +89,7 @@
       &.current,
       &.current.disabled {
         color: #fff;
-        background: $primary-color;
+        background: #fff;
       }
 
       &.disabled {
@@ -176,18 +176,18 @@
   -ms-flex-align: center;
   align-items: center;
   min-height: $nav-height;
-  background: $background-color;
+  background: #15121B;
 
   a {
     display: block;
     margin: 0 1rem;
-    color: $masthead-link-color;
+    color: #FFFFFF;
     text-decoration: none;
-    -webkit-transition: none;
-    transition: none;
+    -webkit-transition: color 0.2s ease;
+    transition: color 0.2s ease;
 
     &:hover {
-      color: $masthead-link-color-hover;
+      color: #C17AC8;
     }
 
     &.site-logo {
@@ -200,17 +200,14 @@
     }
   }
 
-  img {
-    -webkit-transition: none;
-    transition: none;
-  }
-
+  // Keep the mobile navigation toggle visible on the dark background
   &__toggle {
     -ms-flex-item-align: center;
     align-self: center;
     height: $nav-toggle-height;
     border: 0;
     outline: none;
+    color: #FFFFFF;
     background-color: transparent;
     cursor: pointer;
   }
@@ -242,7 +239,7 @@
         inset-inline-start: 0;
         bottom: 0;
         height: 4px;
-        background: $primary-color;
+        background: #fff;
         width: 100%;
         -webkit-transition: $global-transition;
         transition: $global-transition;
