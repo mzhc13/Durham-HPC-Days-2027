@@ -1,0 +1,356 @@
+---
+layout: default
+---
+
+
+<section class="session-hero fade-in">
+  <div class="ws-hero__grid"></div>
+  <div class="session-hero-content">
+   <h1>{{ page.title }}</h1>
+   
+   {% if page.speaker %}
+  {% assign speakers = page.speaker | split: "," %}
+  <p class="instructors keynote-name">
+    {% for sp in speaker %}
+      {{ sp | strip }}{% if forloop.last == false %}, {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
+
+    {% if page.speaker_photos and page.speaker_photos[0] %}
+      <div class="speaker-photo-wrapper">
+        <img 
+          src="{{ page.speaker_photos[0] | relative_url }}" 
+          alt="{{ page.speaker }}"
+          class="keynote-photo">
+      </div>
+    {% endif %}
+
+    {% if page.speaker %}
+      {% assign speakers = page.speaker | split: "," %}
+      <p class="instructors">
+        {% for sp in speakers %}
+          {{ sp | strip }}{% if forloop.last == false %}, {% endif %}
+        {% endfor %}
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+      {% if page.hybrid %}
+  <a href="{{ page.hybrid }}"
+     class="register-btn fade-in"
+     target="_blank"
+     rel="noopener">
+    Register to attend online
+  </a>
+{% endif %}
+
+
+
+
+
+
+<!-- INFO BAR -->
+<section class="session-info fade-in">
+{% assign day_map = 
+  "Monday:15 Jun,Tuesday:16 Jun,Wednesday:17 Jun,Thursday:18 Jun,Friday:19 Jun" 
+  | split: "," %}
+
+  {% assign day_full = page.day %}
+
+  {% for d in day_map %}
+    {% assign parts = d | split: ":" %}
+    {% if parts[0] == page.day %}
+      {% assign day_full = parts[0] | append: " " | append: parts[1] %}
+    {% endif %}
+  {% endfor %}
+  
+    <div class="info-item">
+      <span>Day & Time</span>
+     <p>{{ day_full }}, {{ page.start_time }} - {{ page.end_time }}</p>
+    </div>
+
+
+  {% if page.room and page.room != "TBC" %}
+    <div class="info-item">
+      <span>Room</span>
+      <p>{{ page.room }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.institutions and page.institutions != "TBC" %}
+    <div class="info-item">
+      <span>Institution</span>
+      {% if page.institution_link %}
+        <p><a href="{{ page.institution_link }}" target="_blank">{{ page.institutions }}</a></p>
+      {% else %}
+        <p>{{ page.institutions }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if page.organiser and page.organiser != "TBC" %}
+    <div class="info-item">
+      <span>Organiser</span>
+      {% if page.organiser_link %}
+        <p><a href="{{ page.organiser_link }}" target="_blank">{{ page.organiser }}</a></p>
+      {% else %}
+        <p>{{ page.organiser }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+</section>
+
+
+
+
+
+<!-- MAIN CONTENT -->
+<section class="session-content fade-in">
+
+
+
+
+
+  {% if page.description and page.description != "TBC" %}
+    <section>
+      <h2>Abstract</h2>
+      <p>{{ page.description }}</p>
+    </section>
+  {% endif %}
+
+  {% if page.bio and page.bio != "TBC" %}
+    <section>
+      <h2>Bio</h2>
+      <p>{{ page.bio }}</p>
+    </section>
+  {% endif %}
+
+  {% if page.requirements and page.requirements != "TBC" %}
+    <section>
+      <h2>Requirements</h2>
+      {% if page.requirements contains "," %}
+        <ul>
+          {% assign reqs = page.requirements | split: "," %}
+          {% for req in reqs %}
+            <li>{{ req | strip }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>{{ page.requirements }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+
+</section>
+
+<style>
+
+/* HERO */
+.session-hero {
+  width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 80vh;
+    min-height: 320px;
+  background: 
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), /* contrast layer */
+linear-gradient(
+  135deg,
+  rgba(50, 15, 55, 0.95) 0%,   
+  rgba(104, 36, 109, 0.80) 55%, 
+  rgba(104, 36, 109, 0.55) 100%
+);
+
+    background-attachment: fixed;
+    background-position: center 60%;
+    background-repeat: no-repeat;
+    background-size: cover;
+  color: #fff;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.07);
+    display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+ .ws-hero__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+  linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+.session-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.session-hero p.speakers {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.session-hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.instructors {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* PHOTO */
+.keynote-photo-wrapper {
+  margin: 1.5rem auto;
+}
+
+.keynote-photo {
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid rgba(255,255,255,0.85);
+}
+
+/* INFO BAR */
+.session-info {
+  margin-bottom: 3rem;
+  max-width: 1100px;
+    margin: 0 auto 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-item span {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #68246d;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.08em;
+}
+
+.info-item p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* CONTENT */
+.session-content {
+  max-width: 900px;
+  margin: 0 auto 3rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.05);
+}
+
+.session-content section {
+  margin-bottom: 2rem;
+}
+
+.session-content h2 {
+  color: #68246d;
+  margin-bottom: 0.6rem;
+}
+
+.session-content p,
+.session-content ul {
+  line-height: 1.6;
+}
+
+/* ANIMATION */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.register-btn {
+  display: table;
+  margin: 1.5rem auto;
+
+  padding: 0.9rem 1.8rem;
+  background: #68246d;
+  color: #ffffff !important;
+
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+
+  border-radius: 20px;
+  transition: all 0.3s ease;
+
+  min-width: 500px;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+  background: #053855;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+  .register-btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.9rem;
+      min-width: 100px;
+    border-radius: 8px;
+  }
+}
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .session-hero h1 {
+    font-size: 2rem;
+  }
+
+  .keynote-photo {
+    width: 170px;
+    height: 170px;
+  }
+
+  .session-content {
+    padding: 1.2rem;
+  }
+}
+
+</style>
+
+<script>
+(function() {
+  function onScroll() {
+    document.querySelectorAll('.fade-in').forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+    });
+  }
+  document.addEventListener('scroll', onScroll);
+  document.addEventListener('DOMContentLoaded', onScroll);
+})();
+</script>

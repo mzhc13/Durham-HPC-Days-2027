@@ -1,0 +1,28 @@
+---
+title: "KEYNOTE TBD"
+
+
+lead: "Alice-Agnes Gabriel"
+lead_photos:
+  - "https://shareing-dri.github.io/assets/profilepics/generic.jpg"
+lead_links: "https://www.alicegabriel.com/"
+
+
+
+day: "Friday"
+track: "A"
+
+start_time: "11:00"
+end_time: "12:00"
+
+  
+institution: "SCRIPPS"
+institution_logo: "https://s2020.s3.amazonaws.com/media/logo-scripps-ucsd-dark.png"
+institution_link: "https://scripps.ucsd.edu/"
+
+
+room: "Mountjoy Centre"
+layout: keynote
+category: "keynote"
+description: "TBD"
+---

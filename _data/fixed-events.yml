@@ -1,0 +1,15 @@
+- title: "Coffee Morning Break"
+  start_time: "10:30"
+  end_time: "11:00"
+  category: "coffee"
+
+- title: "Lunch"
+  start_time: "12:30"
+  end_time: "14:00"
+  category: "social"
+
+- title: "Coffee Afternoon Break"
+  start_time: "15:30"
+  end_time: "16:00"
+  category: "coffee"
+

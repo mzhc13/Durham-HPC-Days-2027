@@ -1,0 +1,155 @@
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+/*
+   Default button
+   ========================================================================== */
+
+.btn {
+  /* default */
+  display: inline-block;
+  margin-bottom: 0.25em;
+  padding: 0.5em 1em;
+  font-family: $sans-serif;
+  font-size: $type-size-6;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-width: 0;
+  border-radius: $border-radius;
+  cursor: pointer;
+
+  .icon {
+    margin-inline-end: 0.5em;
+  }
+
+  .icon + .hidden {
+    margin-inline-start: -0.5em; /* override for hidden text*/
+  }
+
+  /* button colors */
+  $buttoncolors:
+  (primary, $primary-color),
+  (inverse, #fff),
+  (light-outline, transparent),
+  (success, $success-color),
+  (warning, $warning-color),
+  (danger, $danger-color),
+  (info, $info-color),
+  /* brands */
+  (bluesky, $bluesky-color),
+  (facebook, $facebook-color),
+  (linkedin, $linkedin-color),
+  (mastodon, $mastodon-color),
+  (twitter, $twitter-color),
+  (x, $twitter-color);
+
+  @each $buttoncolor, $color in $buttoncolors {
+    &--#{$buttoncolor} {
+      @include yiq-contrasted($color);
+      @if ($buttoncolor == inverse) {
+        border: 1px solid $border-color;
+      }
+      @if ($buttoncolor == light-outline) {
+        border: 1px solid #fff;
+      }
+
+      &:visited {
+        @include yiq-contrasted($color);
+      }
+
+      &:hover {
+        @include yiq-contrasted(mix(#000, $color, 20%));
+      }
+    }
+  }
+
+  /* fills width of parent container */
+  &--block {
+    display: block;
+    width: 100%;
+
+    + .btn--block {
+      margin-top: 0.25em;
+    }
+  }
+
+  /* disabled */
+  &--disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+    opacity: 0.65;
+  }
+
+  /* extra large button */
+  &--x-large {
+    font-size: $type-size-4;
+  }
+
+  /* large button */
+  &--large {
+    font-size: $type-size-5;
+  }
+
+  /* small button */
+  &--small {
+    font-size: $type-size-7;
+  }
+}
+
+.btn--event {
+  background-color: #002A41;
+  color: #fff;
+  border: none;
+
+  &:hover {
+    background-color: mix(#000, #ffff, 20%);
+  }
+}
+
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem 2.4rem;
+  border-radius: 999px;
+
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+}
+
+.btn-purple {
+  background:  #002A41;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(0, 42, 65, 0.25);
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.btn-purple:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 42, 65, 0.35);
+}
+
+.btn-purple:active {
+  transform: translateY(-1px);
+}
+
+.btn-purple:focus-visible {
+  outline: 3px solid rgba(0, 61, 128, 0.5);
+  outline-offset: 4px;
+}
+
+
