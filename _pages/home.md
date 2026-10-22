@@ -29,32 +29,37 @@ hidden: true
   <div class="hpc-progress" aria-hidden="true"></div>
 
   <header class="hpc-hero" id="top">
+    <canvas class="hpc-net" aria-hidden="true"></canvas>
     <div class="hpc-in hpc-hero-in">
-      <p class="hpc-host">Durham University</p>
-      <h1>Durham HPC Days 2027</h1>
-      <p class="hpc-lede">A week of keynotes, talks, tutorials and workshops on high-performance computing, data analysis and scientific software.</p>
+      <p class="hpc-host" data-reveal>Durham University</p>
+      <h1 data-reveal style="--i:1">Durham HPC Days 2027</h1>
+      <p class="hpc-lede" data-reveal style="--i:2">A week of keynotes, talks, tutorials and workshops on high-performance computing, data analysis and scientific software.</p>
 
-      <dl class="hpc-facts">
+      <dl class="hpc-facts" data-reveal style="--i:3">
         <div><dt>Dates</dt><dd id="hpc-when" data-date="{{ event_date }}">To be confirmed</dd></div>
         <div><dt>Location</dt><dd>Durham, United Kingdom</dd></div>
         <div><dt>Registration</dt><dd>Opening soon</dd></div>
       </dl>
 
-      <p class="hpc-actions">
+      <p class="hpc-actions" data-reveal style="--i:4">
         <a class="hpc-btn hpc-btn-white" href="{{ programme_url | relative_url }}">View the programme</a>
         <a class="hpc-btn hpc-btn-ghost" href="{{ '/sponsors/' | relative_url }}">Become a sponsor</a>
       </p>
     </div>
+    <a class="hpc-scroll" href="#about" aria-label="Scroll to content"><span></span></a>
   </header>
 
   <section class="hpc-section" id="about">
     <div class="hpc-in hpc-split">
-      <div>
+      <div data-reveal>
         <h2>About the event</h2>
         <p>Durham HPC Days brings together researchers, developers, system administrators and vendors to share what is working in high-performance computing, from applications and software to the systems that run them.</p>
         <p>Invited keynotes and contributed talks sit alongside hands-on tutorials and community workshops, with time for working meetings and informal conversation.</p>
+        <ul class="hpc-chips" aria-label="Who attends">
+          <li>Researchers</li><li>Developers</li><li>System administrators</li><li>Vendors</li>
+        </ul>
       </div>
-      <div>
+      <div data-reveal style="--i:1">
         <h2>Key dates</h2>
         <ol class="hpc-dates">
           <li><span>To be confirmed</span>Call for contributions opens</li>
@@ -69,36 +74,36 @@ hidden: true
 
   <section class="hpc-section hpc-alt" id="programme">
     <div class="hpc-in">
-      <h2>Explore the programme</h2>
-      <p class="hpc-sub">Six ways to take part. Pick one to see what is planned.</p>
+      <h2 data-reveal>Explore the programme</h2>
+      <p class="hpc-sub" data-reveal style="--i:1">Six ways to take part. Pick one to see what is planned.</p>
     </div>
     <div class="hpc-in hpc-tiles">
-      <a class="hpc-tile t1" href="{{ '/keynotes/' | relative_url }}">
+      <a class="hpc-tile t1" data-reveal style="--i:0" href="{{ '/keynotes/' | relative_url }}">
         <h3>Keynotes</h3>
         <p>Invited speakers on where HPC and research computing are heading.</p>
         <span class="hpc-go">Explore the keynotes</span>
       </a>
-      <a class="hpc-tile t2" href="{{ '/tutorials/' | relative_url }}">
+      <a class="hpc-tile t2" data-reveal style="--i:1" href="{{ '/tutorials/' | relative_url }}">
         <h3>Tutorials</h3>
         <p>Hands-on sessions where you work through examples on real systems.</p>
         <span class="hpc-go">Explore the tutorials</span>
       </a>
-      <a class="hpc-tile t3" href="{{ '/talks/' | relative_url }}">
+      <a class="hpc-tile t3" data-reveal style="--i:2" href="{{ '/talks/' | relative_url }}">
         <h3>Talks</h3>
         <p>Contributed presentations on applications, infrastructure and tools.</p>
         <span class="hpc-go">Explore the talks</span>
       </a>
-      <a class="hpc-tile t4" href="{{ '/workshops/' | relative_url }}">
+      <a class="hpc-tile t4" data-reveal style="--i:0" href="{{ '/workshops/' | relative_url }}">
         <h3>Workshops</h3>
         <p>Longer, focused sessions on a single topic, led by the community.</p>
         <span class="hpc-go">Explore the workshops</span>
       </a>
-      <a class="hpc-tile t5" href="{{ '/meetings/' | relative_url }}">
+      <a class="hpc-tile t5" data-reveal style="--i:1" href="{{ '/meetings/' | relative_url }}">
         <h3>Meetings</h3>
         <p>Working meetings and user groups that run alongside the programme.</p>
         <span class="hpc-go">Explore the meetings</span>
       </a>
-      <a class="hpc-tile t6" href="{{ '/socials/' | relative_url }}">
+      <a class="hpc-tile t6" data-reveal style="--i:2" href="{{ '/socials/' | relative_url }}">
         <h3>Socials</h3>
         <p>Evening events and meals for meeting other attendees.</p>
         <span class="hpc-go">Explore the socials</span>
@@ -108,14 +113,14 @@ hidden: true
 
   <section class="hpc-section" id="watch">
     <div class="hpc-in hpc-split hpc-split-video">
-      <div>
+      <div data-reveal>
         {% if video_id != "" %}
           <button class="hpc-video" type="button" data-id="{{ video_id }}" aria-label="Play video" style="background-image:url('https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg')"><span class="hpc-play"></span></button>
         {% else %}
           <div class="hpc-video hpc-video-empty" role="img" aria-label="Video placeholder"><span class="hpc-play"></span><span class="hpc-video-note">2027 teaser video coming soon</span></div>
         {% endif %}
       </div>
-      <div>
+      <div data-reveal style="--i:1">
         <h2>Watch</h2>
         <p>A short film from this year’s event will be added here. In the meantime, the recap from 2025 shows what a week at HPC Days looks like.</p>
         <p><a class="hpc-btn hpc-btn-purple" href="https://youtu.be/wPjtwACmaUg">Watch the 2025 recap</a></p>
@@ -126,7 +131,7 @@ hidden: true
   {% if sessions.size > 0 %}
     <section class="hpc-section hpc-alt">
       <div class="hpc-in">
-        <h2>Featured sessions</h2>
+        <h2 data-reveal>Featured sessions</h2>
         <div class="hpc-filter" role="group" aria-label="Filter sessions">
           <button type="button" class="on" data-f="all">All</button>
           <button type="button" data-f="keynote">Keynotes</button>
@@ -150,11 +155,11 @@ hidden: true
 
   <section class="hpc-band" id="contribute">
     <div class="hpc-in hpc-split">
-      <div>
+      <div data-reveal>
         <h2>Call for contributions</h2>
         <p>We will invite talks, tutorials and workshops from the community. Submission details and the deadline will be published here.</p>
       </div>
-      <div>
+      <div data-reveal style="--i:1">
         <h2>Join the conversation</h2>
         <p>Attendees talk through the CAKE Slack workspace. Join the workspace, then find the channel <strong>#hpc-days27</strong>.</p>
         <p class="hpc-copyrow">
@@ -167,8 +172,8 @@ hidden: true
 
   <section class="hpc-section">
     <div class="hpc-in hpc-faq-wrap">
-      <h2>Good to know</h2>
-      <div class="hpc-faq">
+      <h2 data-reveal>Good to know</h2>
+      <div class="hpc-faq" data-reveal style="--i:1">
         <details><summary>Who is it for?</summary><p>Researchers, developers, system administrators and vendors working with high-performance computing, data analysis and scientific software.</p></details>
         <details><summary>How do I stay up to date?</summary><p>Join the CAKE Slack workspace and find <strong>#hpc-days27</strong>. Dates and registration details will also be published on this page.</p></details>
         <details><summary>Can I contribute a session?</summary><p>Yes. We will invite talks, tutorials and workshops from the community. Submission details will appear under “Call for contributions”.</p></details>
@@ -179,13 +184,13 @@ hidden: true
 
   <section class="hpc-section hpc-alt" id="previous">
     <div class="hpc-in">
-      <h2>Previous events</h2>
+      <h2 data-reveal>Previous events</h2>
       <div class="hpc-gallery">
-        <button type="button" data-full="{{ '/assets/images/Sessions.jpg' | relative_url }}" aria-label="Enlarge photo: attendees in a session"><img src="{{ '/assets/images/Sessions.jpg' | relative_url }}" alt="Attendees in a session" loading="lazy"></button>
-        <button type="button" data-full="{{ '/assets/images/food-truck.jpg' | relative_url }}" aria-label="Enlarge photo: food truck during a break"><img src="{{ '/assets/images/food-truck.jpg' | relative_url }}" alt="Food truck during a break" loading="lazy"></button>
-        <button type="button" data-full="{{ '/assets/images/social.png' | relative_url }}" aria-label="Enlarge photo: attendees at the social event"><img src="{{ '/assets/images/social.png' | relative_url }}" alt="Attendees at the social event" loading="lazy"></button>
+        <button type="button" data-reveal style="--i:0" data-full="{{ '/assets/images/Sessions.jpg' | relative_url }}" aria-label="Enlarge photo: attendees in a session"><img src="{{ '/assets/images/Sessions.jpg' | relative_url }}" alt="Attendees in a session" loading="lazy"></button>
+        <button type="button" data-reveal style="--i:1" data-full="{{ '/assets/images/food-truck.jpg' | relative_url }}" aria-label="Enlarge photo: food truck during a break"><img src="{{ '/assets/images/food-truck.jpg' | relative_url }}" alt="Food truck during a break" loading="lazy"></button>
+        <button type="button" data-reveal style="--i:2" data-full="{{ '/assets/images/social.png' | relative_url }}" aria-label="Enlarge photo: attendees at the social event"><img src="{{ '/assets/images/social.png' | relative_url }}" alt="Attendees at the social event" loading="lazy"></button>
       </div>
-      <p class="hpc-prev">
+      <p class="hpc-prev" data-reveal>
         <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/">Durham HPC Days 2026</a>
         <a href="https://durham.readthedocs.io/en/latest/hpcdays2025/index.html">Durham HPC Days 2025</a>
         {% if contact_email != "" %}<a href="mailto:{{ contact_email }}">Contact the organisers</a>{% endif %}
@@ -255,10 +260,11 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc-sub { color: var(--muted) !important; margin-bottom: 28px !important; }
 
 /* Progress */
-.hpc-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100; background: var(--purple-light); transform: scaleX(0); transform-origin: left; }
+.hpc-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100; background: linear-gradient(90deg, var(--purple), var(--purple-light), var(--purple-soft)); transform: scaleX(0); transform-origin: left; }
 
 /* Buttons */
-.hpc .hpc-btn { display: inline-block; padding: 11px 22px; border: 2px solid var(--purple); border-radius: 4px; font: 700 16px/1.3 inherit; text-decoration: none; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.hpc .hpc-btn { display: inline-block; padding: 11px 22px; border: 2px solid var(--purple); border-radius: 6px; font: 700 16px/1.3 inherit; text-decoration: none; cursor: pointer; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+.hpc .hpc-btn:hover { transform: translateY(-1px); }
 .hpc .hpc-btn-sm { padding: 7px 15px; font-size: 14px; background: var(--purple); color: #fff !important; }
 .hpc .hpc-btn-sm:hover { background: var(--purple-light); border-color: var(--purple-light); color: #1D0B20 !important; }
 .hpc .hpc-btn-white { background: #F3F0F6; color: #1D0B20 !important; border-color: #F3F0F6; }
@@ -271,8 +277,12 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 /* Hero */
 .hpc-hero { position: relative; min-height: 78vh; display: flex; align-items: flex-end; padding: 90px 0 70px; overflow: hidden;
   background: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true") center 60% / cover no-repeat; }
-.hpc-hero:before { content: ""; position: absolute; inset: 0; z-index: 0; background: rgba(40,14,46,.84); }
-.hpc-hero-in { position: relative; z-index: 2; width: 100%; }
+.hpc-hero:before { content: ""; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(160deg, rgba(28,8,32,.94) 0%, rgba(70,24,76,.84) 55%, rgba(104,36,109,.78) 100%),
+              linear-gradient(to top, var(--bg), transparent 30%); }
+.hpc-net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+.hpc-hero-in { position: relative; z-index: 2; width: 100%; pointer-events: none; }
+.hpc-hero-in a, .hpc-hero-in button { pointer-events: auto; }
 .hpc-host { margin-bottom: 10px !important; color: var(--purple-soft) !important; font-size: 15px !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .hpc-hero h1 { max-width: 14ch; margin-bottom: 18px; color: #fff; font-size: clamp(40px, 6vw, 70px); letter-spacing: -.025em; }
 .hpc-lede { max-width: 620px; margin: 0 0 28px !important; color: #EAF1F6 !important; font-size: 20px !important; }
@@ -280,51 +290,60 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc-facts dt { color: var(--purple-soft); font-size: 14px; }
 .hpc-facts dd { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
 .hpc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 !important; }
+.hpc-scroll { position: absolute; bottom: 20px; left: 50%; z-index: 2; width: 26px; height: 42px; margin-left: -13px; border: 2px solid rgba(255,255,255,.55); border-radius: 14px; }
+.hpc-scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; background: #fff; border-radius: 2px; animation: hpc-dot 1.8s ease-in-out infinite; }
+@keyframes hpc-dot { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
 /* Sections */
 .hpc-section { padding: 72px 0; background: var(--bg); }
 .hpc-alt { background: var(--alt); }
 .hpc-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px 64px; align-items: start; }
 .hpc-split-video { grid-template-columns: 1.25fr 1fr; align-items: center; }
+.hpc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px !important; }
+.hpc-chips li { padding: 5px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: 14px; font-weight: 600; }
 
 /* Timeline */
 .hpc-dates { margin-left: 6px !important; border-left: 2px solid var(--line) !important; }
 .hpc-dates li { position: relative; padding: 0 0 20px 26px; font-weight: 600; line-height: 1.4; }
 .hpc-dates li:last-child { padding-bottom: 0; }
-.hpc-dates li:before { content: ""; position: absolute; left: -8px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--purple-light); }
-.hpc-final:before { background: var(--purple-light); }
+.hpc-dates li:before { content: ""; position: absolute; left: -8px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--purple-light); transition: background .3s, box-shadow .3s; }
+.hpc-dates li:hover:before, .hpc-final:before { background: var(--purple-light); box-shadow: 0 0 0 5px rgba(201,138,207,.22); }
 .hpc-dates span { display: block; margin-bottom: 2px; color: var(--muted); font-size: 14px; font-weight: 400; }
 
 /* Tiles */
 .hpc-tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-.hpc a.hpc-tile { --c: var(--purple-light); position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: 26px 26px 24px; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 4px; color: var(--text); text-decoration: none; transition: border-color .2s; }
+.hpc a.hpc-tile { --c: var(--purple-light); position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: 26px 26px 24px; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 10px; color: var(--text); text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
 .hpc a.hpc-tile:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }
-.hpc a.hpc-tile:hover { border-color: var(--c); }
+.hpc a.hpc-tile:after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 100% 0, var(--c), transparent 60%); opacity: .2; transition: opacity .25s; }
+.hpc a.hpc-tile:hover { transform: translateY(-5px); border-color: var(--c); box-shadow: 0 14px 32px rgba(0,0,0,.4); }
+.hpc a.hpc-tile:hover:after { opacity: .28; }
 .hpc-tile > * { position: relative; z-index: 1; }
 .hpc .hpc-tile h3 { font-size: 26px; color: var(--c); }
 .hpc .hpc-tile p { margin-bottom: 16px; color: #D7E2EA; font-size: 16px; }
 .hpc .hpc-go { color: #fff; font-weight: 700; font-size: 15px; }
-.hpc .hpc-go { text-decoration: underline; text-underline-offset: 4px; }
-.hpc-tile:hover .hpc-go { text-decoration-color: var(--c); }
+.hpc .hpc-go:after { content: "→"; display: inline-block; margin-left: 8px; transition: transform .25s; }
+.hpc-tile:hover .hpc-go:after { transform: translateX(6px); }
 .hpc a.hpc-tile.t1 { --c: var(--s-keynote); } .hpc a.hpc-tile.t2 { --c: var(--s-tutorial); } .hpc a.hpc-tile.t3 { --c: var(--s-talk); }
 .hpc a.hpc-tile.t4 { --c: var(--s-workshop); } .hpc a.hpc-tile.t5 { --c: var(--s-meeting); } .hpc a.hpc-tile.t6 { --c: var(--s-social); }
 
 /* Video */
-.hpc-video { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--card) center/cover no-repeat; cursor: pointer; }
+.hpc-video { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card) center/cover no-repeat; cursor: pointer; }
 .hpc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.hpc-video-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; cursor: default; background: #2A0E2E; }
+.hpc-video-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; cursor: default; background: linear-gradient(135deg, #2A0E2E, #4A1C52); }
 .hpc-video-note { color: #F0DFF2; font-size: 15px; font-weight: 600; }
-.hpc-play { position: relative; display: block; width: 62px; height: 62px; border: 2px solid #fff; border-radius: 50%; background: var(--purple); transition: background .2s; }
+.hpc-play { position: relative; display: block; width: 62px; height: 62px; border: 2px solid #fff; border-radius: 50%; background: var(--purple); transition: transform .2s, background .2s; }
 .hpc-video:not(.hpc-video-empty) .hpc-play { position: absolute; top: 50%; left: 50%; margin: -31px 0 0 -31px; }
 .hpc-play:after { content: ""; position: absolute; top: 17px; left: 24px; border: 12px solid transparent; border-right: 0; border-left: 18px solid #fff; }
-.hpc-video:not(.hpc-video-empty):hover .hpc-play { background: var(--purple-light); }
+.hpc-video:not(.hpc-video-empty):hover .hpc-play { transform: scale(1.1); background: var(--purple-light); }
 
 /* Session cards + filter */
 .hpc-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
-.hpc-filter button { padding: 7px 16px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--muted); font: 600 15px inherit; cursor: pointer; transition: all .2s; }
+.hpc-filter button { padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font: 600 15px inherit; cursor: pointer; transition: all .2s; }
 .hpc-filter button:hover { color: #fff; border-color: var(--purple-light); }
 .hpc-filter button.on { background: var(--purple); border-color: var(--purple); color: #fff; }
 .hpc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
-.hpc-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--purple-light); border-radius: 4px; }
+.hpc-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--purple-light); border-radius: 8px; }
+.hpc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.35); }
 .hpc-card[hidden] { display: none; }
 .hpc .hpc-card a { display: flex; flex-direction: column; height: 100%; padding: 16px; color: var(--text); text-decoration: none; }
 .hpc-card-title { margin-bottom: 10px; font-size: 17px; font-weight: 700; line-height: 1.4; }
@@ -334,7 +353,7 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc-meeting, .hpc-meetings { border-top-color: var(--s-meeting); } .hpc-social, .hpc-socials { border-top-color: var(--s-social); }
 
 /* Band */
-.hpc-band { padding: 64px 0; background: var(--purple); }
+.hpc-band { padding: 64px 0; background: linear-gradient(135deg, #2A0E2E, #45184B 55%, var(--purple)); border-block: 1px solid rgba(255,255,255,.12); }
 .hpc-band a:not(.hpc-btn) { color: var(--purple-soft); }
 .hpc-copyrow { display: flex; flex-wrap: wrap; gap: 10px; }
 
@@ -345,27 +364,38 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc-faq summary::-webkit-details-marker { display: none; }
 .hpc-faq summary:after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); color: var(--purple-light); font-size: 26px; font-weight: 400; transition: transform .25s; }
 .hpc-faq details[open] summary:after { transform: translateY(-50%) rotate(45deg); }
-.hpc-faq details p { margin: 0 0 18px; color: var(--muted); }
+.hpc-faq details p { margin: 0 0 18px; color: var(--muted); animation: hpc-open .3s ease; }
+@keyframes hpc-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 
 /* Gallery + lightbox */
 .hpc-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
-.hpc-gallery button { padding: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: none; cursor: zoom-in; }
-.hpc-gallery img { display: block; width: 100%; height: 220px; object-fit: cover; }
+.hpc-gallery button { padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: none; cursor: zoom-in; }
+.hpc-gallery img { display: block; width: 100%; height: 220px; object-fit: cover; transition: transform .5s; }
+.hpc-gallery button:hover img { transform: scale(1.06); }
 .hpc-prev { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 22px 0 0 !important; }
 .hpc-prev a { font-weight: 600; }
-.hpc-lightbox { max-width: 92vw; max-height: 90vh; padding: 0; border: 0; border-radius: 4px; background: transparent; }
+.hpc-lightbox { max-width: 92vw; max-height: 90vh; padding: 0; border: 0; border-radius: 10px; background: transparent; }
 .hpc-lightbox::backdrop { background: rgba(0,10,18,.88); }
-.hpc-lightbox img { display: block; max-width: 92vw; max-height: 88vh; border-radius: 4px; }
+.hpc-lightbox img { display: block; max-width: 92vw; max-height: 88vh; border-radius: 10px; }
 .hpc-close { position: absolute; top: 8px; right: 8px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: var(--purple); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
 
 /* Floating helpers */
-.hpc-top { position: fixed; right: 22px; bottom: 22px; z-index: 70; width: 46px; height: 46px; border: 0; border-radius: 4px; background: var(--purple); color: #fff; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s, background .2s; }
-.hpc-top.show { opacity: 1; pointer-events: auto; }
+.hpc-top { position: fixed; right: 22px; bottom: 22px; z-index: 70; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: var(--purple); color: #fff; font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s, background .2s; }
+.hpc-top.show { opacity: 1; transform: none; pointer-events: auto; }
 .hpc-top:hover { background: var(--purple-light); color: #1D0B20; }
-.hpc-toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; padding: 10px 20px; border-radius: 4px; background: #fff; color: #1D0B20; font-weight: 700; opacity: 0; transform: translateX(-50%); pointer-events: none; transition: opacity .2s; }
-.hpc-toast.show { opacity: 1; }
+.hpc-toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; padding: 10px 20px; border-radius: 8px; background: #fff; color: #1D0B20; font-weight: 700; opacity: 0; transform: translate(-50%, 14px); pointer-events: none; transition: opacity .25s, transform .25s; }
+.hpc-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Reveal */
+.js .hpc [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i,0) * 70ms); }
+.js .hpc [data-reveal].in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .hpc [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .hpc-progress, .hpc-scroll span { display: none; }
+  .hpc *, .hpc *:before, .hpc *:after { transition: none !important; animation: none !important; }
+}
 
 @media (max-width: 900px) {
   .hpc-tiles { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -377,6 +407,7 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   .hpc-split, .hpc-split-video, .hpc-gallery, .hpc-tiles { grid-template-columns: 1fr; }
   .hpc a.hpc-tile { min-height: 170px; }
   .hpc-gallery img { height: 190px; }
+  .hpc-scroll { display: none; }
 }
 </style>
 
@@ -384,9 +415,19 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 (function () {
   var root = document.getElementById('hpc');
   if (!root) return;
+  document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, c) { return (c || root).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
+
+  /* Reveal on scroll */
+  var items = $$('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
 
   /* Progress bar + back to top */
   var bar = $('.hpc-progress'), topBtn = $('.hpc-top'), ticking = false;
@@ -463,5 +504,42 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
     v.innerHTML = ''; v.style.backgroundImage = 'none'; v.appendChild(f);
   });
 
+  /* Hero: interactive compute-cluster network */
+  var cv = $('.hpc-net'), hero = $('.hpc-hero');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d'), W, H, nodes = [], mouse = { x: -999, y: -999 }, running = true;
+    var cols = ['201,138,207', '158,98,170', '255,255,255'];
+    function size() {
+      var r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.round(Math.min(90, W * H / 14000));
+      nodes = [];
+      for (var i = 0; i < n; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, c: cols[i % 3] });
+    }
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < nodes.length; i++) {
+        var a = nodes[i];
+        if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
+        var dm = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (dm < 140 && !reduce) { a.x += (a.x - mouse.x) * .008; a.y += (a.y - mouse.y) * .008; }
+        for (var j = i + 1; j < nodes.length; j++) {
+          var b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 130) { ctx.strokeStyle = 'rgba(' + a.c + ',' + (.28 * (1 - d / 130)) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+        }
+        if (dm < 170) { ctx.strokeStyle = 'rgba(255,255,255,' + (.5 * (1 - dm / 170)) + ')'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = 'rgba(' + a.c + ',.85)'; ctx.beginPath(); ctx.arc(a.x, a.y, 2, 0, 6.283); ctx.fill();
+      }
+      if (!reduce) requestAnimationFrame(draw);
+    }
+    hero.addEventListener('mousemove', function (e) { var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('mouseleave', function () { mouse.x = mouse.y = -999; });
+    window.addEventListener('resize', size);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { var vis = es[0].isIntersecting; if (vis && !running) { running = true; draw(); } running = vis; }).observe(hero);
+    }
+    size(); draw();
+  }
 })();
 </script>
