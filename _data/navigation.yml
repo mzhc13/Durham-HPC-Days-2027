@@ -1,26 +1,9 @@
 main:
-  - title: "Catch Up on HPC Days"
-    url: /recordings/
-  - title: "Programme"
-    url: /programme-week-2026/
-  - title: "Online Participation"
-    url: /online/
-  - title: "Attendee Information"
-    url: /attendee-information/
-  - title: "Socials"
-    url: /socials/
-  - title: "Find your room"
-    url: /rooms/
-  - title: "Tutorials"
-    url: /tutorials/
-  - title: "Workshops"
-    url: /workshops/
-  - title: "Talks"
-    url: /talks/
-  - title: "Poster Session"
-    url: /posters/
-  - title: "Sponsors"
-    url: /sponsors/
+  - title: "Call for submissions"
+    url: /call-for-submissions/
   - title: "Past Durham HPC Days"
     url: /past/
+  - title: "Sponsors"
+    url: /sponsors/
+
    

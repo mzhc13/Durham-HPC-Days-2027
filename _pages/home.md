@@ -18,31 +18,36 @@ hidden: true
 {% assign show_sessions = false %}
 {% assign video_id = "" %}
 {% assign contact_email = "" %}
-{% assign event_date = "" %}
+{% assign event_date = "2027-07-12T09:00:00" %}
 {% assign allowed = "workshop,talk,keynote,tutorial" | split: "," %}
 {% assign sessions = "" | split: "," %}
 {% if show_sessions and site[programme_collection] %}
   {% assign sessions = site[programme_collection] | sort: "start_time" | where_exp: "item", "allowed contains item.category" %}
 {% endif %}
 
-<div class="hpc" id="hpc">
+<div class="hpc" id="hpc" data-date="{{ event_date }}">
   <div class="hpc-progress" aria-hidden="true"></div>
 
   <header class="hpc-hero" id="top">
     <canvas class="hpc-net" aria-hidden="true"></canvas>
     <div class="hpc-in hpc-hero-in">
-      <p class="hpc-host" data-reveal>Durham University</p>
-      <h1 data-reveal style="--i:1">Durham HPC Days 2027</h1>
+     <p class="hpc-host" data-reveal>Durham University </p>
+     <h1 data-reveal style="--i:1">Durham HPC Days 2027</h1>
+      <p class="hpc-date" data-reveal style="--i:1">
+  <span class="hpc-date-days">12 to 16</span>
+  <span class="hpc-date-month">July 2027</span>
+  <span class="hpc-date-count" id="hpc-count"></span>
+</p>
       <p class="hpc-lede" data-reveal style="--i:2">A week of keynotes, talks, tutorials and workshops on high-performance computing, data analysis and scientific software.</p>
 
       <dl class="hpc-facts" data-reveal style="--i:3">
-        <div><dt>Dates</dt><dd id="hpc-when" data-date="{{ event_date }}">To be confirmed</dd></div>
+        <div><dt>Dates</dt><dd>Monday 12 to Friday 16 July 2027</dd></div>
         <div><dt>Location</dt><dd>Durham, United Kingdom</dd></div>
         <div><dt>Registration</dt><dd>Opening soon</dd></div>
       </dl>
 
       <p class="hpc-actions" data-reveal style="--i:4">
-        <a class="hpc-btn hpc-btn-white" href="{{ programme_url | relative_url }}">View the programme</a>
+        <a class="hpc-btn hpc-btn-white" href="{{ '/past/' | relative_url }}">View previous editions</a>
         <a class="hpc-btn hpc-btn-ghost" href="{{ '/sponsors/' | relative_url }}">Become a sponsor</a>
       </p>
     </div>
@@ -66,11 +71,40 @@ hidden: true
           <li><span>To be confirmed</span>Submission deadline</li>
           <li><span>To be confirmed</span>Registration opens</li>
           <li><span>To be confirmed</span>Programme published</li>
-          <li class="hpc-final"><span>To be confirmed</span>Durham HPC Days 2027</li>
+          <li class="hpc-final"><span>12-16 July 2027</span>Durham HPC Days 2027</li>
         </ol>
       </div>
     </div>
   </section>
+
+
+
+    <section class="hpc-band" id="contribute">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>Call for submissions</h2>
+        <p>Share your work with the HPC community in Durham, 12 to 16 July 2027. We invite proposals for workshops, talks, tutorials and meetings.</p>
+
+       <p class="hpc-copyrow">
+        <a class="hpc-btn hpc-btn-white" href="{{ '/call-for-submissions/' | relative_url }}">Call for submissions</a>
+      </p>
+
+      </div>
+      
+  <!--
+  <div data-reveal style="--i:1">
+    <h2>Join the conversation</h2>
+    <p>Attendees talk through the CAKE Slack workspace. Join the workspace, then find the channel <strong>#hpc-days27</strong>.</p>
+    <p class="hpc-copyrow">
+      <a class="hpc-btn hpc-btn-white" href="https://join.slack.com/t/cake-dri/shared_invite/zt-3dvw46q4g-eode0z4zTvpzoBv~fsQv~w/">Join the CAKE Slack workspace</a>
+      <button type="button" class="hpc-btn hpc-btn-ghost" data-copy="#hpc-days27">Copy channel name</button>
+    </p>
+  </div>
+  -->
+
+   </div>
+  </section>
+
 
   <section class="hpc-section hpc-alt" id="programme">
     <div class="hpc-in">
@@ -78,35 +112,35 @@ hidden: true
       <p class="hpc-sub" data-reveal style="--i:1">Six ways to take part. Pick one to see what is planned.</p>
     </div>
     <div class="hpc-in hpc-tiles">
-      <a class="hpc-tile t1" data-reveal style="--i:0" href="{{ '/keynotes/' | relative_url }}">
+      <a class="hpc-tile t1" data-reveal style="--i:0" href="{{ '' | relative_url }}">
         <h3>Keynotes</h3>
         <p>Invited speakers on where HPC and research computing are heading.</p>
-        <span class="hpc-go">Explore the keynotes</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
-      <a class="hpc-tile t2" data-reveal style="--i:1" href="{{ '/tutorials/' | relative_url }}">
+      <a class="hpc-tile t2" data-reveal style="--i:1" href="{{ '' | relative_url }}">
         <h3>Tutorials</h3>
         <p>Hands-on sessions where you work through examples on real systems.</p>
-        <span class="hpc-go">Explore the tutorials</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
-      <a class="hpc-tile t3" data-reveal style="--i:2" href="{{ '/talks/' | relative_url }}">
+      <a class="hpc-tile t3" data-reveal style="--i:2" href="{{ '' | relative_url }}">
         <h3>Talks</h3>
         <p>Contributed presentations on applications, infrastructure and tools.</p>
-        <span class="hpc-go">Explore the talks</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
-      <a class="hpc-tile t4" data-reveal style="--i:0" href="{{ '/workshops/' | relative_url }}">
+      <a class="hpc-tile t4" data-reveal style="--i:0" href="{{ '' | relative_url }}">
         <h3>Workshops</h3>
         <p>Longer, focused sessions on a single topic, led by the community.</p>
-        <span class="hpc-go">Explore the workshops</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
-      <a class="hpc-tile t5" data-reveal style="--i:1" href="{{ '/meetings/' | relative_url }}">
+      <a class="hpc-tile t5" data-reveal style="--i:1" href="{{ '' | relative_url }}">
         <h3>Meetings</h3>
         <p>Working meetings and user groups that run alongside the programme.</p>
-        <span class="hpc-go">Explore the meetings</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
-      <a class="hpc-tile t6" data-reveal style="--i:2" href="{{ '/socials/' | relative_url }}">
+      <a class="hpc-tile t6" data-reveal style="--i:2" href="{{ '' | relative_url }}">
         <h3>Socials</h3>
         <p>Evening events and meals for meeting other attendees.</p>
-        <span class="hpc-go">Explore the socials</span>
+        <span class="hpc-go">Coming soon</span>
       </a>
     </div>
   </section>
@@ -117,7 +151,7 @@ hidden: true
         {% if video_id != "" %}
           <button class="hpc-video" type="button" data-id="{{ video_id }}" aria-label="Play video" style="background-image:url('https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg')"><span class="hpc-play"></span></button>
         {% else %}
-          <div class="hpc-video hpc-video-empty" role="img" aria-label="Video placeholder"><span class="hpc-play"></span><span class="hpc-video-note">2027 teaser video coming soon</span></div>
+          <div class="hpc-video hpc-video-empty" role="img" aria-label="Video placeholder"><span class="hpc-play"></span><span class="hpc-video-note">2026 recap video coming soon</span></div>
         {% endif %}
       </div>
       <div data-reveal style="--i:1">
@@ -153,23 +187,9 @@ hidden: true
     </section>
   {% endif %}
 
-  <section class="hpc-band" id="contribute">
-    <div class="hpc-in hpc-split">
-      <div data-reveal>
-        <h2>Call for contributions</h2>
-        <p>We will invite talks, tutorials and workshops from the community. Submission details and the deadline will be published here.</p>
-      </div>
-      <div data-reveal style="--i:1">
-        <h2>Join the conversation</h2>
-        <p>Attendees talk through the CAKE Slack workspace. Join the workspace, then find the channel <strong>#hpc-days27</strong>.</p>
-        <p class="hpc-copyrow">
-          <a class="hpc-btn hpc-btn-white" href="https://join.slack.com/t/cake-dri/shared_invite/zt-3dvw46q4g-eode0z4zTvpzoBv~fsQv~w/">Join the CAKE Slack workspace</a>
-          <button type="button" class="hpc-btn hpc-btn-ghost" data-copy="#hpc-days27">Copy channel name</button>
-        </p>
-      </div>
-    </div>
-  </section>
 
+
+<!--
   <section class="hpc-section">
     <div class="hpc-in hpc-faq-wrap">
       <h2 data-reveal>Good to know</h2>
@@ -181,22 +201,21 @@ hidden: true
       </div>
     </div>
   </section>
-
-  <section class="hpc-section hpc-alt" id="previous">
-    <div class="hpc-in">
-      <h2 data-reveal>Previous events</h2>
-      <div class="hpc-gallery">
-        <button type="button" data-reveal style="--i:0" data-full="{{ '/assets/images/Sessions.jpg' | relative_url }}" aria-label="Enlarge photo: attendees in a session"><img src="{{ '/assets/images/Sessions.jpg' | relative_url }}" alt="Attendees in a session" loading="lazy"></button>
-        <button type="button" data-reveal style="--i:1" data-full="{{ '/assets/images/food-truck.jpg' | relative_url }}" aria-label="Enlarge photo: food truck during a break"><img src="{{ '/assets/images/food-truck.jpg' | relative_url }}" alt="Food truck during a break" loading="lazy"></button>
-        <button type="button" data-reveal style="--i:2" data-full="{{ '/assets/images/social.png' | relative_url }}" aria-label="Enlarge photo: attendees at the social event"><img src="{{ '/assets/images/social.png' | relative_url }}" alt="Attendees at the social event" loading="lazy"></button>
-      </div>
-      <p class="hpc-prev" data-reveal>
-        <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/">Durham HPC Days 2026</a>
-        <a href="https://durham.readthedocs.io/en/latest/hpcdays2025/index.html">Durham HPC Days 2025</a>
-        {% if contact_email != "" %}<a href="mailto:{{ contact_email }}">Contact the organisers</a>{% endif %}
+-->
+<section class="hpc-section hpc-alt" id="previous">
+  <div class="hpc-in hpc-split hpc-split-video">
+    <div class="hpc-photo" data-reveal>
+      <img src="{{ '/assets/images/eva-blue-banner.png' | relative_url }}" alt="Attendees in a session at a previous Durham HPC Days" loading="lazy">
+    </div>
+    <div data-reveal style="--i:1">
+      <h2>Previous Durham HPC Days editions</h2>
+      <p>Explore previous editions of Durham HPC Days, including highlights, photos, and links to full programmes and documentation.</p>
+      <p class="hpc-copyrow">
+        <a class="hpc-btn hpc-btn-white" href="{{ '/past-hpc-days/' | relative_url }}">Browse Previous Editions</a>
       </p>
     </div>
-  </section>
+  </div>
+</section>
 
   <dialog class="hpc-lightbox" aria-label="Photo viewer">
     <button type="button" class="hpc-close" aria-label="Close">×</button>
@@ -207,6 +226,10 @@ hidden: true
 </div>
 
 <style>
+/* ==========================================================================
+   1. GLOBAL / PAGE RESET
+   Base fonts and overrides of the Jekyll theme wrappers (full-width layout)
+   ========================================================================== */
 html { scroll-behavior: smooth; background: #07121A; }
 body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif; }
 
@@ -217,7 +240,12 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   margin-top: 0 !important;
 }
 
-/* Session-type colours: reuse these in the programme timetable */
+
+/* ==========================================================================
+   2. DESIGN TOKENS
+   ========================================================================== */
+
+/* Session-type colours (reuse these in the programme timetable) */
 :root {
   --s-keynote:  #D79BDD;
   --s-tutorial: #5BB4E5;
@@ -227,8 +255,8 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   --s-social:   #E88FB4;
 }
 
+/* Brand palette (purple-led, tinted darks) + root container */
 .hpc {
-  /* Brand: purple-led, with tinted darks */
   --purple: #68246D;
   --purple-light: #C98ACF;
   --purple-soft: #EBD6EE;
@@ -238,6 +266,7 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   --line: #3E2A4B;
   --text: #F6F1F8;
   --muted: #B8A8C2;
+  --ink: #1D0B20;           /* dark text used on coloured backgrounds */
 
   position: relative;
   width: 100vw;
@@ -249,147 +278,344 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 }
 .hpc *, .hpc *:before, .hpc *:after { box-sizing: border-box; }
 
+
+/* ==========================================================================
+   3. TYPOGRAPHY, LINKS AND LAYOUT HELPERS
+   ========================================================================== */
 .hpc h1, .hpc h2, .hpc h3 { font-family: inherit; font-weight: 800; line-height: 1.12; margin: 0 0 14px; color: var(--text); }
-.hpc h2 { font-size: clamp(26px, 3.2vw, 34px); letter-spacing: -.01em; }
-.hpc p { margin: 0 0 14px; font-size: 17px; line-height: 1.65; color: var(--text); }
+.hpc h2 { font-size: clamp(26px, 3.2vw, 34px); letter-spacing: -.01em;  border-bottom-color: #f4e8f8 !important; }
+.hpc p  { margin: 0 0 14px; font-size: 17px; line-height: 1.65; color: var(--text); }
 .hpc ul, .hpc ol { list-style: none; margin: 0; padding: 0; }
+
 .hpc a { color: var(--purple-light); text-underline-offset: 4px; }
 .hpc a:hover { color: var(--purple-soft); }
-.hpc a:focus-visible, .hpc button:focus-visible, .hpc summary:focus-visible { outline: 3px solid var(--purple-soft); outline-offset: 3px; }
-.hpc-in { max-width: 1100px; margin: auto; padding: 0 28px; }
+.hpc a:focus-visible,
+.hpc button:focus-visible,
+.hpc summary:focus-visible { outline: 3px solid var(--purple-soft); outline-offset: 3px; }
+
+.hpc-in  { max-width: 1100px; margin: auto; padding: 0 28px; }   /* centred content wrapper */
 .hpc-sub { color: var(--muted) !important; margin-bottom: 28px !important; }
 
-/* Progress */
-.hpc-progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 100; background: linear-gradient(90deg, var(--purple), var(--purple-light), var(--purple-soft)); transform: scaleX(0); transform-origin: left; }
 
-/* Buttons */
-.hpc .hpc-btn { display: inline-block; padding: 11px 22px; border: 2px solid var(--purple); border-radius: 6px; font: 700 16px/1.3 inherit; text-decoration: none; cursor: pointer; transition: background .2s, color .2s, border-color .2s, transform .2s; }
+/* ==========================================================================
+   4. SCROLL PROGRESS BAR (top of the page)
+   ========================================================================== */
+.hpc-progress {
+  position: fixed; top: 0; left: 0; z-index: 100;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--purple-light), var(--purple-soft));
+  transform: scaleX(0); transform-origin: left;
+}
+
+
+/* ==========================================================================
+   5. BUTTONS
+   ========================================================================== */
+.hpc .hpc-btn {
+  display: inline-block; padding: 11px 22px;
+  border: 2px solid var(--purple); border-radius: 6px;
+  font: 700 16px/1.3 inherit; text-decoration: none; cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
 .hpc .hpc-btn:hover { transform: translateY(-1px); }
+
+/* Small purple button */
 .hpc .hpc-btn-sm { padding: 7px 15px; font-size: 14px; background: var(--purple); color: #fff !important; }
-.hpc .hpc-btn-sm:hover { background: var(--purple-light); border-color: var(--purple-light); color: #1D0B20 !important; }
-.hpc .hpc-btn-white { background: #F3F0F6; color: #1D0B20 !important; border-color: #F3F0F6; }
+.hpc .hpc-btn-sm:hover { background: var(--purple-light); border-color: var(--purple-light); color: var(--ink) !important; }
+
+/* White button */
+.hpc .hpc-btn-white { background: #F3F0F6; color: var(--ink) !important; border-color: #F3F0F6; }
 .hpc .hpc-btn-white:hover { background: var(--purple-soft); border-color: var(--purple-soft); }
+
+/* Purple button */
 .hpc .hpc-btn-purple { background: var(--purple); color: #fff !important; }
-.hpc .hpc-btn-purple:hover { background: var(--purple-light); border-color: var(--purple-light); color: #1D0B20 !important; }
+.hpc .hpc-btn-purple:hover { background: var(--purple-light); border-color: var(--purple-light); color: var(--ink) !important; }
+
+/* Ghost (outline) button */
 .hpc .hpc-btn-ghost { background: transparent; color: #fff !important; border-color: rgba(255,255,255,.7); }
 .hpc .hpc-btn-ghost:hover { background: rgba(255,255,255,.12); border-color: #fff; }
 
-/* Hero */
-.hpc-hero { position: relative; min-height: 78vh; display: flex; align-items: flex-end; padding: 90px 0 70px; overflow: hidden;
-  background: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true") center 60% / cover no-repeat; }
-.hpc-hero:before { content: ""; position: absolute; inset: 0; z-index: 0;
-  background: linear-gradient(160deg, rgba(28,8,32,.94) 0%, rgba(70,24,76,.84) 55%, rgba(104,36,109,.78) 100%),
-              linear-gradient(to top, var(--bg), transparent 30%); }
-.hpc-net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+
+/* ==========================================================================
+   6. HERO (banner, network canvas, title, key facts)
+   ========================================================================== */
+.hpc-hero {
+  position: relative; display: flex; align-items: flex-end;
+  min-height: 78vh; padding: 90px 0 70px; overflow: hidden;
+  background: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true") center 60% / cover no-repeat;
+}
+/* Purple gradient overlay on top of the banner image */
+.hpc-hero:before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background:
+    linear-gradient(160deg, rgba(28,8,32,.94) 0%, rgba(70,24,76,.84) 55%, rgba(104,36,109,.78) 100%),
+    linear-gradient(to top, var(--bg), transparent 30%);
+}
+/* Animated compute-cluster canvas */
+.hpc-net { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
+
 .hpc-hero-in { position: relative; z-index: 2; width: 100%; pointer-events: none; }
 .hpc-hero-in a, .hpc-hero-in button { pointer-events: auto; }
-.hpc-host { margin-bottom: 10px !important; color: var(--purple-soft) !important; font-size: 15px !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.hpc-hero h1 { max-width: 14ch; margin-bottom: 18px; color: #fff; font-size: clamp(40px, 6vw, 70px); letter-spacing: -.025em; }
-.hpc-lede { max-width: 620px; margin: 0 0 28px !important; color: #EAF1F6 !important; font-size: 20px !important; }
+
+.hpc-host  { margin-bottom: 10px !important; color: var(--purple-soft) !important; font-size: 15px !important; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.hpc-hero h1 { max-width: 1200px; margin-bottom: 18px; color: #fff; font-size: clamp(40px, 6vw, 90px); letter-spacing: -.025em; }
+.hpc-lede  { max-width: 620px; margin: 0 0 28px !important; color: #EAF1F6 !important; font-size: 20px !important; }
+
+/* Dates / Location / Registration */
 .hpc-facts { display: flex; flex-wrap: wrap; gap: 16px 44px; max-width: 700px; margin: 0 0 28px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.3); }
 .hpc-facts dt { color: var(--purple-soft); font-size: 14px; }
 .hpc-facts dd { margin: 0; font-size: 17px; font-weight: 700; color: #fff; }
+
 .hpc-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 !important; }
+
+/* Animated "scroll down" indicator */
 .hpc-scroll { position: absolute; bottom: 20px; left: 50%; z-index: 2; width: 26px; height: 42px; margin-left: -13px; border: 2px solid rgba(255,255,255,.55); border-radius: 14px; }
 .hpc-scroll span { position: absolute; left: 50%; top: 8px; width: 4px; height: 8px; margin-left: -2px; background: #fff; border-radius: 2px; animation: hpc-dot 1.8s ease-in-out infinite; }
-@keyframes hpc-dot { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+@keyframes hpc-dot {
+  0%   { opacity: 0; transform: translateY(0); }
+  40%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(14px); }
+}
 
-/* Sections */
+/* Big date block (hero) */
+.hpc-date { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 0 0 20px !important; padding-left: 16px; border-left: 4px solid var(--purple-light); }
+.hpc .hpc-date-days  { color: #fff; font-size: clamp(36px, 5vw, 56px); font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.hpc .hpc-date-month { color: var(--purple-soft); font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.hpc .hpc-date-count { flex-basis: 100%; color: var(--muted); font-size: 15px; font-weight: 600; }
+.hpc .hpc-date-count:empty { display: none; }
+
+/* ==========================================================================
+   7. SECTIONS (generic blocks, two-column split, chips)
+   ========================================================================== */
 .hpc-section { padding: 72px 0; background: var(--bg); }
-.hpc-alt { background: var(--alt); }
-.hpc-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px 64px; align-items: start; }
+.hpc-alt     { background: var(--alt); }
+
+.hpc-split       { display: grid; grid-template-columns: 1.2fr 1fr;  gap: 32px 64px; align-items: start; }
 .hpc-split-video { grid-template-columns: 1.25fr 1fr; align-items: center; }
+
+/* "Who attends" pills */
 .hpc-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px !important; }
 .hpc-chips li { padding: 5px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font-size: 14px; font-weight: 600; }
 
-/* Timeline */
+
+/* ==========================================================================
+   8. KEY DATES TIMELINE
+   ========================================================================== */
 .hpc-dates { margin-left: 6px !important; border-left: 2px solid var(--line) !important; }
 .hpc-dates li { position: relative; padding: 0 0 20px 26px; font-weight: 600; line-height: 1.4; }
 .hpc-dates li:last-child { padding-bottom: 0; }
-.hpc-dates li:before { content: ""; position: absolute; left: -8px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 2px solid var(--purple-light); transition: background .3s, box-shadow .3s; }
-.hpc-dates li:hover:before, .hpc-final:before { background: var(--purple-light); box-shadow: 0 0 0 5px rgba(201,138,207,.22); }
+.hpc-dates li:before {
+  content: ""; position: absolute; left: -8px; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--purple-light);
+  transition: background .3s, box-shadow .3s;
+}
+.hpc-dates li:hover:before,
+.hpc-final:before { background: var(--purple-light); box-shadow: 0 0 0 5px rgba(201,138,207,.22); }
 .hpc-dates span { display: block; margin-bottom: 2px; color: var(--muted); font-size: 14px; font-weight: 400; }
 
-/* Tiles */
+
+/* ==========================================================================
+   9. PROGRAMME TILES (Keynotes, Tutorials, Talks, Workshops, Meetings, Socials)
+   The fill colour on hover comes from the per-tile --c variable.
+   ========================================================================== */
 .hpc-tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
-.hpc a.hpc-tile { --c: var(--purple-light); position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: 26px 26px 24px; overflow: hidden; background: var(--card); border: 1px solid var(--line); border-radius: 10px; color: var(--text); text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
-.hpc a.hpc-tile:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }
-.hpc a.hpc-tile:after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 100% 0, var(--c), transparent 60%); opacity: .2; transition: opacity .25s; }
-.hpc a.hpc-tile:hover { transform: translateY(-5px); border-color: var(--c); box-shadow: 0 14px 32px rgba(0,0,0,.4); }
-.hpc a.hpc-tile:hover:after { opacity: .28; }
-.hpc-tile > * { position: relative; z-index: 1; }
-.hpc .hpc-tile h3 { font-size: 26px; color: var(--c); }
-.hpc .hpc-tile p { margin-bottom: 16px; color: #D7E2EA; font-size: 16px; }
-.hpc .hpc-go { color: #fff; font-weight: 700; font-size: 15px; }
+
+/* Base tile */
+.hpc a.hpc-tile {
+  --c: var(--purple-light);
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 220px; padding: 26px 26px 24px; overflow: hidden;
+  background: var(--card); border: 1px solid var(--line);
+  color: var(--text); text-decoration: none;
+  transition: transform .25s, border-color .25s, box-shadow .25s, background-color .75s;
+}
+/* Coloured strip at the top of the tile */
+/* .hpc a.hpc-tile:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }*/
+/* .hpc-tile > * { position: relative; z-index: 1; }*/
+
+/* Tile text */
+.hpc .hpc-tile h3 { font-size: 26px; color: #fff; transition: color .25s; }
+.hpc .hpc-tile p  { margin-bottom: 16px; color: #D7E2EA; font-size: 16px; transition: color .25s; }
+.hpc .hpc-go      { color: #fff; font-weight: 700; font-size: 15px; transition: color .25s; }
 .hpc .hpc-go:after { content: "→"; display: inline-block; margin-left: 8px; transition: transform .25s; }
 .hpc-tile:hover .hpc-go:after { transform: translateX(6px); }
-.hpc a.hpc-tile.t1 { --c: var(--s-keynote); } .hpc a.hpc-tile.t2 { --c: var(--s-tutorial); } .hpc a.hpc-tile.t3 { --c: var(--s-talk); }
-.hpc a.hpc-tile.t4 { --c: var(--s-workshop); } .hpc a.hpc-tile.t5 { --c: var(--s-meeting); } .hpc a.hpc-tile.t6 { --c: var(--s-social); }
 
-/* Video */
-.hpc-video { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--card) center/cover no-repeat; cursor: pointer; }
+/* HOVER / KEYBOARD FOCUS: lift the tile and fill it with its colour */
+.hpc a.hpc-tile:hover,
+.hpc a.hpc-tile:focus-visible {
+  transform: translateY(-5px);
+  background: var(--c);
+  border-color: var(--c);
+  box-shadow: 0 14px 32px rgba(0,0,0,.4);
+}
+/* Dark text on the coloured background so it stays readable */
+.hpc a.hpc-tile:hover h3,
+.hpc a.hpc-tile:hover p,
+.hpc a.hpc-tile:hover .hpc-go,
+.hpc a.hpc-tile:focus-visible h3,
+.hpc a.hpc-tile:focus-visible p,
+.hpc a.hpc-tile:focus-visible .hpc-go { color: var(--ink); }
+/* Hide the top strip on hover (same colour as the background anyway) */
+.hpc a.hpc-tile:hover:before,
+.hpc a.hpc-tile:focus-visible:before { background: rgba(29,11,32,.25); }
+
+/* Colour assigned to each tile */
+.hpc a.hpc-tile.t1 { --c: var(--s-keynote); }
+.hpc a.hpc-tile.t2 { --c: var(--s-tutorial); }
+.hpc a.hpc-tile.t3 { --c: var(--s-talk); }
+.hpc a.hpc-tile.t4 { --c: var(--s-workshop); }
+.hpc a.hpc-tile.t5 { --c: var(--s-meeting); }
+.hpc a.hpc-tile.t6 { --c: var(--s-social); }
+
+
+/* ==========================================================================
+   10. VIDEO (thumbnail button, iframe, empty placeholder)
+   ========================================================================== */
+.hpc-video {
+  position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: var(--card) center/cover no-repeat; cursor: pointer;
+}
 .hpc-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+/* Placeholder shown when no video_id is set */
 .hpc-video-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; cursor: default; background: linear-gradient(135deg, #2A0E2E, #4A1C52); }
-.hpc-video-note { color: #F0DFF2; font-size: 15px; font-weight: 600; }
+.hpc-video-note  { color: #F0DFF2; font-size: 15px; font-weight: 600; }
+
+/* Play button */
 .hpc-play { position: relative; display: block; width: 62px; height: 62px; border: 2px solid #fff; border-radius: 50%; background: var(--purple); transition: transform .2s, background .2s; }
-.hpc-video:not(.hpc-video-empty) .hpc-play { position: absolute; top: 50%; left: 50%; margin: -31px 0 0 -31px; }
 .hpc-play:after { content: ""; position: absolute; top: 17px; left: 24px; border: 12px solid transparent; border-right: 0; border-left: 18px solid #fff; }
+.hpc-video:not(.hpc-video-empty) .hpc-play { position: absolute; top: 50%; left: 50%; margin: -31px 0 0 -31px; }
 .hpc-video:not(.hpc-video-empty):hover .hpc-play { transform: scale(1.1); background: var(--purple-light); }
 
-/* Session cards + filter */
-.hpc-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
-.hpc-filter button { padding: 7px 16px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font: 600 15px inherit; cursor: pointer; transition: all .2s; }
-.hpc-filter button:hover { color: #fff; border-color: var(--purple-light); }
-.hpc-filter button.on { background: var(--purple); border-color: var(--purple); color: #fff; }
-.hpc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
-.hpc-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--purple-light); border-radius: 8px; }
-.hpc-card:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,.35); }
-.hpc-card[hidden] { display: none; }
-.hpc .hpc-card a { display: flex; flex-direction: column; height: 100%; padding: 16px; color: var(--text); text-decoration: none; }
-.hpc-card-title { margin-bottom: 10px; font-size: 17px; font-weight: 700; line-height: 1.4; }
-.hpc-card-meta { margin-top: auto; color: var(--muted); font-size: 14px; }
-.hpc-keynote { border-top-color: var(--s-keynote); } .hpc-tutorial { border-top-color: var(--s-tutorial); }
-.hpc-talk { border-top-color: var(--s-talk); } .hpc-workshop { border-top-color: var(--s-workshop); }
-.hpc-meeting, .hpc-meetings { border-top-color: var(--s-meeting); } .hpc-social, .hpc-socials { border-top-color: var(--s-social); }
 
-/* Band */
+/* ==========================================================================
+   11. FEATURED SESSION CARDS + CATEGORY FILTER
+   Only rendered when show_sessions is true in the page settings.
+   ========================================================================== */
+.hpc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+
+.hpc-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--session-colour, var(--purple-light));
+  border-radius: 8px; overflow: hidden;
+  transition: background .25s ease, transform .2s, box-shadow .2s;
+}
+.hpc-card[hidden] { display: none; }   /* used by the filter buttons */
+
+/* HOVER: fill the card with its category colour */
+.hpc-card:hover {
+  background: var(--session-colour, var(--purple-light));
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+.hpc .hpc-card a { display: flex; flex-direction: column; height: 100%; padding: 16px; color: var(--text); text-decoration: none; }
+.hpc .hpc-card a:hover { background: transparent; color: var(--text); }
+
+.hpc-card-title { margin-bottom: 10px; font-size: 17px; font-weight: 700; line-height: 1.4; transition: color .25s; }
+.hpc-card-meta  { margin-top: auto; color: var(--muted); font-size: 14px; transition: color .25s; }
+
+/* Dark text on the coloured background when hovering */
+.hpc-card:hover .hpc-card-title,
+.hpc-card:hover .hpc-card-meta { color: var(--ink); }
+
+/* Automatic colour per session category */
+.hpc-keynote  { --session-colour: var(--s-keynote); }
+.hpc-tutorial { --session-colour: var(--s-tutorial); }
+.hpc-talk     { --session-colour: var(--s-talk); }
+.hpc-workshop { --session-colour: var(--s-workshop); }
+.hpc-meeting,
+.hpc-meetings { --session-colour: var(--s-meeting); }
+.hpc-social,
+.hpc-socials  { --session-colour: var(--s-social); }
+
+
+/* ==========================================================================
+   12. CALL-TO-ACTION BAND (Call for contributions / Slack)
+   ========================================================================== */
 .hpc-band { padding: 64px 0; background: linear-gradient(135deg, #2A0E2E, #45184B 55%, var(--purple)); border-block: 1px solid rgba(255,255,255,.12); }
 .hpc-band a:not(.hpc-btn) { color: var(--purple-soft); }
 .hpc-copyrow { display: flex; flex-wrap: wrap; gap: 10px; }
 
-/* FAQ */
+
+/* ==========================================================================
+   13. FAQ ACCORDION ("Good to know")
+   ========================================================================== */
 .hpc-faq-wrap { max-width: 820px; }
 .hpc-faq details { border-bottom: 1px solid var(--line); }
 .hpc-faq summary { position: relative; padding: 18px 40px 18px 0; font-size: 18px; font-weight: 700; cursor: pointer; list-style: none; }
 .hpc-faq summary::-webkit-details-marker { display: none; }
+/* "+" icon that rotates into an "x" when open */
 .hpc-faq summary:after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); color: var(--purple-light); font-size: 26px; font-weight: 400; transition: transform .25s; }
 .hpc-faq details[open] summary:after { transform: translateY(-50%) rotate(45deg); }
 .hpc-faq details p { margin: 0 0 18px; color: var(--muted); animation: hpc-open .3s ease; }
-@keyframes hpc-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes hpc-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
 
-/* Gallery + lightbox */
+
+/* ==========================================================================
+   14. PREVIOUS EVENTS (photo gallery + lightbox)
+   ========================================================================== */
 .hpc-gallery { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; margin-top: 18px; }
 .hpc-gallery button { padding: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: none; cursor: zoom-in; }
 .hpc-gallery img { display: block; width: 100%; height: 220px; object-fit: cover; transition: transform .5s; }
 .hpc-gallery button:hover img { transform: scale(1.06); }
+
+/* Links to previous editions */
 .hpc-prev { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 22px 0 0 !important; }
 .hpc-prev a { font-weight: 600; }
+
+/* Fullscreen photo viewer */
 .hpc-lightbox { max-width: 92vw; max-height: 90vh; padding: 0; border: 0; border-radius: 10px; background: transparent; }
 .hpc-lightbox::backdrop { background: rgba(0,10,18,.88); }
 .hpc-lightbox img { display: block; max-width: 92vw; max-height: 88vh; border-radius: 10px; }
 .hpc-close { position: absolute; top: 8px; right: 8px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: var(--purple); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
 
-/* Floating helpers */
-.hpc-top { position: fixed; right: 22px; bottom: 22px; z-index: 70; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: var(--purple); color: #fff; font-size: 20px; cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s, transform .25s, background .2s; }
-.hpc-top.show { opacity: 1; transform: none; pointer-events: auto; }
-.hpc-top:hover { background: var(--purple-light); color: #1D0B20; }
-.hpc-toast { position: fixed; left: 50%; bottom: 28px; z-index: 80; padding: 10px 20px; border-radius: 8px; background: #fff; color: #1D0B20; font-weight: 700; opacity: 0; transform: translate(-50%, 14px); pointer-events: none; transition: opacity .25s, transform .25s; }
+/* Photo in the "Previous editions" block */
+.hpc-photo img { display: block; width: 100%; height: 340px; object-fit: cover; border: 1px solid #fff; }
+
+@media (max-width: 680px) {
+  .hpc-photo img { height: 210px; }
+}
+
+/* ==========================================================================
+   15. FLOATING HELPERS (back-to-top button, toast message)
+   ========================================================================== */
+.hpc-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 70;
+  width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%;
+  background: var(--purple); color: #fff; font-size: 20px; cursor: pointer;
+  opacity: 0; transform: translateY(12px); pointer-events: none;
+  transition: opacity .25s, transform .25s, background .2s;
+}
+.hpc-top.show  { opacity: 1; transform: none; pointer-events: auto; }
+.hpc-top:hover { background: var(--purple-light); color: var(--ink); }
+
+.hpc-toast {
+  position: fixed; left: 50%; bottom: 28px; z-index: 80;
+  padding: 10px 20px; border-radius: 8px; background: #fff; color: var(--ink); font-weight: 700;
+  opacity: 0; transform: translate(-50%, 14px); pointer-events: none;
+  transition: opacity .25s, transform .25s;
+}
 .hpc-toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-/* Reveal */
+
+/* ==========================================================================
+   16. REVEAL-ON-SCROLL ANIMATION
+   Elements with data-reveal fade in; --i staggers the delay.
+   ========================================================================== */
 .js .hpc [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; transition-delay: calc(var(--i,0) * 70ms); }
 .js .hpc [data-reveal].in { opacity: 1; transform: none; }
 
+
+/* ==========================================================================
+   17. ACCESSIBILITY: REDUCED MOTION
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .js .hpc [data-reveal] { opacity: 1; transform: none; transition: none; }
@@ -397,12 +623,20 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   .hpc *, .hpc *:before, .hpc *:after { transition: none !important; animation: none !important; }
 }
 
+
+/* ==========================================================================
+   18. RESPONSIVE
+   ========================================================================== */
+
+/* Tablet: 2 tile columns */
 @media (max-width: 900px) {
   .hpc-tiles { grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
+
+/* Mobile: single column layout */
 @media (max-width: 680px) {
   .hpc-in { padding: 0 20px; }
-  .hpc-hero { min-height: 0; padding: 70px 0 70px; }
+  .hpc-hero { min-height: 0; padding: 70px 0; }
   .hpc-section { padding: 48px 0; }
   .hpc-split, .hpc-split-video, .hpc-gallery, .hpc-tiles { grid-template-columns: 1fr; }
   .hpc a.hpc-tile { min-height: 170px; }
@@ -441,20 +675,20 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
   update();
   topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
 
-  /* Countdown (only if event_date is set) */
-  var when = $('#hpc-when'), iso = when && when.getAttribute('data-date');
-  if (iso) {
-    var target = new Date(iso).getTime();
-    if (!isNaN(target)) {
-      var tick = function () {
-        var d = target - Date.now();
-        if (d <= 0) { when.textContent = 'Happening now'; return; }
-        var days = Math.floor(d / 864e5), h = Math.floor(d % 864e5 / 36e5);
-        when.textContent = new Date(target).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + ' · ' + days + ' days ' + h + ' h to go';
-      };
-      tick(); setInterval(tick, 60000);
-    }
+/* Countdown (only if event_date is set) */
+var cd = $('#hpc-count'), iso = root.getAttribute('data-date');
+if (cd && iso) {
+  var target = new Date(iso).getTime();
+  if (!isNaN(target)) {
+    var tick = function () {
+      var d = target - Date.now();
+      if (d <= 0) { cd.textContent = 'Happening now'; return; }
+      var days = Math.floor(d / 864e5), h = Math.floor(d % 864e5 / 36e5);
+      cd.textContent = days + ' days ' + h + ' h to go';
+    };
+    tick(); setInterval(tick, 60000);
   }
+}
 
   /* Session filter */
   var fbtns = $$('.hpc-filter button');

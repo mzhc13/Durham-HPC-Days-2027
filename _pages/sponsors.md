@@ -1,356 +1,270 @@
 ---
 layout: splash
-title: "Conference Programme"
+title: "Sponsors"
 permalink: /sponsors/
+hidden: true
 ---
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+{% comment %}
+  Shared styles: /assets/css/hpc-days.css (same file as the other pages).
+  Page-specific styles are in the <style> block at the bottom of this file.
+{% endcomment %}
+<link rel="stylesheet" href="{{ '/assets/css/hpc-days.css' | relative_url }}">
+
+{% comment %} Settings {% endcomment %}
+{% assign contact_name = "Alastair Basden" %}
+{% assign contact_email = "a.g.basden@durham.ac.uk" %}
+
+<div class="hpc" id="hpc">
+  <div class="hpc-progress" aria-hidden="true"></div>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="hpc-pagehead" id="top">
+    <div class="hpc-in">
+      <nav class="hpc-crumbs" aria-label="Breadcrumb" data-reveal>
+        <a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">Sponsors</span>
+      </nav>
+      <p class="hpc-host" data-reveal style="--i:1">Call for sponsors</p>
+      <h1 data-reveal style="--i:1">Sponsor Durham HPC Days 2027</h1>
+      <p class="hpc-lede" data-reveal style="--i:2">Meet the researchers, developers, system administrators and vendors working with high-performance computing. Join us in Durham for a week of keynotes, talks, tutorials and workshops.</p>
+
+      <p class="hpc-actions" data-reveal style="--i:4">
+        <a class="hpc-btn hpc-btn-white" href="mailto:{{ contact_email }}?subject=Durham%20HPC%20Days%202027%20sponsorship">Express your interest</a>
+        <a class="hpc-btn hpc-btn-ghost" href="#previous-sponsors">See our 2026 sponsors</a>
+      </p>
+    </div>
+  </header>
+
+  <!-- ===== WHY SPONSOR ===== -->
+  <section class="hpc-section" id="why">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>Why sponsor?</h2>
+        <p>Durham HPC Days brings together the people who run and use research computing. Sponsoring puts you in the room with them: dedicated time on the programme, and a stand in the coffee and lunch room where attendees spend their breaks.</p>
+        <p>We could not run the event without our sponsors and supporters, and we are keen to help you make the most of the week.</p>
+
+      </div>
+      <div data-reveal style="--i:1">
+        <h2>At a glance</h2>
+        <div class="sp-stats">
+          <div class="sp-stat"><strong>230+</strong><span>attendees expected over the week</span></div>
+          <div class="sp-stat"><strong>5 days</strong><span>12 to 16 July 2027</span></div>
+          <div class="sp-stat"><strong>Table display</strong><span>Get your own table display to showcase your content</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT SPONSORS GET ===== -->
+  <section class="hpc-section hpc-alt" id="benefits">
+    <div class="hpc-in">
+      <h2 data-reveal>What sponsors get</h2>
+      <p class="hpc-sub" data-reveal style="--i:1">Four ways to meet the community during the week.</p>
+
+      <div class="sp-cards" data-reveal style="--i:1">
+
+        <article class="sp-card" style="--c: var(--s-keynote)">
+          <p class="sp-label">Day to be confirmed</p>
+          <h3>Sponsor session</h3>
+          <ul class="sp-list">
+            <li>A 2 to 3 minute slot to introduce yourself to the whole audience</li>
+            <li>A 15 minute panel taking questions from the audience</li>
+
+
+          </ul>
+        </article>
+
+        <article class="sp-card" style="--c: var(--s-tutorial)">
+          <p class="sp-label">Throughout the event</p>
+          <h3>Table-top display</h3>
+          <ul class="sp-list">
+            <li>A table of approximately 2 × 1 m, with two chairs</li>
+            <li>Next to the coffee and lunch room</li>
+            <li>Bring a banner and items for your table, including merchandise to give away</li>
+          </ul>
+        </article>
+
+        <article class="sp-card" style="--c: var(--s-talk)">
+          <p class="sp-label">Day to be confirmed</p>
+          <h3>Treasure hunt</h3>
+          <ul class="sp-list">
+            <li>A treasure hunt for attendees, and for sponsors too if you wish</li>
+            <li>Attendees ask you a question or get information from your stand or presentation to complete their answers</li>
+            <li>A friendly way to start conversations</li>
+          </ul>
+        </article>
+
+        <article class="sp-card" style="--c: var(--s-workshop)">
+          <p class="sp-label">All week</p>
+          <h3>Talks, tutorials and social</h3>
+          <ul class="sp-list">
+            <li>You are welcome to attend any of the talks or tutorials while you are here</li>
+            <li>Stay for as much or as little of the week as you wish</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLAN YOUR VISIT ===== -->
+  <section class="hpc-section" id="visit">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>Plan your visit</h2>
+        <p>You are welcome to attend as much or as little of the event as you wish. The key sponsor day is <strong> yet to be confirmed</strong></p>
+       
+      </div>
+      <div data-reveal style="--i:1">
+        <h2>Provisional schedule</h2>
+        <ol class="hpc-dates">
+          <li><span>Yet to be confirmed</span>Call for sponsors closes</li>
+          <li><span>Yet to be confirmed</span>Sponsor session and treasure hunt</li>
+          <li class="hpc-final"><span>Yet to be confirmed</span>Stand moves if you are staying longer</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CALL TO ACTION ===== -->
+  <section class="hpc-band" id="contact">
+    <div class="hpc-in hpc-split">
+      <div data-reveal>
+        <h2>Become a sponsor</h2>
+        <p>Sponsorship details for 2027 are being finalised. Get in touch to express your interest, ask a question, or request more space or chairs for your stand.</p>
+      </div>
+      <div data-reveal style="--i:1">
+        <h2>Contact</h2>
+        <p>{{ contact_name }}<br><a href="mailto:{{ contact_email }}">{{ contact_email }}</a></p>
+        <p class="hpc-actions">
+          <a class="hpc-btn hpc-btn-white" href="mailto:{{ contact_email }}?subject=Durham%20HPC%20Days%202027%20sponsorship">Email us</a>
+          <a class="hpc-btn hpc-btn-ghost" href="{{ '/' | relative_url }}">Back to Home</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2026 SPONSORS ===== -->
+  <section class="hpc-section hpc-alt" id="previous-sponsors">
+    <div class="hpc-in">
+      <h2 data-reveal>Our 2026 sponsors</h2>
+      <p class="hpc-sub" data-reveal style="--i:1">Thank you to everyone who supported Durham HPC Days 2026.</p>
+
+      <div class="sp-logos" data-reveal style="--i:1">
+        <a class="sp-logo" href="https://www.ddn.com" target="_blank" rel="noopener noreferrer" aria-label="DDN"><img src="https://www.ddn.com/wp-content/uploads/2024/09/ddn-logo-dark-horizontal-rgb.jpg" alt="DDN" loading="lazy"></a>
+        <a class="sp-logo" href="https://eu.fsastech.com/eu/" target="_blank" rel="noopener noreferrer" aria-label="Fsas Technologies"><img src="https://media.licdn.com/dms/image/v2/D4D0BAQFz2Hw6LVRJlg/company-logo_200_200/B4DZWPBwyvHYAI-/0/1741861359139?e=2147483647&v=beta&t=sLukj4LFeyoCCButXJ0ICGVDUN3dEz_FDbeicBq3pNM" alt="Fsas Technologies" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.novatech.co.uk/" target="_blank" rel="noopener noreferrer" aria-label="Novatech"><img src="https://media.licdn.com/dms/image/v2/D4E0BAQERb5GeBVwP7g/company-logo_200_200/company-logo_200_200/0/1688369383296/novatech_logo?e=2147483647&v=beta&t=DlfqUR3v9c8B9qftCRLVBJ4nlTTSYiolK0OFNqu5Fw8" alt="Novatech" loading="lazy"></a>
+        <a class="sp-logo" href="https://ocf.co.uk/" target="_blank" rel="noopener noreferrer" aria-label="OCF"><img src="https://ocf.co.uk/images/logoblue.png" alt="OCF" loading="lazy"></a>
+        <a class="sp-logo" href="https://vespertec.com/" target="_blank" rel="noopener noreferrer" aria-label="Vespertec"><img src="https://media.licdn.com/dms/image/v2/C4E0BAQEhA0V0YoOXGA/company-logo_200_200/company-logo_200_200/0/1676029024070/vesper_technologies_logo?e=2147483647&v=beta&t=TTfPTvl6bMW_7GtD21Z5wY8qMyoIW6nttrufzvEagKI" alt="Vespertec" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.dell.com/en-uk" target="_blank" rel="noopener noreferrer" aria-label="Dell Technologies"><img src="https://aeseurope.com/wp-content/uploads/2021/05/dell-technologies-vertical_logo.png" alt="Dell Technologies" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.stackhpc.com/" target="_blank" rel="noopener noreferrer" aria-label="StackHPC"><img src="https://avatars.githubusercontent.com/u/22750772?s=200&v=4" alt="StackHPC" loading="lazy"></a>
+        <a class="sp-logo" href="https://spectralogic.com/" target="_blank" rel="noopener noreferrer" aria-label="Spectra Logic"><img src="https://spectralogic.com/wp-content/uploads/SpectraLogo-2023.webp" alt="Spectra Logic" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.peakaio.com/" target="_blank" rel="noopener noreferrer" aria-label="PEAK:AIO"><img src="https://www.peakaio.com/images/logos/peakaio-logo-org.png" alt="PEAK:AIO" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.amd.com/en.html" target="_blank" rel="noopener noreferrer" aria-label="AMD"><img src="https://media.licdn.com/dms/image/v2/D560BAQFCdxxVA_xhqQ/company-logo_200_200/B56ZnuIjafHUAM-/0/1760636844195/amd_logo?e=2147483647&v=beta&t=oM29UWcjmkCmT-aq0bZ_DEd-eqpPMQ-WR_FxQr-qHuM" alt="AMD" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.vastdata.com/" target="_blank" rel="noopener noreferrer" aria-label="VAST Data"><img src="https://media.datacenterdynamics.com/media/images/vast-stacked-logo-hex-blue.original.png" alt="VAST Data" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.cerio.ai/about/" target="_blank" rel="noopener noreferrer" aria-label="Cerio"><img src="https://media.licdn.com/dms/image/v2/D4E0BAQHXQBXfdTL5CQ/company-logo_200_200/company-logo_200_200/0/1696902111021/rockport_networks_inc__logo?e=2147483647&v=beta&t=FtlSAqR4iyzjknbR2_hDBhx7wRiP4_KOeXl6N2hMEeU" alt="Cerio" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.beegfs.io/c/" target="_blank" rel="noopener noreferrer" aria-label="BeeGFS"><img src="https://www.advancedclustering.com/wp-content/uploads/2022/04/BeeGFS_big.png" alt="BeeGFS" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.bios-it.co.uk/home.aspx" target="_blank" rel="noopener noreferrer" aria-label="BIOS-IT"><img src="{{ '/assets/images/biositlogo.png' | relative_url }}" alt="BIOS-IT" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.computacenter.com/en-gb" target="_blank" rel="noopener noreferrer" aria-label="Computacenter"><img src="{{ '/assets/images/computacenterlogo.png' | relative_url }}" alt="Computacenter" loading="lazy"></a>
+        <a class="sp-logo" href="https://alces-flight.com/" target="_blank" rel="noopener noreferrer" aria-label="Alces Flight"><img src="https://alces-flight.com/wp-content/uploads/2023/11/Alces-Flight-KG-Logo.png" alt="Alces Flight" loading="lazy"></a>
+        <a class="sp-logo" href="https://midasimmersion.com/" target="_blank" rel="noopener noreferrer" aria-label="Midas Immersion Cooling"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ600jBke7tEbherj_Qolde-FiHvrc6nuq-RA&s" alt="Midas Immersion Cooling" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.quantum.com" target="_blank" rel="noopener noreferrer" aria-label="Quantum"><img src="https://www.quantum.com/globalassets/redesign2021/quantum-logo-gradient.svg" alt="Quantum" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.cornelis.com" target="_blank" rel="noopener noreferrer" aria-label="Cornelis"><img src="{{ '/assets/images/cornelislogo.png' | relative_url }}" alt="Cornelis" loading="lazy"></a>
+        <a class="sp-logo" href="https://www.durham.ac.uk/" target="_blank" rel="noopener noreferrer" aria-label="Durham University"><img src="https://durham.readthedocs.io/en/latest/_static/logo.png" alt="Durham University" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <button type="button" class="hpc-top" aria-label="Back to top">↑</button>
+</div>
 
 <style>
-.parallax-hero {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  height: 50vh;
-  background-image: url('/assets/images/cathedral-cartoon.png');
-  background-attachment: fixed;
-  background-position: 50% 40%;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* ==========================================================================
+   PAGE-SPECIFIC STYLES (Sponsors)
+   ========================================================================== */
+
+/* Hide the theme's automatic page title (the hero already has an h1) */
+#page-title, .page__title { display: none; }
+
+/* ----- "At a glance" stats ----- */
+.sp-stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.sp-stat { padding: 20px 18px; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--purple-light); }
+.sp-stat strong { display: block; color: var(--purple-light); font-size: clamp(28px, 3.4vw, 20px); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.sp-stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; line-height: 1.4; }
+
+/* ----- Benefit cards: rectangles that grow slightly on hover (no colour change) ----- */
+.sp-cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+.sp-card {
+  --c: var(--purple-light);
+  position: relative; padding: 28px 28px 24px;
+  background: var(--card);
+  border: 1px solid var(--c) !important;
+  border-radius: 0;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
+.sp-card:hover { z-index: 2; transform: scale(1.02); border-color: var(--c); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
+.hpc .sp-card h3 { margin-bottom: 14px; color: var(--c); font-size: 26px; }
+.hpc .sp-label { margin-bottom: 4px; color: var(--muted); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.hpc .sp-list li { position: relative; margin-bottom: 8px; padding-left: 20px; color: var(--text); font-size: 16px; line-height: 1.55; }
+.hpc .sp-list li:last-child { margin-bottom: 0; }
+.hpc .sp-list li:before { content: ""; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; background: var(--c); }
 
-.parallax-overlay {
-  background: linear-gradient(rgba(104,36,109,0.85), rgba(70,20,75,0.85));
-  color: white;
-  padding: 2rem 20rem;
-  text-align: center;
-  border-radius: 14px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.40);
+.hpc .sp-note { margin-top: 18px; color: var(--muted); font-size: 15px; }
+
+/* ----- 2026 sponsor logo wall ----- */
+.sp-logos { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; border-radius: 10px; }
+.hpc a.sp-logo {
+  display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 3 / 2; padding: 16px;
+  background: #fff; border: 1px solid #fff; border-radius: 0;
+  transition: transform .25s ease, box-shadow .25s ease;
+  border-radius: 10px;
 }
+.hpc a.sp-logo:hover,
+.hpc a.sp-logo:focus-visible { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,.45); }
+.sp-logo img { display: block; max-width: 80%; max-height: 80%; object-fit: contain; }
 
-.parallax-overlay h1 {
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
+@media (max-width: 900px) {
+  .sp-cards { grid-template-columns: 1fr; }
 }
-
-.parallax-overlay p {
-  font-size: 1.3rem;
-  opacity: 0.95;
+@media (max-width: 680px) {
+  .sp-stats { grid-template-columns: 1fr; }
+  .sp-logos { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
 }
-
-.sponsors-strip {
-  padding: 1rem 1.5rem 2rem;
-  text-align: center;
-}
-
-.sponsors-container {
-  max-width: 1100px;
-}
-
-.sponsors-strip h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #68246D;
-  font-weight: 600;
-}
-
-/* Grid */
-.sponsors-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  align-items: center;
-}
-
-/* Logo card */
-.sponsor-logo {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-
-  aspect-ratio: 1 / 1;         
-  width: 100%;
-
-  display: flex;               
-  align-items: center;
-  justify-content: center;
-
-  padding: 1rem;
-
-  transition: all 0.25s ease;
-}
-
-.sponsor-logo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-}
-
-/* Logo image */
-.sponsor-logo img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-
-  opacity: 0.85;
-  transition: all 0.25s ease;
-}
-
-
-
 </style>
 
+<script>
+(function () {
+  var root = document.getElementById('hpc');
+  if (!root) return;
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (s, c) { return (c || root).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || root).querySelectorAll(s)); };
 
-<section class="sponsors-strip">
-  <div class="sponsors-container">
-    <h2>Our Sponsors</h2>
+  /* Reveal on scroll */
+  var items = $$('[data-reveal]');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
 
-    <div class="sponsors-grid">
-
-      <!-- Sponsor -->
-      <a href="https://www.ddn.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://www.ddn.com/wp-content/uploads/2024/09/ddn-logo-dark-horizontal-rgb.jpg" alt="ddn">
-      </div>
-      </a>
-      
-      
-      
-<a href="https://eu.fsastech.com/eu/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4D0BAQFz2Hw6LVRJlg/company-logo_200_200/B4DZWPBwyvHYAI-/0/1741861359139?e=2147483647&v=beta&t=sLukj4LFeyoCCButXJ0ICGVDUN3dEz_FDbeicBq3pNM" alt="Fsas Technologies">
-      </div>
-      </a>
-      
-      
- <a href="https://www.novatech.co.uk/" target="_blank" rel="noopener noreferrer">     
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQERb5GeBVwP7g/company-logo_200_200/company-logo_200_200/0/1688369383296/novatech_logo?e=2147483647&v=beta&t=DlfqUR3v9c8B9qftCRLVBJ4nlTTSYiolK0OFNqu5Fw8" alt="novatech">
-      </div>
-      </a>
-
-      
-      
-<a href="https://ocf.co.uk/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://ocf.co.uk/images/logoblue.png" alt="OCF">
-      </div>
-       </a>
-      
-
-   
-          <a href="https://vespertec.com/" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/C4E0BAQEhA0V0YoOXGA/company-logo_200_200/company-logo_200_200/0/1676029024070/vesper_technologies_logo?e=2147483647&v=beta&t=TTfPTvl6bMW_7GtD21Z5wY8qMyoIW6nttrufzvEagKI" alt="vespertec">
-      </div>
-       </a>
-       
-       
-              <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwiSpef17uKTAxX7UEEAHVxrAFAQFnoECCQQAQ&url=https%3A%2F%2Fwww.dell.com%2Fen-uk&usg=AOvVaw3-JlCQe6jSInbb9A7hdiSS&opi=89978449" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://aeseurope.com/wp-content/uploads/2021/05/dell-technologies-vertical_logo.png">
-      </div>
-       </a>
-
-
-              <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjHt7zO7-KTAxWfUUEAHSOuHtAQFnoECAwQAQ&url=https%3A%2F%2Fwww.stackhpc.com%2F&usg=AOvVaw3_HCI0LAC1JzR1DqJ8p2Yb&opi=89978449" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://avatars.githubusercontent.com/u/22750772?s=200&v=4">
-      </div>
-       </a>
-       
-                     <a href="https://spectralogic.com/">
-      <div class="sponsor-logo">
-        <img src="https://spectralogic.com/wp-content/uploads/SpectraLogo-2023.webp">
-      </div>
-       </a>
-
-	   <a href="https://www.peakaio.com/">
-      <div class="sponsor-logo">
-        <img src="https://www.peakaio.com/images/logos/peakaio-logo-org.png">
-      </div>
-       </a>
-       
-               <a href="https://www.amd.com/en.html">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D560BAQFCdxxVA_xhqQ/company-logo_200_200/B56ZnuIjafHUAM-/0/1760636844195/amd_logo?e=2147483647&v=beta&t=oM29UWcjmkCmT-aq0bZ_DEd-eqpPMQ-WR_FxQr-qHuM">
-      </div>
-       </a>
-       
-       
-               <a href="https://www.vastdata.com/">
-      <div class="sponsor-logo">
-        <img src="https://media.datacenterdynamics.com/media/images/vast-stacked-logo-hex-blue.original.png"/>
-      </div>
-       </a>
-       
-          <a href="https://www.cerio.ai/about/">
-      <div class="sponsor-logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4E0BAQHXQBXfdTL5CQ/company-logo_200_200/company-logo_200_200/0/1696902111021/rockport_networks_inc__logo?e=2147483647&v=beta&t=FtlSAqR4iyzjknbR2_hDBhx7wRiP4_KOeXl6N2hMEeU">
-      </div>
-       </a>
-       
-       
-                 <a href="https://www.beegfs.io/c/">
-      <div class="sponsor-logo">
-        <img src="https://www.advancedclustering.com/wp-content/uploads/2022/04/BeeGFS_big.png">
-      </div>
-       </a>
-
-                 <a href="https://www.bios-it.co.uk/home.aspx">
-      <div class="sponsor-logo">
-        <img src="../assets/images/biositlogo.png">
-      </div>
-       </a>
-       
-                        <a href="https://www.computacenter.com/en-gb">
-      <div class="sponsor-logo">
-        <img src="../assets/images/computacenterlogo.png"/>
-      </div>
-       </a>
-       
-     
-     <a href="https://alces-flight.com/">
-      <div class="sponsor-logo">
-        <img src="https://alces-flight.com/wp-content/uploads/2023/11/Alces-Flight-KG-Logo.png">
-      </div>
-       </a>
-
-     <a href="https://midasimmersion.com/">
-      <div class="sponsor-logo">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ600jBke7tEbherj_Qolde-FiHvrc6nuq-RA&s">
-      </div>
-       </a>
-
-      <a href="https://www.quantum.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="https://www.quantum.com/globalassets/redesign2021/quantum-logo-gradient.svg" alt="Quantum">
-      </div>
-      </a>
-
-      <a href="https://www.cornelis.com" target="_blank" rel="noopener noreferrer">
-      <div class="sponsor-logo">
-        <img src="../assets/images/cornelislogo.png" alt="Cornelis">
-      </div>
-      </a>
-
-     <a href="https://www.durham.ac.uk/">
-      <div class="sponsor-logo">
-        <img src="https://durham.readthedocs.io/en/latest/_static/logo.png">
-      </div>
-       </a>
-
-
-      <!-- Add more as needed -->
-
-    </div>
-  </div>
-</section>
-
-<br><br>
-<section style="background: linear-gradient(180deg, #0b132b 0%, #1c2541 100%); color: #fff; padding: 4rem 2rem; border-radius: 12px;">
-  <div style="max-width: 950px; margin: 0 auto; text-align: center;">
-    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">Sponsor & Supporter Information</h1>
-    
-    <p style="font-size: 1.15rem; line-height: 1.7; opacity: 0.9; margin-bottom: 2.5rem;">
-     If you are sponsoring and supporting HPC Days 2026, thank you very much! We would not be able to run the event without you!
-This page will hopefully include the information that you need to make a success of the event, but if there is information missing please contact us.
-    </p>
-    
-      <p style="font-size: 1.15rem; line-height: 1.7; opacity: 0.9; margin-bottom: 2.5rem;">
-If you have any questions, please contact Alastair Basden at a.g.basden@durham.ac.uk.
-    </p>
-    
-
-    <div style="text-align: left; background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 12px;">
-      
-      <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Attendance & Registration</h2>
-      <p style="margin-bottom: 1rem;">
-        If you are sponsoring and supporting HPC Days 2026, THANK YOU VERY MUCH! We would not be able to run the event without you!
-      </p>
-      <p style="margin-bottom: 1rem;">
-        You are welcome to attend as much or as little of the event as you wish.
-      </p>
-      <p style="margin-bottom: 1rem;">
-        The key day is <strong>Wednesday afternoon/evening</strong> when the sponsor session will be. We expect that most sponsors will arrive on Wednesday and depart on Thursday. However some will likely stay for longer, or even the full week, which is very welcome.
-
-      </p>
-      <p>
-        Durham offers plenty of <a href="https://durham.readthedocs.io/en/latest/hpcdays2025/hotels.html" style="color:#8e3d94;">hotel options</a> nearby.
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Sponsor Session</h2>
-      <p style="margin-bottom: 1rem;">
-        The Sponsor Session is on Wednesday starting from 15:00, continuing until 18:00. There will be a 2-3 minute slot to the whole general audience where you should introduce yourself, followed by a 15 minute panel session taking questions from the audience.  There will then be a more focused 8 minute slot to a smaller audience of those who wish to come.  <br/>
-
-You can either present using your own laptop or send us slides in advance.The talk should be aimed at a research audience (non-technical, with some technical ability), and should not be a marketing talk.
-
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Table Top Display</h2>
-      <p style="margin-bottom: 1rem;">
-		You will have a table top (approx 2x1m) where you can set up a stand. Feel free to bring a banner, and stuff to go on your table, including merch to give away.  There will be two chairs. This will be in the coffee/lunch room, so should see good footfall.  Should you wish to have more space or chairs, please let us know in advance.
-		
-If you wish to remain beyond Thursday lunchtime, it will be necessary to move the stand to an adjacent building.  We can assist with that if necessary.
-
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Treasure Hunt</h2>
-      <p style="margin-bottom: 1rem;">
-        There will be a treasure hunt for attendees (including sponsors, if desired) to do, which will encourage interaction with the sponsors. They will need to ask you a question or get information from your stand or presentation to complete the answers, and so help to encourage interaction. This will take place on Wednesday.
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Attendees</h2>
-      <p style="margin-bottom: 1rem;">
-        We are expecting over 150 attendees througout the week, though not all will stay for the entire week.
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Talks and sessions</h2>
-      <p style="margin-bottom: 1rem;">
-We encourage engagement throughout the week, and you are very welcome to
-attend any of the talks or tutorials while you are here.  You are also
-encouraged to attend the Ceilidh on the Tuesday evening.
-      </p>
-
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Deliveries</h2>
-      <p style="margin-bottom: 1rem;">
-        If you wish to ship goods to Durham, please send to:
-      </p>
-      <address style="line-height: 1.6; opacity: 0.9;">
-Institute for Data Science (IDAS)<br />
-Maimie Yelland <br />
-Mountjoy Centre<br />
-DH1 3UP Durham
-      </address>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Parking</h2>
-      <p>
-        If you would like a visitor parking permit, please provide name, car reg details, and the times you’d like the permit for, to Alastair, at least a few days in advance. There may not be enough spaces, so some walking may be required. However, vehicle access up to the venue is possible, for dropping off kit.
-      </p>
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Internet access</h2>
-      <p>
-      Wifi access is available through "TheCloud@Durham".  This will require registration via a captive portal (name, email, etc) once connected.
-      </p>
-
-
-
-      <h2 style="font-size: 1.8rem; margin-top: 2rem; margin-bottom: 1rem;">Arrival</h2>
-      <p>
-        Upon arrival in Durham, please go to the Mountjoy Centre building entrance where the registration desk will be.  From there, head up the half-flight of stairs to the main meeting venue in the Maple Wing of the building.
-        
-      <p>
-        A map can be found <a href="https://hpc-days.github.io/Durham-HPC-Days-2026/rooms/" style="color:#8e3d94;">here</a>.
-      </p>
-      
-
-If you have requested a parking permit, this should be available for collection at the Stockton Road site entrance (DH1 3LE, not South Road), in the Security Lodge.  The security team will direct you to your dedicated parking space.  You will also be able to park closer to the venue to unload.
-      </p>
-      
-      
-    </div>
-  </div>
-</section>
-
+  /* Progress bar + back to top */
+  var bar = $('.hpc-progress'), topBtn = $('.hpc-top'), ticking = false;
+  function update() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar && max > 0) bar.style.transform = 'scaleX(' + Math.min(1, window.scrollY / max) + ')';
+    topBtn.classList.toggle('show', window.scrollY > 700);
+    ticking = false;
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+  topBtn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+})();
+</script>
