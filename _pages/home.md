@@ -342,13 +342,13 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc-hero {
   position: relative; display: flex; align-items: flex-end;
   min-height: 78vh; padding: 90px 0 70px; overflow: hidden;
-  background: url("https://github.com/hpc-days/Durham-HPC-Days-2026/blob/main/assets/images/eva-blue-banner-no-title.png?raw=true") center 60% / cover no-repeat;
+  background: url("https://github.com/mzhc13/Durham-HPC-Days-2027/blob/main/assets/images/2027.jpeg?raw=true") center 40% / cover no-repeat;
 }
 /* Purple gradient overlay on top of the banner image */
 .hpc-hero:before {
   content: ""; position: absolute; inset: 0; z-index: 0;
   background:
-    linear-gradient(160deg, rgba(28,8,32,.94) 0%, rgba(70,24,76,.84) 55%, rgba(104,36,109,.78) 100%),
+    linear-gradient(160deg, rgba(16,4,20,.97) 0%, rgba(40,13,46,.95) 55%, rgba(43, 15, 47, 0.92) 100%),
     linear-gradient(to top, var(--bg), transparent 30%);
 }
 /* Animated compute-cluster canvas */
@@ -738,42 +738,124 @@ if (cd && iso) {
     v.innerHTML = ''; v.style.backgroundImage = 'none'; v.appendChild(f);
   });
 
-  /* Hero: interactive compute-cluster network */
+  
   var cv = $('.hpc-net'), hero = $('.hpc-hero');
   if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d'), W, H, nodes = [], mouse = { x: -999, y: -999 }, running = true;
-    var cols = ['201,138,207', '158,98,170', '255,255,255'];
+    var ctx = cv.getContext('2d'), W, H, cell, cols, rows, act, tint, ok, jobs = [];
+    var mouse = { x: -999, y: -999 }, running = true, frame = 0;
+    // 
+    var pal = ['215,155,221', '91,180,229', '79,195,176', '240,179,94', '181,217,107', '232,143,180'];
+
     function size() {
       var r = hero.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.round(Math.min(90, W * H / 14000));
-      nodes = [];
-      for (var i = 0; i < n; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35, c: cols[i % 3] });
-    }
-    function draw() {
-      if (!running) return;
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < nodes.length; i++) {
-        var a = nodes[i];
-        if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
-        var dm = Math.hypot(a.x - mouse.x, a.y - mouse.y);
-        if (dm < 140 && !reduce) { a.x += (a.x - mouse.x) * .008; a.y += (a.y - mouse.y) * .008; }
-        for (var j = i + 1; j < nodes.length; j++) {
-          var b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d < 130) { ctx.strokeStyle = 'rgba(' + a.c + ',' + (.28 * (1 - d / 130)) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
-        }
-        if (dm < 170) { ctx.strokeStyle = 'rgba(255,255,255,' + (.5 * (1 - dm / 170)) + ')'; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
-        ctx.fillStyle = 'rgba(' + a.c + ',.85)'; ctx.beginPath(); ctx.arc(a.x, a.y, 2, 0, 6.283); ctx.fill();
+      W = r.width; H = r.height;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cell = W < 680 ? 22 : 30;
+      cols = Math.ceil(W / cell); rows = Math.ceil(H / cell);
+      act = new Float32Array(cols * rows);
+      tint = new Uint8Array(cols * rows);
+      ok = new Uint8Array(cols * rows);
+      jobs = [];
+
+      // 
+      var topLimit = H * (W < 680 ? .14 : .22);
+      var side = Math.max(0, (W - 1100) / 2);
+      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
+        var inTop = (y + 1) * cell <= topLimit;
+        var inSide = (x + 1) * cell <= side || x * cell >= W - side;
+        ok[y * cols + x] = (inTop || inSide) ? 1 : 0;
       }
-      if (!reduce) requestAnimationFrame(draw);
+      if (reduce) { for (var k = 0; k < 14; k++) spawn(true); draw(); }
     }
+
+    function fits(x, y, w, h) {
+      for (var j = 0; j < w * h; j++) if (!ok[(y + Math.floor(j / w)) * cols + x + j % w]) return false;
+      return true;
+    }
+
+    // 
+    function spawn(still) {
+      for (var t = 0; t < 12; t++) {
+        var w = 2 + Math.floor(Math.random() * 4), h = 1 + Math.floor(Math.random() * 3);
+        if (cols <= w || rows <= h) return;
+        var x = Math.floor(Math.random() * (cols - w)), y = Math.floor(Math.random() * (rows - h));
+        if (!fits(x, y, w, h)) continue;
+        var life = 260 + Math.random() * 320;
+        jobs.push({ x: x, y: y, w: w, h: h, c: Math.floor(Math.random() * pal.length), age: still ? life / 2 : 0, life: life });
+        return;
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var i, j, idx;
+
+      // 
+      for (i = jobs.length - 1; i >= 0; i--) {
+        var jb = jobs[i];
+        if (!reduce) jb.age++;
+        if (jb.age >= jb.life) { jobs.splice(i, 1); continue; }
+        var env = Math.min(1, jb.age / 20) * Math.min(1, (jb.life - jb.age) / 50);
+        for (j = 0; j < jb.w * jb.h; j++) {
+          var cx = jb.x + j % jb.w, cy = jb.y + Math.floor(j / jb.w);
+          idx = cy * cols + cx;
+          var v = (.5 + .4 * ((cx * 7 + cy * 13) % 5) / 4) * env;
+          if (v > act[idx]) { act[idx] = v; tint[idx] = jb.c; }
+        }
+      }
+
+      // 
+      if (mouse.x > 0 && !reduce) {
+        var R = 110, c0 = Math.max(0, Math.floor((mouse.x - R) / cell)), c1 = Math.min(cols - 1, Math.floor((mouse.x + R) / cell));
+        var r0 = Math.max(0, Math.floor((mouse.y - R) / cell)), r1 = Math.min(rows - 1, Math.floor((mouse.y + R) / cell));
+        for (var ry = r0; ry <= r1; ry++) for (var cx2 = c0; cx2 <= c1; cx2++) {
+          idx = ry * cols + cx2;
+          var d = Math.hypot((cx2 + .5) * cell - mouse.x, (ry + .5) * cell - mouse.y);
+          //
+          var k = ok[idx] ? .6 : .3;
+          if (d < R) { var hv = k * (1 - d / R); if (hv > act[idx]) { act[idx] = hv; tint[idx] = 0; } }
+        }
+      }
+
+      //
+      var s = cell - 5;
+      for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
+        idx = y * cols + x;
+        ctx.fillStyle = 'rgba(255,255,255,.05)';
+        ctx.fillRect(x * cell + 2.5, y * cell + 2.5, s, s);
+        if (act[idx] > .02) {
+          ctx.fillStyle = 'rgba(' + pal[tint[idx]] + ',' + (act[idx] * .7) + ')';
+          ctx.fillRect(x * cell + 2.5, y * cell + 2.5, s, s);
+          if (!reduce) act[idx] *= .965;
+        }
+      }
+    }
+
+    function loop() {
+      if (!running) return;
+      frame++;
+      if (frame % 30 === 0 && jobs.length < 12) spawn();
+      draw();
+      requestAnimationFrame(loop);
+    }
+
     hero.addEventListener('mousemove', function (e) { var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
     hero.addEventListener('mouseleave', function () { mouse.x = mouse.y = -999; });
     window.addEventListener('resize', size);
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { var vis = es[0].isIntersecting; if (vis && !running) { running = true; draw(); } running = vis; }).observe(hero);
+    size();
+    if (!reduce) {
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (es) {
+          var vis = es[0].isIntersecting;
+          if (vis && !running) { running = true; loop(); } else if (!vis) running = false;
+        }).observe(hero);
+      }
+      loop();
     }
-    size(); draw();
   }
+
+
+
+
 })();
 </script>
