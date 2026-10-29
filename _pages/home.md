@@ -31,7 +31,7 @@ hidden: true
   <header class="hpc-hero" id="top">
     <canvas class="hpc-net" aria-hidden="true"></canvas>
     <div class="hpc-in hpc-hero-in">
-     <p class="hpc-host" data-reveal>Durham University </p>
+    <!--   <p class="hpc-host" data-reveal>Durham University </p> -->
      <h1 data-reveal style="--i:1">Durham HPC Days 2027</h1>
       <p class="hpc-date" data-reveal style="--i:1">
   <span class="hpc-date-days">12 to 16</span>

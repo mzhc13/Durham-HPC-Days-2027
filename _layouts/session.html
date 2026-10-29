@@ -1,600 +1,252 @@
 ---
 layout: default
 ---
+{% comment %}
+  _layouts/session.html
+  One layout for every session type. Reads the fields from session-template.md.
+  Change programme_url below (or set programme_url in a session's front matter)
+  when the "back to programme" link should point somewhere else, e.g. the 2027 page.
+{% endcomment %}
 
-<!-- Hero Banner Superior -->
-<section class="session-hero fade-in">
-  <div class="ws-hero__grid"></div>
-  <div class="session-hero-content">
-    <h1>{{ page.title }}</h1>
+{% assign programme_url = page.programme_url | default: "/programme-week-2027/" %}
 
-    {% if page.speaker %}
-      {% assign sp_count = page.speaker | split: "," | size %}
-      <p class="instructors">
-        <strong>Speaker{% if sp_count > 1 %}s{% endif %}:</strong>
-        {% assign speakers = page.speaker | split: "," %}
-        {% for sp in speakers %}
-          {{ sp | strip }}{% if forloop.last == false %}, {% endif %}
+{% assign cat = page.category | downcase | strip %}
+{% if cat == "" or cat == "poster" %}{% assign cat = "other" %}{% endif %}
+{% if cat == "other" %}{% assign cat_label = "Other" %}{% else %}{% assign cat_label = cat | capitalize %}{% endif %}
+
+{% assign extra_n = page.additional_slots | size %}
+
+<link rel="stylesheet" href="{{ '/assets/css/hpc-days.css' | relative_url }}">
+
+<div class="hpc hpc-session cat-{{ cat }}">
+
+  <!-- HEADER -->
+  <header class="hpc-pagehead ses-head">
+    <div class="hpc-in">
+
+      <nav class="hpc-crumbs" aria-label="Breadcrumb">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{ programme_url | relative_url }}">Programme</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ cat_label }}</span>
+      </nav>
+
+      <span class="ses-tag">{{ cat_label }}</span>
+      <h1>{{ page.title }}</h1>
+
+      <!-- Every time this session runs -->
+      <ul class="ses-slots" aria-label="When and where">
+        <li>
+          <strong>{{ page.day }}</strong>
+          <span>{{ page.start_time }}{% if page.end_time != blank %} – {{ page.end_time }}{% endif %}</span>
+          {% if page.room != blank %}<span class="ses-room">{{ page.room }}</span>{% endif %}
+        </li>
+        {% for slot in page.additional_slots %}
+          <li>
+            <strong>{{ slot.day | default: page.day }}</strong>
+            <span>{{ slot.start_time }}{% if slot.end_time != blank %} – {{ slot.end_time }}{% endif %}</span>
+            {% assign slot_room = slot.room | default: page.room %}
+            {% if slot_room != blank %}<span class="ses-room">{{ slot_room }}</span>{% endif %}
+          </li>
         {% endfor %}
-      </p>
-    {% endif %}
-  </div>
-</section>
+      </ul>
 
-<div class="session-page fade-in">
-
-  <!-- Sidebar lateral -->
-  <aside class="session-sidebar fade-in">
-  
-  
-
-            {% if page.start_time %}
-      <div class="sidebar-section">
-        <h3>DAY & TIME</h3>
-        <p>{{ page.day }}, {{ page.start_time}} - {{ page.end_time }}</p>
+      <div class="hpc-actions">
+        {% if page.hybrid != blank %}
+          <a class="hpc-btn hpc-btn-white" href="{{ page.hybrid }}" target="_blank" rel="noopener">Join online</a>
+        {% endif %}
+        <a class="hpc-btn hpc-btn-ghost" href="{{ programme_url | relative_url }}">Back to programme</a>
       </div>
-    {% endif %}
+    </div>
+  </header>
 
-    
+  <!-- BODY -->
+  <section class="hpc-section">
+    <div class="hpc-in ses-grid">
 
+      <div class="ses-main">
 
-    {% if page.room and page.room != "TBC" %}
-      <div class="sidebar-section">
-        <h3>Room</h3>
-        <p>{{ page.room }}</p>
-      </div>
-    {% endif %}
-    
-
-        
-        
- 
-        
-   {% if page.facilitator != blank %}
-  {% assign speakers = page.facilitator | split: "," %}
-  {% assign sp_count = speakers | size %}
-
-  <div class="sidebar-section speakers">
-    <h3>Facilitator{% if sp_count > 1 %}s{% endif %}</h3>
-
-    {% for sp in speakers %}
-      {% assign clean_name = sp | strip %}
-      {% assign photo = page.facilitator_photos[forloop.index0] %}
-      {% assign link = page.facilitator_links[forloop.index0] %}
-
-      <div class="speaker-card">
-
-        {% if photo != blank %}
-          <img
-            class="speaker-photo"
-            src="{{ photo | relative_url }}"
-            alt="{{ clean_name }}">
+        {% if page.description != blank %}
+          <h2>About this session</h2>
+          <div class="ses-desc">{{ page.description }}</div>
         {% endif %}
 
-        {% if link != blank %}
-          <p>
-            <a href="{{ link }}" target="_blank">
-              {{ clean_name }}
-            </a>
-          </p>
-        {% else %}
-          <p>{{ clean_name }}</p>
+        {% if page.requirements != blank %}
+          <aside class="ses-req">
+            <strong>Before you come</strong>
+            <p>{{ page.requirements }}</p>
+          </aside>
         {% endif %}
 
+        <!-- PEOPLE: one block per role that has names -->
+        {% assign roles = "Lead|Leads|lead,Instructor|Instructors|instructor,Facilitator|Facilitators|facilitator,Speaker|Speakers|speaker,Contributor|Contributors|contributor" | split: "," %}
+        {% for r in roles %}
+          {% assign rp = r | split: "|" %}
+          {% assign key = rp[2] %}
+          {% assign names_raw = page[key] %}
+
+          {% if names_raw != blank %}
+            {% assign photos_key = key | append: "_photos" %}
+            {% assign links_key = key | append: "_links" %}
+            {% assign names = names_raw | split: "," %}
+            {% assign photos = page[photos_key] %}
+            {% assign links = page[links_key] %}
+
+            <h2>{% if names.size > 1 %}{{ rp[1] }}{% else %}{{ rp[0] }}{% endif %}</h2>
+            <ul class="ses-people{% if page.photo_style == 'logo' %} is-logo{% endif %}">
+              {% for n in names %}
+                {% assign i = forloop.index0 %}
+                {% assign name = n | strip %}
+                {% assign photo = photos[i] %}
+                {% assign link = links[i] %}
+                {% assign src = "" %}
+                {% if photo != blank %}
+                  {% if photo contains "://" %}{% assign src = photo %}{% else %}{% assign src = photo | relative_url %}{% endif %}
+                {% endif %}
+
+                <li class="ses-person">
+                  <span class="ses-photo">
+                    {% if src != blank %}
+                      <img src="{{ src }}" alt="" loading="lazy">
+                    {% else %}
+                      <span class="ses-initial" aria-hidden="true">{{ name | slice: 0 }}</span>
+                    {% endif %}
+                  </span>
+                  <span class="ses-name">
+                    {% if link != blank %}
+                      <a href="{{ link }}" target="_blank" rel="noopener">{{ name }}</a>
+                    {% else %}
+                      {{ name }}
+                    {% endif %}
+                  </span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endfor %}
+
       </div>
-    {% endfor %}
-  </div>
-{% endif %}
 
+      <!-- SIDEBAR: affiliation -->
+      <aside class="ses-side">
+        {% assign affs = "Institution|institution,Organised by|organiser,Supported by|supported" | split: "," %}
+        {% for a in affs %}
+          {% assign ap = a | split: "|" %}
+          {% assign akey = ap[1] %}
+          {% assign logo_key = akey | append: "_logo" %}
+          {% assign link_key = akey | append: "_link" %}
+          {% assign aname = page[akey] %}
+          {% assign alogo = page[logo_key] %}
+          {% assign alink = page[link_key] %}
 
+          {% if aname != blank or alogo != blank %}
+            {% assign logo_src = "" %}
+            {% if alogo != blank %}
+              {% if alogo contains "://" %}{% assign logo_src = alogo %}{% else %}{% assign logo_src = alogo | relative_url %}{% endif %}
+            {% endif %}
 
-{% if page.speaker != blank %}
-  {% assign speaker = page.speaker | split: "," %}
-  {% assign count = speaker | size %}
+            <section class="ses-aff">
+              <h3>{{ ap[0] }}</h3>
+              {% if logo_src != blank %}
+                <span class="ses-logo">
+                  {% if alink != blank %}<a href="{{ alink }}" target="_blank" rel="noopener">{% endif %}
+                    <img src="{{ logo_src }}" alt="{{ aname | default: ap[0] }}" loading="lazy">
+                  {% if alink != blank %}</a>{% endif %}
+                </span>
+              {% endif %}
+              {% if aname != blank %}
+                <p>{% if alink != blank and logo_src == blank %}<a href="{{ alink }}" target="_blank" rel="noopener">{{ aname }}</a>{% else %}{{ aname }}{% endif %}</p>
+              {% endif %}
+            </section>
+          {% endif %}
+        {% endfor %}
+      </aside>
 
-  <div class="sidebar-section speakers">
-    <h3>Speaker{% if count > 1 %}s{% endif %}</h3>
-
-    {% for person in speaker %}
-      {% assign clean_name = person | strip %}
-      {% assign photo = page.speaker_photos[forloop.index0] %}
-      {% assign link = page.speaker_links[forloop.index0] %}
-
-      <div class="speaker-card">
-
-        {% if photo != blank %}
-          <img
-            class="speaker-photo"
-             src="{{ photo | relative_url }}"
-            alt="{{ clean_name }}">
-        {% endif %}
-
-        {% if link != blank %}
-          <p>
-            <a href="{{ link }}" target="_blank">
-              {{ clean_name }}
-            </a>
-          </p>
-        {% else %}
-          <p>{{ clean_name }}</p>
-        {% endif %}
-
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-
-            
-        
-{% if page.institution != blank or page.institution_logo != blank %}
-  <div class="sidebar-section institution">
-    <h3>Institution</h3>
-
-    {% if page.institution_logo != blank %}
-      <div class="sidebar-section-logo">
-        <a href="{{ page.institution_link }}" target="_blank">
-          <img 
-            src="{{ page.institution_logo | relative_url  }}" 
-            alt="{{ page.institution | strip }}">
-        </a>
-      </div>
-    {% elsif page.institution != blank %}
-      {% if page.institution_link != blank %}
-        <p><a href="{{ page.institution_link }}" target="_blank">{{ page.institution }}</a></p>
-      {% else %}
-        <p>{{ page.institution }}</p>
-      {% endif %}
-    {% endif %}
-
-  </div>
-{% endif %}
-    
-    
-    
-    
-{% if page.organiser != blank or page.organiser_logo != blank %}
-  <div class="sidebar-section institution">
-    <h3>Organised by</h3>
-
-    {% if page.organiser_logo != blank %}
-      <div class="sidebar-section-logo">
-        <a href="{{ page.organiser_link }}" target="_blank">
-          <img 
-            src="{{ page.organiser_logo | relative_url  }}" 
-            alt="{{ page.organiser | strip }}">
-        </a>
-      </div>
-    {% elsif page.organiser != blank %}
-      {% if page.organiser_link != blank %}
-        <p><a href="{{ page.organiser_link }}" target="_blank">{{ page.organiser }}</a></p>
-      {% else %}
-        <p>{{ page.organiser }}</p>
-      {% endif %}
-    {% endif %}
-
-  </div>
-{% endif %}
-    
-   {% if page.supported != blank or page.supported_logo != blank %}
-  <div class="sidebar-section institution">
-    <h3>Supported by</h3>
-
-    {% if page.supported_logo != blank %}
-      <div class="sidebar-section-logo">
-        <a href="{{ page.supported_link }}" target="_blank">
-          <img 
-            src="{{ page.supported_logo | relative_url  }}" 
-            alt="{{ page.supported | strip }}">
-        </a>
-      </div>
-    {% elsif page.supported != blank %}
-      {% if page.supported_link != blank %}
-        <p><a href="{{ page.supported_link }}" target="_blank">{{ page.supported }}</a></p>
-      {% else %}
-        <p>{{ page.supported }}</p>
-      {% endif %}
-    {% endif %}
-
-  </div>
-{% endif %}
-    
-    
-    
-
-
-
-
-
-
-
-  </aside>
-
-  <main class="session-content fade-in">
-  
-    {% if page.hybrid %}
-  <a href="{{ page.hybrid }}"
-     class="register-btn"
-     target="_blank"
-     rel="noopener">
-    Register to attend online
-  </a>
-{% endif %}
-  
-
-    {% if page.description and page.description != "TBC" %}
-      <section>
-        <h2>Description</h2>
-        <p>{{ page.description }}</p>
-      </section>
-    {% endif %}
-
-   {% if page.requirements != blank and page.requirements != "TBC" %}
-    <section>
-      <h2>Requirements</h2>
-
-      {% if page.requirements contains "," %}
-        <ul>
-          {% assign reqs = page.requirements | split: "," %}
-          {% for req in reqs %}
-            <li>{{ req | strip }}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>{{ page.requirements }}</p>
-      {% endif %}
-
-    </section>
-  {% endif %}
-
-  </main>
+    </div>
+  </section>
 </div>
 
 <style>
-.session-hero {
-  width: 100vw;
-    margin-left: calc(50% - 50vw);
-    height: 40vh;
-    min-height: 320px;
-    background: 
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), /* contrast layer */
-    linear-gradient(
-      135deg,
-rgba(120, 0, 0, 0.95) 0%,
-rgba(220, 50, 50, 0.75) 60%,
-rgba(120, 0, 0, 0.55) 100%
-);
+.hpc-session { --cc: var(--purple-light); }
+.hpc-session.cat-keynote  { --cc: var(--s-keynote); }
+.hpc-session.cat-tutorial { --cc: var(--s-tutorial); }
+.hpc-session.cat-talk     { --cc: var(--s-talk); }
+.hpc-session.cat-workshop { --cc: var(--s-workshop); }
+.hpc-session.cat-meeting  { --cc: var(--s-meeting); }
+.hpc-session.cat-social   { --cc: var(--s-social); }
+.hpc-session.cat-other    { --cc: #C2A8F5; }
 
-    background-attachment: fixed;
-    background-position: center 60%;
-    background-repeat: no-repeat;
-    background-size: cover;
-  color: #fff;
-  text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.07);
-    display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
+/* Header: the colour strip takes the session's type colour */
+.hpc-session .ses-head:after { background: var(--cc); }
+.hpc-session .ses-tag {
+  display: inline-block; margin-bottom: 14px; padding: 4px 12px;
+  color: var(--ink); background: var(--cc); border-radius: 3px;
+  font-size: 14px; font-weight: 800;
 }
+.hpc-session .ses-head h1 { max-width: 22ch; }
 
- .ws-hero__grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-   linear-gradient(rgba(255, 220, 120, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 220, 120, 0.06) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-  }
-
-.session-hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+/* When and where */
+.hpc-session .ses-slots { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 26px; }
+.hpc-session .ses-slots li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
+  padding: 10px 16px; background: rgba(14,8,18,.55);
+  border: 1px solid rgba(255,255,255,.18); border-left: 4px solid var(--cc); border-radius: 4px;
+  color: #fff; font-size: 16px;
 }
+.hpc-session .ses-slots strong { font-weight: 800; }
+.hpc-session .ses-slots span { font-variant-numeric: tabular-nums; }
+.hpc-session .ses-room { color: var(--purple-soft); font-weight: 700; }
 
-.session-hero p.speakers {
-  font-size: 1.1rem;
-  margin: 0;
-  font-weight: 500;
+/* Body layout */
+.hpc-session .ses-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 40px 64px; align-items: start; }
+.hpc-session .ses-main h2 { margin: 36px 0 16px; border-bottom: 0 !important; }
+.hpc-session .ses-main h2:first-child { margin-top: 0; }
+
+/* Description (HTML written in the .md file) */
+.hpc-session .ses-desc { max-width: 70ch; }
+.hpc-session .ses-desc p, .hpc-session .ses-desc li { color: var(--text); }
+.hpc-session .ses-desc ul { margin: 0 0 14px; padding-left: 1.3em; list-style: disc; }
+.hpc-session .ses-desc ol { margin: 0 0 14px; padding-left: 1.3em; list-style: decimal; }
+.hpc-session .ses-desc li { margin: 0 0 6px; font-size: 17px; line-height: 1.6; }
+.hpc-session .ses-desc a.btn {
+  display: inline-block; margin-top: 8px; padding: 10px 20px; color: #fff !important; background: var(--purple);
+  border: 2px solid var(--purple); border-radius: 6px; font-weight: 700; text-decoration: none;
 }
+.hpc-session .ses-desc a.btn:hover { background: var(--purple-light); border-color: var(--purple-light); color: var(--ink) !important; }
 
-.session-page {
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto 3rem auto;
-  gap: 2rem;
-  padding: 0 1rem;
+/* Requirements */
+.hpc-session .ses-req { max-width: 70ch; margin-top: 28px; padding: 16px 20px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--cc); }
+.hpc-session .ses-req strong { display: block; margin-bottom: 4px; color: #fff; }
+.hpc-session .ses-req p { margin: 0; color: var(--muted); font-size: 16px; }
+
+/* People */
+.hpc-session .ses-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.hpc-session .ses-person { display: flex; align-items: center; gap: 14px; padding: 12px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; }
+.hpc-session .ses-photo { flex: 0 0 auto; display: grid; place-items: center; width: 64px; height: 64px; overflow: hidden; background: var(--alt); border-radius: 50%; }
+.hpc-session .ses-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.hpc-session .ses-initial { color: var(--cc); font-size: 26px; font-weight: 800; }
+.hpc-session .ses-name { min-width: 0; font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.hpc-session .ses-name a { color: #fff; text-decoration-color: var(--cc); text-decoration-thickness: 2px; }
+.hpc-session .ses-name a:hover { color: var(--cc); }
+
+/* Logos instead of portraits (photo_style: "logo") */
+.hpc-session .ses-people.is-logo .ses-photo { width: 84px; height: 56px; padding: 6px; background: #fff; border-radius: 4px; }
+.hpc-session .ses-people.is-logo .ses-photo img { object-fit: contain; object-position: center; }
+.hpc-session .ses-people.is-logo .ses-initial { color: var(--ink); }
+
+/* Affiliation sidebar */
+.hpc-session .ses-aff { margin-bottom: 14px; padding: 18px 20px; background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--cc); border-radius: 4px; }
+.hpc-session .ses-aff h3 { margin: 0 0 12px; color: var(--muted); font-size: 15px; font-weight: 700; }
+.hpc-session .ses-logo { display: inline-block; max-width: 100%; margin-bottom: 10px; padding: 10px 14px; background: #fff; border-radius: 4px; }
+.hpc-session .ses-logo img { display: block; max-width: 100%; max-height: 72px; }
+.hpc-session .ses-aff p { margin: 0; font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .hpc-session .ses-grid { grid-template-columns: 1fr; }
 }
-
-.session-sidebar {
-  flex: 0 0 400px;
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 2rem 1.8rem;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 120px;
-  height: fit-content;
+@media (max-width: 680px) {
+  .hpc-session .ses-slots li { width: 100%; }
+  .hpc-session .ses-people { grid-template-columns: 1fr; }
 }
-
-.session-sidebar .sidebar-section {
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-
-.session-sidebar .sidebar-section:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.session-sidebar h3 {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #68246d;
-  margin: 0 0 0.4rem 0;
-  font-weight: 600;
-  border-bottom: 1px solid #f0f0f0;
-}
-
-.session-sidebar p,
-.session-sidebar a {
-  font-size: 0.8rem;
-  color: #002A41;
-  font-weight: 500;
-  margin: 0;
-  line-height: 1.4;
-  text-decoration: none;
-}
-
-.session-sidebar a:hover {
-  text-decoration: underline;
-}
-
-.sidebar-section-logo {
-  margin: 0.6rem 0 0.6rem 0;
-}
-
-.sidebar-section-logo img {
-  width: 100%;
-  max-width: 180px;
-  border-radius: 1px;
-  object-fit: contain;
-  background: #ffffff;
-  padding: 0.4rem;
-}
-
-.speaker-card {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.8rem;
-}
-
-.speaker-photo {
-width: 120px;
-  height: 120px;
-  border-radius: 8px;     
-  object-fit: contain;  
-  background: #ffffff;  
-}
-
-.speaker-photo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-/* Main content */
-.session-content {
-  flex: 1;
-}
-
-.session-content h2 {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  color: #68246d;
-}
-
-.session-content p, .session-content ul {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-ul {
-  padding-left: 1.2rem;
-}
-
-/* Fade-in animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.register-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.9rem 1.8rem;
-  background: #68246d;
-  color: #ffffff !important;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-  min-width: 300px;
-}
-
-.register-btn:hover {
-  transform: translateY(-2px);
-  background: #053855;
-  text-decoration: none;
-  box-shadow: 0 10px 22px rgba(0,0,0,0.2);
-}
-
-@media (max-width: 600px) {
-  .register-btn {
-    padding: 0.8rem 1.4rem;
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 600px) {
-
-  .session-hero {
-    height: 25vh;      
-    min-height: 180px; 
-    padding: 1.2rem 1rem;
-  }
-  
-  .session-page {
-    flex-direction: column;
-    gap: 1.2rem;
-    padding: 0 1rem;
-  }
-
-  .session-sidebar {
-    order: 1;
-    position: static;
-    flex: none;
-    width: 100%;
-    background: #ffffff;
-    padding: 0.8rem 1rem;
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-
-}
-.session-sidebar .sidebar-section {
-  grid-column: 1;
-}
-
-.session-sidebar .sidebar-section.speakers:first-of-type {
-  grid-column: 2;
-}
-
-.session-sidebar .sidebar-section.speakers:last-of-type {
-  grid-column: 1 / -1;
-}
-
-  .session-sidebar .sidebar-section {
-    margin: 0;
-    padding: 0 0 0.4rem 0;
-  }
-
-  .session-sidebar .sidebar-section:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .session-sidebar h3 {
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #68246d;
-    margin: 0 0 0.15rem 0;
-    font-weight: 600;
-  }
-  
-  .sidebar-section.speakers h3 {
-  grid-column: 1 / -1;
-}
-
-  .session-sidebar p,
-  .session-sidebar a {
-    font-size: 0.9rem;
-    color: #002A41;
-    font-weight: 500;
-    margin: 0;
-    line-height: 1.25;
-    text-decoration: none;
-  }
-
-  .session-sidebar a:hover {
-    text-decoration: underline;
-  }
-
-  .sidebar-section-logo {
-    margin: 0.4rem 0;
-  }
-
-  .sidebar-section-logo img {
-    display: none;
-  }
-
- .sidebar-section.speakers {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
-}
-
-
-.speaker-card {
-  background: #f8fafc;
-  padding: 0.6rem;
-  border-radius: 12px;
-
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.4rem;
-  margin: 0;
-}
-
-.speaker-photo {
-  width: 70px;
-  height: 70px;
-}
-
-  .session-content {
-    order: 2;
-    padding: 0 0.2rem;
-  }
-
-  .session-content h2 {
-    font-size: 2rem;
-  }
-
-  .session-content p,
-  .session-content ul {
-    font-size: 0.95rem;
-  }
-
-  .session-hero {
-    padding: 1.5rem 1rem;
-    border-radius: 0;
-  }
-
-  .session-hero h1 {
-    font-size: 1.9rem;
-  }
-
-.session-hero .instructors {
-  display: none;
-}
-
-}
-
 </style>
-
-<script>
-(function() {
-  function onScroll() {
-    document.querySelectorAll('.fade-in').forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
-    });
-  }
-  document.addEventListener('scroll', onScroll);
-  document.addEventListener('DOMContentLoaded', onScroll);
-})();
-</script>
-

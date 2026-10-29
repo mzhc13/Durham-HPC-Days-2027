@@ -126,6 +126,9 @@ collections:
   programme-week-2026:
     output: true
     permalink: /programme-week-2026/:path/
+  programme-days-2027:
+    output: true
+    permalink: /programme-days-2027/:path/
   programme-draft:
     output: true
     permalink: /programme-draft/:path/
