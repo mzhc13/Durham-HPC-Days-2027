@@ -41,8 +41,10 @@ hidden: true
   <header class="hpc-pagehead" id="top">
     <div class="hpc-in">
       <nav class="hpc-crumbs" aria-label="Breadcrumb" data-reveal>
-        <a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span><span aria-current="page">Call for submissions</span>
-      </nav>
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <span aria-hidden="true">/</span>
+  <span aria-current="page">Call for submissions</span>
+</nav>
       <p class="hpc-host" data-reveal style="--i:1">Durham HPC Days 2027</p>
       <h1 data-reveal style="--i:1">Call for submissions</h1>
       <p class="hpc-lede" data-reveal style="--i:2">Share your work with the HPC community in Durham, 12 to 16 July 2027. We invite proposals for workshops, talks, tutorials and meetings.</p>

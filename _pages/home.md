@@ -419,46 +419,78 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
    9. PROGRAMME TILES (Keynotes, Tutorials, Talks, Workshops, Meetings, Socials)
    The fill colour on hover comes from the per-tile --c variable.
    ========================================================================== */
-.hpc-tiles { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
 
+
+.hpc-tiles {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;}
 /* Base tile */
-.hpc a.hpc-tile {
-  --c: var(--purple-light);
-  position: relative; display: flex; flex-direction: column; justify-content: flex-end;
-  min-height: 220px; padding: 26px 26px 24px; overflow: hidden;
-  background: var(--card); border: 1px solid var(--line);
-  color: var(--text); text-decoration: none;
-  transition: transform .25s, border-color .25s, box-shadow .25s, background-color .75s;
+.hpc a.hpc-tile {  --c: var(--purple-light); position: relative; display: flex; flex-direction: column; justify-content: flex-end;
+
+  min-height: 220px;
+  padding: 26px 26px 24px;
+  overflow: hidden;
+
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--text);
+  text-decoration: none;
+
+  /* Animate movement, shadow, background and border */
+  transition:
+    box-shadow 0.3s ease,
+    background-color 0.4s ease,
+    border-color 0.3s ease;
 }
-/* Coloured strip at the top of the tile */
-/* .hpc a.hpc-tile:before { content: ""; position: absolute; inset: 0 0 auto 0; height: 5px; background: var(--c); }*/
-/* .hpc-tile > * { position: relative; z-index: 1; }*/
 
 /* Tile text */
-.hpc .hpc-tile h3 { font-size: 26px; color: #fff; transition: color .25s; }
-.hpc .hpc-tile p  { margin-bottom: 16px; color: #D7E2EA; font-size: 16px; transition: color .25s; }
-.hpc .hpc-go      { color: #fff; font-weight: 700; font-size: 15px; transition: color .25s; }
-.hpc .hpc-go:after { content: "→"; display: inline-block; margin-left: 8px; transition: transform .25s; }
-.hpc-tile:hover .hpc-go:after { transform: translateX(6px); }
+.hpc .hpc-tile h3 {
+  font-size: 26px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
 
-/* HOVER / KEYBOARD FOCUS: lift the tile and fill it with its colour */
+.hpc .hpc-tile p {
+  margin-bottom: 16px;
+  color: #D7E2EA;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.hpc .hpc-go {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.hpc .hpc-go::after {
+  content: "→";
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.hpc .hpc-tile:hover .hpc-go::after {
+  transform: translateX(6px);
+}
+
+/* Lift and colour the tile on hover or keyboard focus */
 .hpc a.hpc-tile:hover,
 .hpc a.hpc-tile:focus-visible {
   transform: translateY(-5px);
-  background: var(--c);
+  background-color: var(--c);
   border-color: var(--c);
-  box-shadow: 0 14px 32px rgba(0,0,0,.4);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.4);
 }
-/* Dark text on the coloured background so it stays readable */
+
+/* Dark text on the coloured background */
 .hpc a.hpc-tile:hover h3,
 .hpc a.hpc-tile:hover p,
 .hpc a.hpc-tile:hover .hpc-go,
 .hpc a.hpc-tile:focus-visible h3,
 .hpc a.hpc-tile:focus-visible p,
-.hpc a.hpc-tile:focus-visible .hpc-go { color: var(--ink); }
-/* Hide the top strip on hover (same colour as the background anyway) */
-.hpc a.hpc-tile:hover:before,
-.hpc a.hpc-tile:focus-visible:before { background: rgba(29,11,32,.25); }
+.hpc a.hpc-tile:focus-visible .hpc-go {
+  color: var(--ink);
+}
 
 /* Colour assigned to each tile */
 .hpc a.hpc-tile.t1 { --c: var(--s-keynote); }
@@ -468,6 +500,10 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 .hpc a.hpc-tile.t5 { --c: var(--s-meeting); }
 .hpc a.hpc-tile.t6 { --c: var(--s-social); }
 
+.js .hpc a.hpc-tile.in:hover,
+.js .hpc a.hpc-tile.in:focus-visible {
+  transform: translateY(-5px);
+}
 
 /* ==========================================================================
    10. VIDEO (thumbnail button, iframe, empty placeholder)
@@ -536,9 +572,11 @@ body, h1, h2, h3, h4 { font-family: "Source Sans 3", system-ui, -apple-system, "
 /* ==========================================================================
    12. CALL-TO-ACTION BAND (Call for contributions / Slack)
    ========================================================================== */
-.hpc-band { padding: 64px 0; background: linear-gradient(135deg, #2A0E2E, #45184B 55%, var(--purple)); border-block: 1px solid rgba(255,255,255,.12); }
+/*.hpc-band { padding: 64px 0; background: linear-gradient(135deg, #2A0E2E, #45184B 55%, var(--purple)); border-block: 1px solid rgba(255,255,255,.12); }*/
+.hpc-band { padding: 64px 0; background: var(--purple); border-block: 1px solid rgba(255,255,255,.12); }
 .hpc-band a:not(.hpc-btn) { color: var(--purple-soft); }
 .hpc-copyrow { display: flex; flex-wrap: wrap; gap: 10px; }
+.hpc-band h2 { width: 1200px;}
 
 
 /* ==========================================================================
@@ -758,7 +796,7 @@ if (cd && iso) {
       jobs = [];
 
       // 
-      var topLimit = H * (W < 680 ? .14 : .22);
+      var topLimit = H * (W < 680 ? .14 : .12);
       var side = Math.max(0, (W - 1100) / 2);
       for (var y = 0; y < rows; y++) for (var x = 0; x < cols; x++) {
         var inTop = (y + 1) * cell <= topLimit;

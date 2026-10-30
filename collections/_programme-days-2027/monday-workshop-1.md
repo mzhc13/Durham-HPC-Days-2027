@@ -10,7 +10,7 @@
 # 1. BASICS (required)
 # ------------------------------------------------------------
 
-title: "Monday Workshop 1"
+title: "Calman CLC202 (260)"
 
 # One of: keynote, tutorial, talk, workshop, meeting, social, other
 category: "workshop"
@@ -31,7 +31,7 @@ day: "Monday"
 start_time: "11:00"
 end_time: "12:30"
 track: "A"
-room: "CLC202 (260)"
+room: "CLC202"
 
 # Does the session run again? Add one entry per repeat, in this same file.
 # "room" is optional: if you leave it out, the main room above is used.
@@ -43,6 +43,9 @@ additional_slots:
   - day: "Monday"
     start_time: "13:30"
     end_time: "14:00"
+  - day: "Monday"
+    start_time: "16:30"
+    end_time: "18:00"
 #   - day: "Tuesday"
 #     start_time: "16:30"
 #     end_time: "18:00"

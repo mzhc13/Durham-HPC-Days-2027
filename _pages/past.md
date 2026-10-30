@@ -48,8 +48,8 @@ hidden: true
   <article class="hpc-edition e0" data-reveal style="--i:0">
     <div class="hpc-ed-year" aria-hidden="true">2026</div>
     <div class="hpc-ed-body">
-    <h3>🖥️ Durham HPC Days 2026</h3>
-    <p class="hpc-ed-label">Full programme</p>
+    <h3>Durham HPC Days 2026</h3>
+     <!--<p class="hpc-ed-label">Full programme</p>-->  
     <p>The 2026 edition was our biggest yet, bringing together more than 230 attendees across a full week of keynotes, tutorials, workshops and contributed talks. Most sessions were recorded and are available to watch on the event website.</p>
     <a class="hpc-btn hpc-btn-purple" href="https://hpc-days.github.io/Durham-HPC-Days-2026/">Visit the 2026 website →</a>
   </div>
@@ -58,8 +58,8 @@ hidden: true
   <article class="hpc-edition e1" data-reveal style="--i:0">
     <div class="hpc-ed-year" aria-hidden="true">2025</div>
     <div class="hpc-ed-body">
-      <h3>🖥️ Durham HPC Days 2025</h3>
-      <p class="hpc-ed-label">Full programme</p>
+      <h3>Durham HPC Days 2025</h3>
+    <!--<p class="hpc-ed-label">Full programme</p>-->  
       <p>The 2025 edition focused on advanced GPU programming, large-scale parallel optimisation, hands-on profiling, and modern HPC workflows. Researchers, RSEs, and developers from multiple scientific fields participated in sessions, tutorials, and collaborative discussions.</p>
       <a class="hpc-btn hpc-btn-purple" href="https://durham.readthedocs.io/en/latest/hpcdays2025/index.html">Visit the 2025 website →</a>
     </div>
@@ -68,15 +68,9 @@ hidden: true
   <article class="hpc-edition e2" data-reveal style="--i:1">
     <div class="hpc-ed-year" aria-hidden="true">2024</div>
     <div class="hpc-ed-body">
-      <h3>🖥️ Durham HPC Days 2024</h3>
-      <p class="hpc-ed-label">Full programme</p>
+      <h3>Durham HPC Days 2024</h3>
+      <!--<p class="hpc-ed-label">Full programme</p>-->  
       <p>The 2024 event focused on the evolving demands faced by compute centres and research computing groups. Core topics included:</p>
-      <ul class="hpc-chips" aria-label="2024 core topics">
-        <li>Talent scarcity</li>
-        <li>Scalability and performance limitations</li>
-        <li>Energy consumption and Net-Zero computing</li>
-        <li>Traditional simulation communities and ML/AI workflows</li>
-      </ul>
       <a class="hpc-btn hpc-btn-purple" href="https://scicomp.webspace.durham.ac.uk/events/code_performance_series/durham-hpc-days-2024/">Visit the 2024 website →</a>
     </div>
   </article>
@@ -84,8 +78,8 @@ hidden: true
   <article class="hpc-edition e3" data-reveal style="--i:2">
     <div class="hpc-ed-year" aria-hidden="true">2023</div>
     <div class="hpc-ed-body">
-      <h3>🖥️ Durham HPC Days 2023</h3>
-      <p class="hpc-ed-label">Full programme</p>
+      <h3>Durham HPC Days 2023</h3>
+       <!--<p class="hpc-ed-label">Full programme</p>-->  
       <p>The 2023 event focused on exploring the community’s transition from homogeneous to increasingly heterogeneous supercomputing architectures, focusing on how to adapt algorithms, workflows and quantities of interest to new hardware; the role of performance portability; lessons learned from prototype and experimental systems within ExCALIBUR and the integration of core computer science and applied mathematics with domain sciences.</p>
       <a class="hpc-btn hpc-btn-purple" href="https://tobiasweinzierl.webspace.durham.ac.uk/research/workshops/durham-hpc-days-spring-2023/">Visit the 2023 website →</a>
     </div>
@@ -155,13 +149,15 @@ hidden: true
   border-radius: 0;
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
+
 .hpc-edition.e0 { --c: var(--s-social); }
 .hpc-edition.e1 { --c: var(--s-tutorial); }
 .hpc-edition.e2 { --c: var(--s-talk); }
 .hpc-edition.e3 { --c: var(--s-workshop); }
 
 /* Card content */
-.hpc-ed-year { color: var(--c); font-size: clamp(48px, 6vw, 72px); font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.hpc-ed-year { color: var(--c); font-size: clamp(48px, 6vw, 72px); font-weight: 800; letter-spacing: -.03em; line-height: 1; border-right: 0.5px solid var(--line); align-self: stretch; display: flex; align-items: center; }
+
 .hpc .hpc-edition h3 { margin-bottom: 4px; font-size: 26px; }
 .hpc .hpc-ed-label { margin-bottom: 12px; color: var(--muted); font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 .hpc .hpc-edition .hpc-chips { margin: 0 0 18px !important; }

@@ -25,7 +25,7 @@ classes: [full-programme]
 {% endfor %}
 {% assign time_slots = time_slots | uniq | sort %}
 
-{% assign fixed_sessions = "10:30|Coffee Break,12:00|Lunch,14:30|Break,16:00|Coffee Break" | split: "," %}
+{% assign fixed_sessions = "10:30|Coffee Break,12:30|Lunch,14:30|Break,16:00|Coffee Break" | split: "," %}
 
 {% for fs in fixed_sessions %}
   {% assign fs_parts = fs | split: "|" %}
